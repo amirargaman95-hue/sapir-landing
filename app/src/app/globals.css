@@ -4187,3 +4187,117 @@ body:has(.announcement-bar) section[id] { scroll-margin-top: 146px; }
 @media (min-width: 1024px) {
   body:has(.announcement-bar) section[id] { scroll-margin-top: 166px; }
 }
+
+/* ============================================================
+   REASON CARD — 3 PRO-MAX EFFECTS
+   1) Shine sweep on hover
+   2) Border beam (continuous)
+   3) 3D tilt on cursor
+   ============================================================ */
+
+/* Make cards 3D-tiltable using CSS variables set by JS */
+.reason-glass-card {
+  transform-style: preserve-3d;
+  transform: perspective(1100px) translateY(0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition:
+    transform 380ms cubic-bezier(.2,.8,.2,1),
+    box-shadow 380ms cubic-bezier(.2,.8,.2,1),
+    border-color 240ms ease;
+  will-change: transform;
+}
+.reason-glass-card:hover {
+  transform: perspective(1100px) translateY(-4px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+
+/* 1) Shine sweep — diagonal light passes once on hover */
+.reason-glass-card .shine-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(245, 241, 234, 0.16) 48%,
+    rgba(245, 241, 234, 0.30) 50%,
+    rgba(245, 241, 234, 0.16) 52%,
+    transparent 70%
+  );
+  transform: translateX(-150%);
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+[dir="rtl"] .reason-glass-card .shine-sweep {
+  background: linear-gradient(
+    -115deg,
+    transparent 30%,
+    rgba(245, 241, 234, 0.16) 48%,
+    rgba(245, 241, 234, 0.30) 50%,
+    rgba(245, 241, 234, 0.16) 52%,
+    transparent 70%
+  );
+  transform: translateX(150%);
+}
+.reason-glass-card:hover .shine-sweep {
+  animation: shine-sweep-rtl 1.1s ease-out forwards;
+}
+@keyframes shine-sweep-rtl {
+  0% { transform: translateX(150%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(-150%); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reason-glass-card:hover .shine-sweep { animation: none; }
+}
+
+/* 2) Border beam — continuous gradient travels around the border */
+@property --beam-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+.reason-glass-card .border-beam {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  z-index: 1;
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0%,
+    transparent 70%,
+    rgba(220, 235, 92, 0.55) 80%,
+    rgba(245, 241, 234, 0.85) 86%,
+    rgba(220, 235, 92, 0.55) 92%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000, #000) content-box,
+    linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0.45;
+  animation: beam-rotate 7s linear infinite;
+}
+@keyframes beam-rotate {
+  to { --beam-angle: 360deg; }
+}
+.reason-glass-card:hover .border-beam {
+  opacity: 0.85;
+  animation-duration: 4s;
+}
+
+/* Fallback for browsers without @property — static glow */
+@supports not (background: conic-gradient(from var(--beam-angle), red, blue)) {
+  .reason-glass-card .border-beam {
+    background: linear-gradient(135deg, rgba(220,235,92,0.45), transparent 50%, rgba(220,235,92,0.45));
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reason-glass-card .border-beam { animation: none; opacity: 0.55; }
+}
