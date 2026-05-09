@@ -18,7 +18,7 @@ export default function Home() {
     <>
       <AnnouncementBar />
       <TopHeader />
-      <main id="main" className="pt-[88px] lg:pt-[104px]">
+      <main id="main" className="pt-[100px] lg:pt-[124px]">
         <Hero />
         <StatsBanner />
         <ThreeReasons />

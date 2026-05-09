@@ -4059,8 +4059,8 @@ footer { background: #FAF7F1; }
 }
 
 /* Page padding adjustment when announcement bar is visible */
-body:has(.announcement-bar) main { padding-top: 124px; }
-@media (min-width: 1024px) { body:has(.announcement-bar) main { padding-top: 140px; } }
+body:has(.announcement-bar) main { padding-top: 136px; }
+@media (min-width: 1024px) { body:has(.announcement-bar) main { padding-top: 160px; } }
 
 /* Push fixed header down when announcement bar is visible */
 body:has(.announcement-bar) header.fixed { top: 36px; }
@@ -4300,4 +4300,91 @@ body:has(.announcement-bar) section[id] { scroll-margin-top: 146px; }
 
 @media (prefers-reduced-motion: reduce) {
   .reason-glass-card .border-beam { animation: none; opacity: 0.55; }
+}
+
+/* ============================================================
+   BRAND HEADER — REDESIGN (bigger, sharper, more presence)
+   ============================================================ */
+
+/* Larger logo container with a richer glow */
+.brand-monogram {
+  width: 76px !important;
+  height: 76px !important;
+  border-radius: 18px !important;
+  padding: 8px !important;
+  background: #FFFFFF !important;
+  border: 2.5px solid #DCEB5C !important;
+  box-shadow:
+    0 10px 28px -8px rgba(220, 235, 92, 0.50),
+    0 0 0 1px rgba(220, 235, 92, 0.25),
+    0 0 42px -12px rgba(220, 235, 92, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6) !important;
+}
+@media (min-width: 1024px) {
+  .brand-monogram {
+    width: 92px !important;
+    height: 92px !important;
+    border-radius: 22px !important;
+    padding: 10px !important;
+  }
+}
+
+/* Crisper logo image */
+.brand-logo-img {
+  filter: contrast(1.2) saturate(1.18) brightness(1.04) drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Brand text — bigger, bolder, better hierarchy */
+.brand-text {
+  gap: 2px;
+}
+.brand-name {
+  font-size: 1.35rem !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #14213D 0%, #1A365D 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (min-width: 1024px) {
+  .brand-name {
+    font-size: 1.65rem !important;
+  }
+}
+.brand-tagline {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+  color: #1A365D !important;
+  margin-top: 4px !important;
+  opacity: 0.85;
+}
+
+/* When header is on TRANSPARENT (over hero dark bg) — invert text */
+header.fixed.top-0:not(.has-bg) .brand-name {
+  background: linear-gradient(135deg, #F5F1EA 0%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+header.fixed.top-0:not(.has-bg) .brand-tagline {
+  color: #DCEB5C !important;
+  opacity: 1;
+}
+
+/* Hover: subtle scale + shimmer */
+.brand-mark:hover .brand-monogram {
+  transform: translateY(-2px) rotate(-2deg) scale(1.03);
+  box-shadow:
+    0 18px 38px -8px rgba(220, 235, 92, 0.65),
+    0 0 0 2px rgba(220, 235, 92, 0.50),
+    0 0 56px -10px rgba(220, 235, 92, 0.75),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.8) !important;
+}
+.brand-mark:hover .brand-name {
+  letter-spacing: -0.022em !important;
 }
