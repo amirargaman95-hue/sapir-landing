@@ -29,18 +29,20 @@ export default function SocialProof() {
       aria-labelledby="proof-heading"
     >
       <div className="container-prose">
-        <div className="max-w-[760px] flex flex-col gap-3">
-          <div className="flex items-center gap-2">
-            <FilmReel size={22} weight="duotone" color="var(--color-accent)" />
-            <p className="eyebrow-amber">ראיות</p>
+        {showVideos && (
+          <div className="max-w-[760px] flex flex-col gap-3">
+            <div className="flex items-center gap-2">
+              <FilmReel size={22} weight="duotone" color="var(--color-accent)" />
+              <p className="eyebrow-amber">ראיות</p>
+            </div>
+            <h2 id="proof-heading" className="h-display-md max-w-[24ch]">
+              המפעלים שגייסתי. <span className="gold-gradient">במילים שלהם.</span>
+            </h2>
+            <p className="mt-1 text-[var(--color-muted)] leading-relaxed">
+              סרטונים אמיתיים וצילומי וואטסאפ. בלי תסריט, בלי שחקנים.
+            </p>
           </div>
-          <h2 id="proof-heading" className="h-display-md max-w-[24ch]">
-            המפעלים שגייסתי. <span className="gold-gradient">במילים שלהם.</span>
-          </h2>
-          <p className="mt-1 text-[var(--color-muted)] leading-relaxed">
-            סרטונים אמיתיים וצילומי וואטסאפ. בלי תסריט, בלי שחקנים.
-          </p>
-        </div>
+        )}
 
         {/* Videos — phone mockups */}
         {showVideos && (
