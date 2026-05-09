@@ -5,8 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import {
   WhatsappLogo,
-  ShieldCheck,
-  Star,
   Wrench,
   Hammer,
   Factory,
@@ -20,10 +18,20 @@ import {
   Gear,
   GearSix,
   Shield,
-  ArrowLeft,
 } from "@phosphor-icons/react";
 import StatCounter from "@/components/ui/StatCounter";
 import { hero, WHATSAPP_URL, PHONE } from "@/data/content";
+
+const ROTATING_ROLES = [
+  "מנהל אחזקה",
+  "מנהל ייצור",
+  "טכנאי CNC",
+  "ראש צוות ייצור",
+  "מנהל איכות",
+  "מנהל מפעל",
+  "חשמלאי תעשייתי",
+  "מנהל לוגיסטיקה",
+];
 
 const sectors = [
   { name: "מתכת ומסגרות", Icon: Wrench },
@@ -46,17 +54,14 @@ export default function Hero() {
   const stageRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const [imgSrc, setImgSrc] = useState(hero.imageSrc);
-  const [roleInput, setRoleInput] = useState("");
+  const [roleIdx, setRoleIdx] = useState(0);
 
-  const handleQuickFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const role = roleInput.trim();
-    const message = role
-      ? `שלום ספיר, אני מחפש לגייס ל${role}.`
-      : "שלום ספיר, רוצה לדבר על גיוס.";
-    const url = `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
+  useEffect(() => {
+    const id = setInterval(() => {
+      setRoleIdx((i) => (i + 1) % ROTATING_ROLES.length);
+    }, 2400);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     if (!photoRef.current || !textRef.current) return;
@@ -139,35 +144,6 @@ export default function Hero() {
                 />
               </div>
 
-              {/* Just 2 cards now — outside the face area */}
-              <div className="float-card float-card-2">
-                <div className="fc-row">
-                  <span className="dot">
-                    <ShieldCheck size={12} weight="fill" color="#DCEB5C" />
-                  </span>
-                  אחריות
-                  <span className="fc-pill">100%</span>
-                </div>
-                <div className="fc-value">בכתב</div>
-                <div className="fc-row" style={{ textTransform: "none", letterSpacing: 0 }}>
-                  על כל השמה
-                </div>
-              </div>
-
-              <div className="float-card float-card-3">
-                <div className="fc-row">
-                  <span className="dot">
-                    <Star size={12} weight="fill" color="#DCEB5C" />
-                  </span>
-                  מודל
-                </div>
-                <div className="fc-value" style={{ fontSize: "1.05rem" }}>
-                  תשלום רק
-                </div>
-                <div className="fc-row" style={{ textTransform: "none", letterSpacing: 0 }}>
-                  אחרי הצלחה
-                </div>
-              </div>
             </div>
           </div>
 
@@ -186,6 +162,16 @@ export default function Hero() {
             </h1>
 
             <p className="hero-v2-sub">{hero.subheadline}</p>
+
+            {/* Rotating role line */}
+            <p className="hero-rotating-line" aria-live="polite">
+              <span className="hero-rotating-label">כרגע מגייסת:</span>
+              <span className="hero-rotating-word-wrap">
+                <span key={roleIdx} className="hero-rotating-word">
+                  {ROTATING_ROLES[roleIdx]}
+                </span>
+              </span>
+            </p>
 
             <div className="mt-9 flex flex-col sm:flex-row sm:items-center gap-3">
               <a
@@ -208,37 +194,6 @@ export default function Hero() {
             </div>
 
             <p className="hero-v2-microcopy">{hero.ctaMicrocopy}</p>
-
-            {/* Tertiary CTA — read process */}
-            <a href="#full-service" className="cta-tertiary">
-              תקרא איך אני עובדת
-              <span className="arrow" aria-hidden>↓</span>
-            </a>
-
-            {/* Quick form — alternative entry */}
-            <p className="hero-quick-form-label">או — תכתוב בקצרה מה אתה מחפש:</p>
-            <form className="hero-quick-form" onSubmit={handleQuickFormSubmit}>
-              <input
-                type="text"
-                value={roleInput}
-                onChange={(e) => setRoleInput(e.target.value)}
-                placeholder="לדוגמה: מנהל אחזקה למפעל פלסטיק"
-                aria-label="מה אתה מחפש"
-                maxLength={120}
-              />
-              <button type="submit" aria-label="שלח לוואטסאפ">
-                שלח לוואטסאפ
-                <ArrowLeft size={16} weight="bold" />
-              </button>
-            </form>
-
-            {/* Quick-nav chips */}
-            <nav className="hero-quick-nav" aria-label="ניווט מהיר">
-              <a href="#reasons">למה אני <span className="arrow" aria-hidden>↓</span></a>
-              <a href="#full-service">תהליך העבודה <span className="arrow" aria-hidden>↓</span></a>
-              <a href="#social-proof">המלצות <span className="arrow" aria-hidden>↓</span></a>
-              <a href="#contact">צרו קשר <span className="arrow" aria-hidden>↓</span></a>
-            </nav>
 
             {/* Animated stats row */}
             <div className="hero-stats">

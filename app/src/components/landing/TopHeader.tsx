@@ -52,6 +52,14 @@ export default function TopHeader() {
           </span>
         </a>
 
+        {/* Center nav — section anchors */}
+        <nav className="header-nav hidden md:flex" aria-label="ניווט בעמוד">
+          <a href="#reasons">למה אני</a>
+          <a href="#full-service">תהליך העבודה</a>
+          <a href="#social-proof">המלצות</a>
+          <a href="#contact">צרו קשר</a>
+        </nav>
+
         {/* Right side: socials + CTA */}
         <div className="flex items-center gap-2 lg:gap-3">
           <a
