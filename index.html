@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ספיר אזולאי — גיוס והשמת עובדים למפעלים</title>
+<meta name="description" content="גיוס עובדי כפיים ובכירים למפעלים ועסקים בינוניים-גדולים. תקופת התחייבות בכתב. 30+ השמות פעילות." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+:root{
+  --ink:#0b1020;
+  --ink-2:#141a2e;
+  --line:#1f2742;
+  --gold:#d4a857;
+  --gold-soft:#f0d990;
+  --paper:#f6f3ec;
+  --muted:#8b93a8;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Heebo',sans-serif;-webkit-font-smoothing:antialiased}
+.font-display{font-weight:800;letter-spacing:-.02em}
+.gold{color:var(--gold)}
+.bg-ink{background:var(--ink)}
+.bg-ink-2{background:var(--ink-2)}
+.border-line{border-color:var(--line)}
+
+/* hero gradient */
+.hero-bg{
+  background:
+    radial-gradient(800px 400px at 80% -10%, rgba(212,168,87,.18), transparent 60%),
+    radial-gradient(700px 500px at 0% 0%, rgba(212,168,87,.08), transparent 60%),
+    linear-gradient(180deg, #0b1020 0%, #141a2e 100%);
+}
+.hero-grid{
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 40%, #000 50%, transparent 100%);
+}
+.gold-pill{
+  background:linear-gradient(135deg,#d4a857,#f0d990);
+  color:#1a1d2e;
+}
+.glass{
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(8px);
+  border:1px solid rgba(255,255,255,.08);
+}
+.glass-light{
+  background:#fff;
+  border:1px solid rgba(11,16,32,.08);
+  box-shadow: 0 8px 30px rgba(11,16,32,.06);
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:linear-gradient(135deg,#d4a857,#f0d990);
+  color:#0b1020;font-weight:700;
+  padding:14px 28px;border-radius:999px;
+  transition:all .25s ease;
+  box-shadow:0 10px 30px rgba(212,168,87,.35);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(212,168,87,.5)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.5rem;
+  border:1px solid rgba(255,255,255,.2);
+  color:#fff;padding:14px 28px;border-radius:999px;
+  transition:all .25s ease;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.4)}
+
+.kpi-num{
+  font-weight:900;
+  background:linear-gradient(135deg,#d4a857,#f0d990);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.video-card{
+  position:relative;border-radius:18px;overflow:hidden;
+  cursor:pointer;background:#000;
+  aspect-ratio: 9/16;
+  transition: transform .3s ease, box-shadow .3s ease;
+  box-shadow: 0 10px 30px rgba(11,16,32,.15);
+}
+.video-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(11,16,32,.25)}
+.video-card img{width:100%;height:100%;object-fit:cover;display:block}
+.video-card .play{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background: linear-gradient(180deg, rgba(0,0,0,.0) 30%, rgba(0,0,0,.55));
+}
+.video-card .play span{
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(255,255,255,.9);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(0,0,0,.3);
+  transition: transform .25s ease;
+}
+.video-card:hover .play span{transform:scale(1.08)}
+.video-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+.proof-card{
+  border-radius:18px;overflow:hidden;
+  border:1px solid rgba(11,16,32,.08);
+  box-shadow: 0 10px 30px rgba(11,16,32,.06);
+  background:#fff;
+  transition: transform .3s ease;
+}
+.proof-card:hover{transform:translateY(-4px)}
+.proof-card img{width:100%;height:auto;display:block}
+
+/* role chips */
+.chip{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.55rem 1.1rem;border-radius:999px;
+  background:#fff;border:1px solid rgba(11,16,32,.1);
+  font-weight:600;font-size:.95rem;color:#1a1d2e;
+}
+.chip svg{color:var(--gold)}
+
+/* steps */
+.step-num{
+  width:48px;height:48px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.25rem;
+  background:linear-gradient(135deg,#d4a857,#f0d990);
+  color:#0b1020;
+  box-shadow:0 8px 24px rgba(212,168,87,.35);
+}
+
+/* form */
+.form-input{
+  width:100%;padding:14px 18px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.03);
+  color:#fff;font-family:inherit;font-size:1rem;
+  transition: all .2s ease;
+}
+.form-input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.06)}
+.form-input::placeholder{color:rgba(255,255,255,.4)}
+
+/* reveal animation */
+.reveal{opacity:0;transform:translateY(24px)}
+
+/* whatsapp float */
+.wa-float{
+  position:fixed;bottom:24px;left:24px;z-index:50;
+  width:58px;height:58px;border-radius:50%;
+  background:#25d366;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 30px rgba(37,211,102,.4);
+  transition:transform .25s ease;
+}
+.wa-float:hover{transform:scale(1.08)}
+
+/* lightbox */
+.lb{
+  position:fixed;inset:0;background:rgba(0,0,0,.85);
+  display:none;align-items:center;justify-content:center;z-index:100;
+  padding:24px;
+}
+.lb.active{display:flex}
+.lb video, .lb img{max-width:min(420px,90vw);max-height:90vh;border-radius:18px}
+.lb-close{
+  position:absolute;top:24px;left:24px;width:44px;height:44px;
+  border-radius:50%;background:rgba(255,255,255,.1);color:#fff;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  border:1px solid rgba(255,255,255,.2);
+}
+
+@media (max-width: 768px){
+  .hero h1{font-size:2.4rem !important;line-height:1.1 !important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============= NAV ============= -->
+<header class="bg-ink text-white border-b border-line">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="bg-white rounded-xl p-2 flex items-center justify-center">
+        <img src="img/sapir-profile.webp" alt="SAPIR AZULAY" class="h-8 w-auto block">
+      </div>
+      <div>
+        <div class="font-display text-lg leading-none">ספיר אזולאי</div>
+        <div class="text-xs text-white/60 mt-1">גיוס והשמת עובדים למפעלים</div>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-white/80">
+      <a href="#proof" class="hover:text-white">לקוחות</a>
+      <a href="#testimonials" class="hover:text-white">המלצות</a>
+      <a href="#how" class="hover:text-white">תהליך</a>
+      <a href="#roles" class="hover:text-white">תפקידים</a>
+      <a href="#contact" class="btn-primary !py-2.5 !px-5 !text-sm">בואו נדבר</a>
+    </nav>
+    <a href="#contact" class="md:hidden btn-primary !py-2 !px-4 !text-sm">צרי קשר</a>
+  </div>
+</header>
+
+<!-- ============= HERO ============= -->
+<section class="hero hero-bg text-white relative overflow-hidden">
+  <div class="hero-grid absolute inset-0"></div>
+  <div class="max-w-7xl mx-auto px-6 py-24 md:py-32 relative">
+    <div class="grid md:grid-cols-12 gap-10 items-center">
+      <div class="md:col-span-7 reveal">
+        <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full glass text-sm text-white/80">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          מגייסת פעילה · 30+ השמות פעילות בשטח
+        </div>
+        <h1 class="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05]">
+          המפעלים שגייסו דרכי —<br>
+          <span class="gold">הצוות שלהם עדיין שם.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/75 mt-6 max-w-2xl leading-relaxed">
+          גיוס מקצועי לעולם המפעלים — מעובדי כפיים ועד הנהלה.
+          תקופת התחייבות בכתב. בלי לבזבז שעות על קורות חיים לא רלוונטיים.
+        </p>
+        <div class="flex flex-wrap gap-4 mt-10">
+          <a href="#contact" class="btn-primary">
+            קבעו שיחת היכרות 15 דק׳
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5m0 0l7-7m-7 7l7 7"/></svg>
+          </a>
+          <a href="#testimonials" class="btn-ghost">
+            צפי בעדויות לקוחות
+          </a>
+        </div>
+      </div>
+
+      <!-- KPI block -->
+      <div class="md:col-span-5 reveal">
+        <div class="glass rounded-3xl p-7 md:p-8">
+          <div class="text-sm text-white/60 mb-5">המספרים מאחורי העבודה שלי</div>
+          <div class="grid grid-cols-3 gap-5">
+            <div>
+              <div class="kpi-num text-4xl md:text-5xl">30+</div>
+              <div class="text-xs md:text-sm text-white/70 mt-2">השמות מוצלחות</div>
+            </div>
+            <div>
+              <div class="kpi-num text-4xl md:text-5xl">92%</div>
+              <div class="text-xs md:text-sm text-white/70 mt-2">עוברים תקופת התחייבות</div>
+            </div>
+            <div>
+              <div class="kpi-num text-4xl md:text-5xl">7+</div>
+              <div class="text-xs md:text-sm text-white/70 mt-2">חודשים — ממוצע השמה</div>
+            </div>
+          </div>
+          <div class="mt-7 pt-6 border-t border-white/10">
+            <div class="text-xs text-white/60 mb-3">לקוחות שחזרו לגייס דרכי</div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs">יוסי הנה״ח</span>
+              <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs">אדמו גרופ</span>
+              <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs">לריסה — אוהד גיוס</span>
+              <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs">שלומי</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= EXPLAINER (Vercel-style) ============= -->
+<section class="py-20 md:py-28 bg-ink text-white relative overflow-hidden">
+  <div class="absolute inset-0 hero-grid opacity-40"></div>
+  <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#d4a857]/10 blur-3xl"></div>
+  <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-[#d4a857]/10 blur-3xl"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative">
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <div class="text-sm gold font-bold tracking-widest mb-3">איך זה עובד אצלך</div>
+      <h2 class="font-display text-3xl md:text-5xl leading-tight">
+        מהשיחה הראשונה <br class="hidden md:block">
+        עד <span class="gold">שהעובד מתחיל.</span>
+      </h2>
+      <p class="text-white/70 mt-5 text-lg">בלי קו״ח שעוטפים את השולחן. בלי לרדוף אחריי. בלי הפתעות.</p>
+    </div>
+
+    <!-- Step cards -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 mt-16">
+
+      <!-- STEP 1 -->
+      <div class="explainer-card reveal" data-step="1">
+        <div class="card-shell">
+          <div class="step-badge">01</div>
+          <div class="step-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h3 class="font-bold text-xl mb-2">שיחה של 20 דקות</h3>
+          <p class="text-white/60 text-sm leading-relaxed mb-5">אני שואלת. אתה מספר. אני יורדת לפרטים שאף אחד לא שואל.</p>
+
+          <!-- Mock: WhatsApp message from employer -->
+          <div class="mock-chat">
+            <div class="mock-bubble">צריך מלגזן עם רישיון 8/9</div>
+            <div class="mock-bubble">2 משמרות. דחוף.</div>
+            <div class="mock-bubble out">הבנתי. שולחת לך 4 שמות עד מחר 14:00 ✅</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="explainer-card reveal" data-step="2">
+        <div class="card-shell">
+          <div class="step-badge">02</div>
+          <div class="step-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          </div>
+          <h3 class="font-bold text-xl mb-2">סינון אישי</h3>
+          <p class="text-white/60 text-sm leading-relaxed mb-5">אני מדברת עם כל מועמד. רואה אותו. שומעת אותו. רק אז שולחת.</p>
+
+          <!-- Mock: funnel stats -->
+          <div class="mock-funnel">
+            <div class="mock-row"><span>קו״ח שהגיעו</span><span class="num">47</span></div>
+            <div class="mock-row"><span>שיחות שניהלתי</span><span class="num">12</span></div>
+            <div class="mock-row highlight"><span>מתאימים אליך</span><span class="num">4</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="explainer-card reveal" data-step="3">
+        <div class="card-shell">
+          <div class="step-badge">03</div>
+          <div class="step-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3 class="font-bold text-xl mb-2">וואטסאפ אחד מסודר</h3>
+          <p class="text-white/60 text-sm leading-relaxed mb-5">3-5 מועמדים מסוננים, עם קו״ח ושאלון, מוכנים לראיון.</p>
+
+          <!-- Mock: candidate cards -->
+          <div class="mock-cards">
+            <div class="mock-cand"><span class="dot"></span> אבי צאיג · נהג · 8 שנ׳ ניסיון</div>
+            <div class="mock-cand"><span class="dot"></span> נתנאל אלקרט · מפעיל · רישיון 9</div>
+            <div class="mock-cand"><span class="dot"></span> חאלד · מלגזן · זמין מיידית</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="explainer-card reveal" data-step="4">
+        <div class="card-shell">
+          <div class="step-badge">04</div>
+          <div class="step-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="font-bold text-xl mb-2">תקופת התחייבות</h3>
+          <p class="text-white/60 text-sm leading-relaxed mb-5">העובד עוזב מוקדם? אני מחליפה. בלי דיון.</p>
+
+          <!-- Mock: timeline -->
+          <div class="mock-timeline">
+            <div class="tl-row"><span class="tl-dot done"></span><span>יום 1 — התחלת עבודה</span></div>
+            <div class="tl-row"><span class="tl-dot done"></span><span>יום 30 — אמצע התחייבות</span></div>
+            <div class="tl-row"><span class="tl-dot success"></span><span class="ok">יום 60 — עבר ✓</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.explainer-card{position:relative}
+.card-shell{
+  position:relative;
+  border-radius:22px;
+  padding:28px;
+  background: linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(255,255,255,.01) 100%);
+  border:1px solid rgba(255,255,255,.08);
+  height:100%;
+  transition: transform .3s ease, border-color .3s ease;
+  overflow:hidden;
+}
+.explainer-card:hover .card-shell{
+  border-color: rgba(212,168,87,.4);
+  transform: translateY(-4px);
+}
+.card-shell::before{
+  content:'';position:absolute;inset:-1px;border-radius:22px;
+  background: linear-gradient(135deg, rgba(212,168,87,.4), transparent 50%);
+  opacity:0;transition:opacity .3s ease;z-index:-1;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; padding:1px;
+}
+.explainer-card:hover .card-shell::before{opacity:1}
+
+.step-badge{
+  position:absolute;top:24px;left:24px;
+  font-size:.7rem;font-weight:800;letter-spacing:.2em;
+  color: rgba(212,168,87,.8);
+  font-family:'Heebo',sans-serif;
+}
+.step-icon-wrap{
+  width:44px;height:44px;border-radius:12px;
+  background: rgba(212,168,87,.12);
+  color: var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;
+  border:1px solid rgba(212,168,87,.2);
+}
+
+/* Mock chat */
+.mock-chat{display:flex;flex-direction:column;gap:6px;direction:rtl}
+.mock-bubble{
+  align-self:flex-start;
+  background: rgba(255,255,255,.06);
+  padding:8px 12px;border-radius:14px;border-top-right-radius:4px;
+  font-size:.82rem;color:rgba(255,255,255,.85);max-width:85%;
+}
+.mock-bubble.out{
+  align-self:flex-end;
+  background: linear-gradient(135deg,#d4a857,#f0d990);
+  color:#0b1020;font-weight:600;
+  border-radius:14px;border-top-left-radius:4px;
+}
+
+/* Mock funnel */
+.mock-funnel{display:flex;flex-direction:column;gap:8px}
+.mock-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 14px;border-radius:12px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+  font-size:.85rem;color:rgba(255,255,255,.7);
+}
+.mock-row .num{font-weight:800;color:#fff;font-size:1rem}
+.mock-row.highlight{
+  background: linear-gradient(135deg, rgba(212,168,87,.18), rgba(240,217,144,.08));
+  border-color: rgba(212,168,87,.3);
+  color:#fff;
+}
+.mock-row.highlight .num{
+  background:linear-gradient(135deg,#d4a857,#f0d990);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  font-size:1.2rem;
+}
+
+/* Mock candidate cards */
+.mock-cards{display:flex;flex-direction:column;gap:6px}
+.mock-cand{
+  padding:10px 14px;border-radius:12px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+  font-size:.82rem;color:rgba(255,255,255,.85);
+  display:flex;align-items:center;gap:10px;
+}
+.mock-cand .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,.6)}
+
+/* Mock timeline */
+.mock-timeline{display:flex;flex-direction:column;gap:10px;padding:6px 0}
+.tl-row{display:flex;align-items:center;gap:10px;font-size:.85rem;color:rgba(255,255,255,.75)}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.15);position:relative}
+.tl-dot.done{background: var(--gold)}
+.tl-dot.success{background:#22c55e;box-shadow:0 0 10px rgba(34,197,94,.6)}
+.tl-row .ok{color:#22c55e;font-weight:600}
+</style>
+
+<!-- ============= PAIN ============= -->
+<section class="py-20 md:py-28 bg-paper">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <div class="text-sm gold font-bold tracking-widest mb-3">הבעיה</div>
+      <h2 class="font-display text-3xl md:text-5xl leading-tight">
+        אתה מנהל מפעל. <br class="hidden md:block">
+        אתה לא צריך לראיין מלגזנים בעצמך.
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5 mt-14">
+      <div class="reveal glass-light rounded-2xl p-7">
+        <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">ערימות קו״ח לא רלוונטיים</h3>
+        <p class="text-gray-600 leading-relaxed">שעות מבוזבזות על מועמדים שלא יבואו לעבודה ביום הראשון.</p>
+      </div>
+      <div class="reveal glass-light rounded-2xl p-7">
+        <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">עובדים שעוזבים אחרי שבועיים</h3>
+        <p class="text-gray-600 leading-relaxed">משלמים עמלה, מאמנים, מסבירים — והם נעלמים. שוב מתחילים מאפס.</p>
+      </div>
+      <div class="reveal glass-light rounded-2xl p-7">
+        <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M12 2L2 22h20L12 2z"/><line x1="12" y1="9" x2="12" y2="14"/><circle cx="12" cy="17" r=".8" fill="#d97706"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">סוכנויות שנעלמות אחרי השכר</h3>
+        <p class="text-gray-600 leading-relaxed">עמלה גבוהה, אפס אחריות. אין תקופת התחייבות אמיתית.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= TESTIMONIAL VIDEOS ============= -->
+<section id="testimonials" class="py-20 md:py-28 bg-ink text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <div class="text-sm gold font-bold tracking-widest mb-3">העדויות</div>
+      <h2 class="font-display text-3xl md:text-5xl leading-tight">
+        לקוחות ומועמדים — <br class="hidden md:block">
+        <span class="gold">מספרים את הסיפור במקומי.</span>
+      </h2>
+      <p class="text-white/70 mt-5 text-lg">לחצי על כל סרטון כדי לצפות.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-14">
+      <div class="video-card reveal" data-video="videos/v1.mp4">
+        <img src="videos/v1_poster.jpg" alt="המלצה 1" loading="lazy">
+        <div class="play"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="#0b1020"><polygon points="6 4 20 12 6 20"/></svg></span></div>
+      </div>
+      <div class="video-card reveal" data-video="videos/v2.mp4">
+        <img src="videos/v2_poster.jpg" alt="המלצה 2" loading="lazy">
+        <div class="play"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="#0b1020"><polygon points="6 4 20 12 6 20"/></svg></span></div>
+      </div>
+      <div class="video-card reveal" data-video="videos/v3.mp4">
+        <img src="videos/v3_poster.jpg" alt="המלצה 3" loading="lazy">
+        <div class="play"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="#0b1020"><polygon points="6 4 20 12 6 20"/></svg></span></div>
+      </div>
+      <div class="video-card reveal" data-video="videos/v4.mp4">
+        <img src="videos/v4_poster.jpg" alt="המלצה 4" loading="lazy">
+        <div class="play"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="#0b1020"><polygon points="6 4 20 12 6 20"/></svg></span></div>
+      </div>
+      <div class="video-card reveal" data-video="videos/v5.mp4">
+        <img src="videos/v5_poster.jpg" alt="המלצה 5" loading="lazy">
+        <div class="play"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="#0b1020"><polygon points="6 4 20 12 6 20"/></svg></span></div>
+      </div>
+      <div class="video-card reveal" data-video="videos/v6.mp4">
+        <img src="videos/v6_poster.jpg" alt="המלצה 6" loading="lazy">
+        <div class="play"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="#0b1020"><polygon points="6 4 20 12 6 20"/></svg></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= WHATSAPP PROOFS ============= -->
+<section id="proof" class="py-20 md:py-28 bg-paper">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <div class="text-sm gold font-bold tracking-widest mb-3">הוכחות מהשטח</div>
+      <h2 class="font-display text-3xl md:text-5xl leading-tight">
+        ככה זה נראה <br class="hidden md:block">
+        <span class="gold">בוואטסאפ של הלקוחות שלי.</span>
+      </h2>
+      <p class="text-gray-600 mt-5 text-lg">דיווחים אמיתיים על השמות שעמדו בתקופת ההתחייבות — בלי פילטרים.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-14">
+      <div class="proof-card reveal"><img src="proofs/proof1.jpeg" alt="המלצה לקוח" loading="lazy"></div>
+      <div class="proof-card reveal"><img src="proofs/proof2.jpeg" alt="המלצה לקוח" loading="lazy"></div>
+      <div class="proof-card reveal"><img src="proofs/proof3.jpeg" alt="המלצה לקוח" loading="lazy"></div>
+      <div class="proof-card reveal"><img src="proofs/proof4.jpeg" alt="המלצה לקוח" loading="lazy"></div>
+      <div class="proof-card reveal"><img src="proofs/proof5.jpeg" alt="המלצה לקוח" loading="lazy"></div>
+      <div class="proof-card reveal"><img src="proofs/proof6.jpeg" alt="המלצה לקוח" loading="lazy"></div>
+      <div class="proof-card reveal"><img src="proofs/proof7.jpeg" alt="המלצה לקוח" loading="lazy"></div>
+      <div class="proof-card reveal"><img src="proofs/proof8.jpeg" alt="המלצה לקוח" loading="lazy"></div>
+      <div class="proof-card reveal"><img src="proofs/proof9.jpeg" alt="המלצה לקוח" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= HOW IT WORKS ============= -->
+<section id="how" class="py-20 md:py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <div class="text-sm gold font-bold tracking-widest mb-3">איך זה עובד</div>
+      <h2 class="font-display text-3xl md:text-5xl leading-tight">
+        3 שלבים. <span class="gold">בלי בלגן.</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-14">
+      <div class="reveal rounded-2xl p-8 border border-gray-100 bg-paper">
+        <div class="step-num mb-6">1</div>
+        <h3 class="font-bold text-xl mb-3">שיחת אפיון של 20 דק׳</h3>
+        <p class="text-gray-600 leading-relaxed">אני יורדת לעומק התפקיד, התרבות בעסק, מה חשוב לך באמת — ומה לא יעבוד.</p>
+      </div>
+      <div class="reveal rounded-2xl p-8 border border-gray-100 bg-paper">
+        <div class="step-num mb-6">2</div>
+        <h3 class="font-bold text-xl mb-3">3-5 מועמדים מסוננים</h3>
+        <p class="text-gray-600 leading-relaxed">לא 50 קורות חיים. רק אנשים שדיברתי איתם, סיננתי, וזיהיתי שהם מתאימים.</p>
+      </div>
+      <div class="reveal rounded-2xl p-8 border border-gray-100 bg-paper">
+        <div class="step-num mb-6">3</div>
+        <h3 class="font-bold text-xl mb-3">תקופת התחייבות בכתב</h3>
+        <p class="text-gray-600 leading-relaxed">העובד עוזב מוקדם? אני מחליפה. אתה לא משלם פעמיים על אותה משרה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= ROLES ============= -->
+<section id="roles" class="py-20 md:py-28 bg-paper">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <div class="text-sm gold font-bold tracking-widest mb-3">תפקידים שאני מגייסת</div>
+      <h2 class="font-display text-3xl md:text-5xl leading-tight">
+        מהרצפה <span class="gold">עד החדר של המנכ״ל.</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mt-14">
+      <div class="reveal glass-light rounded-2xl p-8">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4a857" stroke-width="2"><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/><path d="M2 7l10-5 10 5-10 5L2 7z"/></svg>
+          </div>
+          <h3 class="font-display text-2xl">עובדי כפיים ותפעול</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">מלגזנים</span>
+          <span class="chip">נהגים</span>
+          <span class="chip">מפעילי מכונה</span>
+          <span class="chip">מחסנאים</span>
+          <span class="chip">עובדי ייצור</span>
+          <span class="chip">אריזה ולוגיסטיקה</span>
+          <span class="chip">תפעול כללי</span>
+        </div>
+      </div>
+      <div class="reveal glass-light rounded-2xl p-8">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4a857" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3 class="font-display text-2xl">הנהלה ובכירים</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">מנהלי תפעול</span>
+          <span class="chip">סגני מנהלים</span>
+          <span class="chip">ראשי צוות</span>
+          <span class="chip">מנהלי מחסן</span>
+          <span class="chip">מנהלי משמרת</span>
+          <span class="chip">מנהלי כ״א</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= ABOUT (Personal Story) ============= -->
+<section class="py-20 md:py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-12 gap-12 items-center">
+
+      <!-- Photo -->
+      <div class="md:col-span-5 reveal">
+        <div class="relative">
+          <!-- Photo placeholder with elegant frame -->
+          <div class="aspect-[4/5] rounded-3xl overflow-hidden relative bg-gradient-to-br from-[#0b1020] via-[#1a2244] to-[#0b1020]">
+            <div class="absolute inset-0 hero-grid opacity-40"></div>
+            <div class="absolute inset-0 flex items-center justify-center p-10">
+              <div class="text-center">
+                <div class="bg-white/95 rounded-2xl p-8 inline-block mb-6 shadow-2xl">
+                  <img src="img/sapir-profile.webp" alt="SAPIR AZULAY" class="h-16 w-auto mx-auto">
+                </div>
+                <div class="text-white/80 text-sm">📸 תמונה אישית של ספיר<br><span class="text-white/50 text-xs">(תתווסף בקרוב)</span></div>
+              </div>
+            </div>
+            <!-- gold accent corner -->
+            <div class="absolute top-6 left-6 w-20 h-20 border-t-2 border-l-2 border-[#d4a857]/60 rounded-tl-2xl"></div>
+            <div class="absolute bottom-6 right-6 w-20 h-20 border-b-2 border-r-2 border-[#d4a857]/60 rounded-br-2xl"></div>
+          </div>
+          <!-- Floating quote card -->
+          <div class="absolute -bottom-8 -left-6 md:-left-10 max-w-[280px] bg-white rounded-2xl p-5 shadow-2xl border border-gray-100">
+            <div class="text-3xl gold leading-none mb-2">"</div>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              עידן גיוס מהמם שלך. אנחנו חושבים לקדם אותו לסגן מנהל.
+            </p>
+            <div class="mt-3 pt-3 border-t border-gray-100 flex items-center gap-2">
+              <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#d4a857] to-[#f0d990] flex items-center justify-center text-xs font-bold text-[#0b1020]">ל</div>
+              <div class="text-xs"><span class="font-bold">לריסה</span> · אוהד גיוס</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story -->
+      <div class="md:col-span-7 reveal md:pr-6">
+        <div class="text-sm gold font-bold tracking-widest mb-3">היכרות אישית</div>
+        <h2 class="font-display text-3xl md:text-5xl leading-[1.1]">
+          שמי ספיר. <br>
+          <span class="gold">אני לא סוכנות. אני אדם.</span>
+        </h2>
+
+        <div class="mt-8 space-y-5 text-gray-700 text-lg leading-relaxed">
+          <p>
+            <span class="font-bold text-[#0b1020]">אני לא חברת השמה.</span>
+            אני אדם אחד שיורד לעומק כל גיוס — מבין מה אתה באמת צריך,
+            מדבר עם כל מועמד אישית, ולא נעלם אחרי שהשכר עבר.
+          </p>
+          <p>
+            התמחיתי בעולם <span class="font-bold text-[#0b1020]">המפעלים והתפעול</span> —
+            מעובדי כפיים שאתה צריך כבר אתמול ועד סגני מנהלים שצריכים להיכנס לנעליים גדולות.
+          </p>
+          <p>
+            הסיבה שלקוחות חוזרים אליי שוב ושוב היא פשוטה:
+            <span class="font-bold text-[#0b1020]">אני לא מסיימת בהשמה — אני מסיימת בהצלחה.</span>
+          </p>
+        </div>
+
+        <!-- Mini stats row -->
+        <div class="mt-10 grid grid-cols-3 gap-4 pt-8 border-t border-gray-100">
+          <div>
+            <div class="text-3xl font-display gold">1</div>
+            <div class="text-sm text-gray-500 mt-1">איש — בלי מתווכים</div>
+          </div>
+          <div>
+            <div class="text-3xl font-display gold">100%</div>
+            <div class="text-sm text-gray-500 mt-1">מטפלת באופן אישי</div>
+          </div>
+          <div>
+            <div class="text-3xl font-display gold">∞</div>
+            <div class="text-sm text-gray-500 mt-1">זמינות אחרי השמה</div>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn-primary mt-10">
+          בואו נכיר
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5m0 0l7-7m-7 7l7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= CONTACT ============= -->
+<section id="contact" class="py-20 md:py-28 bg-ink text-white relative overflow-hidden">
+  <div class="absolute inset-0 hero-grid opacity-50"></div>
+  <div class="max-w-4xl mx-auto px-6 relative">
+    <div class="text-center reveal">
+      <div class="text-sm gold font-bold tracking-widest mb-3">בואו נדבר</div>
+      <h2 class="font-display text-3xl md:text-5xl leading-tight">
+        ספרי לי איזה תפקיד את צריכה <br class="hidden md:block">
+        <span class="gold">ואני חוזרת אליך תוך 24 שעות.</span>
+      </h2>
+    </div>
+
+    <form class="reveal mt-12 glass rounded-3xl p-8 md:p-10" onsubmit="return submitLead(event)">
+      <div class="grid md:grid-cols-2 gap-5">
+        <div>
+          <label class="text-sm text-white/70 mb-2 block">שם החברה</label>
+          <input class="form-input" type="text" placeholder="לדוגמה: מפעל ברזל ירושלים" required>
+        </div>
+        <div>
+          <label class="text-sm text-white/70 mb-2 block">איש קשר</label>
+          <input class="form-input" type="text" placeholder="שם מלא" required>
+        </div>
+        <div>
+          <label class="text-sm text-white/70 mb-2 block">טלפון</label>
+          <input class="form-input" type="tel" placeholder="050-0000000" required>
+        </div>
+        <div>
+          <label class="text-sm text-white/70 mb-2 block">תפקיד שצריך לאייש</label>
+          <input class="form-input" type="text" placeholder="מלגזן · מפעיל · מנהל משמרת" required>
+        </div>
+      </div>
+      <div class="mt-5">
+        <label class="text-sm text-white/70 mb-2 block">פרטים נוספים (אופציונלי)</label>
+        <textarea class="form-input" rows="3" placeholder="דחיפות, היקף, מיקום..."></textarea>
+      </div>
+      <div class="flex flex-wrap items-center justify-between gap-4 mt-7">
+        <div class="text-sm text-white/60">בלחיצה על "שלחי" אני מתחייבת לחזור אלייך תוך יום עסקים.</div>
+        <button type="submit" class="btn-primary">
+          שלחי — בואו נדבר
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5m0 0l7-7m-7 7l7 7"/></svg>
+        </button>
+      </div>
+    </form>
+
+    <div class="text-center text-white/60 mt-10 reveal">
+      <div class="mb-2">או ישירות:</div>
+      <div class="flex flex-wrap items-center justify-center gap-6 text-white">
+        <a href="tel:0555688102" class="hover:text-[#d4a857] flex items-center gap-2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          055-568-8102
+        </a>
+        <a href="mailto:sapiraz2204@gmail.com" class="hover:text-[#d4a857] flex items-center gap-2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          sapiraz2204@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer class="bg-ink-2 text-white/60 py-10 border-t border-line">
+  <div class="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-between gap-4 text-sm">
+    <div>© 2026 ספיר אזולאי · גיוס והשמת עובדים</div>
+    <div>בנוי באהבה · גרסה ראשונית</div>
+  </div>
+</footer>
+
+<!-- WhatsApp float -->
+<a href="https://wa.me/972555688102" class="wa-float" target="_blank" rel="noopener" aria-label="וואטסאפ">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.885 3.488"/></svg>
+</a>
+
+<!-- Lightbox -->
+<div class="lb" id="lb">
+  <div class="lb-close" id="lbClose">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </div>
+  <video id="lbVideo" controls playsinline></video>
+</div>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+document.querySelectorAll('.reveal').forEach(el => {
+  gsap.to(el, {
+    opacity: 1,
+    y: 0,
+    duration: .8,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 85%',
+      toggleActions: 'play none none none'
+    }
+  });
+});
+
+// Video lightbox
+const lb = document.getElementById('lb');
+const lbVideo = document.getElementById('lbVideo');
+const lbClose = document.getElementById('lbClose');
+
+document.querySelectorAll('.video-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const src = card.getAttribute('data-video');
+    lbVideo.src = src;
+    lb.classList.add('active');
+    lbVideo.play();
+  });
+});
+
+function closeLB(){
+  lb.classList.remove('active');
+  lbVideo.pause();
+  lbVideo.src = '';
+}
+lbClose.addEventListener('click', closeLB);
+lb.addEventListener('click', e => { if(e.target === lb) closeLB(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLB(); });
+
+// Form (demo - just thanks)
+function submitLead(e){
+  e.preventDefault();
+  alert('תודה! אחזור אלייך תוך יום עסקים. (זה דמו — בגרסה אמיתית הליד נכנס לפאנל)');
+  return false;
+}
+</script>
+</body>
+</html>

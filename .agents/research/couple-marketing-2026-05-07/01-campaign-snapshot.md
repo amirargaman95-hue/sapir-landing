@@ -1,0 +1,740 @@
+- generic [active] [ref=e1]:
+  - generic "תפריט נגישות":
+    - button "תפריט נגישות" [ref=e916] [cursor=pointer]
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - img [ref=e6]
+      - generic [ref=e8]:
+        - generic [ref=e11]:
+          - text: couple marketing
+          - text: studio.
+        - heading "דפי נחיתה שאי אפשר לשכוח." [level=1] [ref=e14]:
+          - text: דפי נחיתה
+          - text: שאי אפשר לשכוח.
+        - link [ref=e17] [cursor=pointer]:
+          - /url: "#one"
+          - img [ref=e20]
+    - heading "ה י י ! א ם ה ג ע ת ם ל כ א ן , כ נ ר א ה ש ג ם א ת ם מ ח פ ש י ם ד ף נ ח י ת ה ל ע ס ק ו ל א י ו ד ע י ם מ א י פ ה ל ה ת ח י ל . . . ה ג ע ת ם ל מ ק ו ם ה נ כ ו ן , א נ ח נ ו כ א ן כ ד י ל ע ז ו ר ל כ ם !" [level=2] [ref=e74]:
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - generic [ref=e77]: ה
+          - generic [ref=e78]: י
+          - generic [ref=e79]: י
+          - generic [ref=e80]: "!"
+        - generic [ref=e81]:
+          - generic [ref=e82]: א
+          - generic [ref=e83]: ם
+        - generic [ref=e84]:
+          - generic [ref=e85]: ה
+          - generic [ref=e86]: ג
+          - generic [ref=e87]: ע
+          - generic [ref=e88]: ת
+          - generic [ref=e89]: ם
+        - generic [ref=e90]:
+          - generic [ref=e91]: ל
+          - generic [ref=e92]: כ
+          - generic [ref=e93]: א
+          - generic [ref=e94]: ן
+          - generic [ref=e95]: ","
+        - generic [ref=e96]:
+          - generic [ref=e97]: כ
+          - generic [ref=e98]: נ
+          - generic [ref=e99]: ר
+          - generic [ref=e100]: א
+          - generic [ref=e101]: ה
+        - generic [ref=e102]:
+          - generic [ref=e103]: ש
+          - generic [ref=e104]: ג
+          - generic [ref=e105]: ם
+        - generic [ref=e106]:
+          - generic [ref=e107]: א
+          - generic [ref=e108]: ת
+          - generic [ref=e109]: ם
+        - generic [ref=e110]:
+          - generic [ref=e111]: מ
+          - generic [ref=e112]: ח
+          - generic [ref=e113]: פ
+          - generic [ref=e114]: ש
+          - generic [ref=e115]: י
+          - generic [ref=e116]: ם
+      - generic [ref=e119]:
+        - generic [ref=e120]:
+          - generic [ref=e121]: ד
+          - generic [ref=e122]: ף
+        - generic [ref=e123]:
+          - generic [ref=e124]: נ
+          - generic [ref=e125]: ח
+          - generic [ref=e126]: י
+          - generic [ref=e127]: ת
+          - generic [ref=e128]: ה
+        - generic [ref=e129]:
+          - generic [ref=e130]: ל
+          - generic [ref=e131]: ע
+          - generic [ref=e132]: ס
+          - generic [ref=e133]: ק
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - generic [ref=e136]: ו
+          - generic [ref=e137]: ל
+          - generic [ref=e138]: א
+        - generic [ref=e139]:
+          - generic [ref=e140]: י
+          - generic [ref=e141]: ו
+          - generic [ref=e142]: ד
+          - generic [ref=e143]: ע
+          - generic [ref=e144]: י
+          - generic [ref=e145]: ם
+        - generic [ref=e146]:
+          - generic [ref=e147]: מ
+          - generic [ref=e148]: א
+          - generic [ref=e149]: י
+          - generic [ref=e150]: פ
+          - generic [ref=e151]: ה
+        - generic [ref=e152]:
+          - generic [ref=e153]: ל
+          - generic [ref=e154]: ה
+          - generic [ref=e155]: ת
+          - generic [ref=e156]: ח
+          - generic [ref=e157]: י
+          - generic [ref=e158]: ל
+          - generic [ref=e159]: .
+          - generic [ref=e160]: .
+          - generic [ref=e161]: .
+      - generic [ref=e162]:
+        - generic [ref=e163]:
+          - generic [ref=e164]: ה
+          - generic [ref=e165]: ג
+          - generic [ref=e166]: ע
+          - generic [ref=e167]: ת
+          - generic [ref=e168]: ם
+        - generic [ref=e169]:
+          - generic [ref=e170]: ל
+          - generic [ref=e171]: מ
+          - generic [ref=e172]: ק
+          - generic [ref=e173]: ו
+          - generic [ref=e174]: ם
+        - generic [ref=e175]:
+          - generic [ref=e176]: ה
+          - generic [ref=e177]: נ
+          - generic [ref=e178]: כ
+          - generic [ref=e179]: ו
+          - generic [ref=e180]: ן
+          - generic [ref=e181]: ","
+        - generic [ref=e182]:
+          - generic [ref=e183]: א
+          - generic [ref=e184]: נ
+          - generic [ref=e185]: ח
+          - generic [ref=e186]: נ
+          - generic [ref=e187]: ו
+        - generic [ref=e188]:
+          - generic [ref=e189]: כ
+          - generic [ref=e190]: א
+          - generic [ref=e191]: ן
+        - generic [ref=e192]:
+          - generic [ref=e193]: כ
+          - generic [ref=e194]: ד
+          - generic [ref=e195]: י
+        - generic [ref=e196]:
+          - generic [ref=e197]: ל
+          - generic [ref=e198]: ע
+          - generic [ref=e199]: ז
+          - generic [ref=e200]: ו
+          - generic [ref=e201]: ר
+        - generic [ref=e202]:
+          - generic [ref=e203]: ל
+          - generic [ref=e204]: כ
+          - generic [ref=e205]: ם
+          - generic [ref=e206]: "!"
+    - generic [ref=e210]:
+      - heading "בניית דף נחיתה לעסק ב-1,300₪ + מע\"מ בלבד!" [level=2] [ref=e213]:
+        - text: בניית דף נחיתה לעסק
+        - text: ב-1,300₪ + מע"מ בלבד!
+      - paragraph [ref=e216]: מה תקבלו כחלק מהשירות?
+      - list [ref=e219]:
+        - listitem [ref=e220]:
+          - generic [ref=e222]: 
+          - generic [ref=e223]: דף נחיתה שמבליט את העסק שלכם
+        - listitem [ref=e224]:
+          - generic [ref=e226]: 
+          - generic [ref=e227]: עיצוב שיגרום לכם לבלוט מהמתחרים
+        - listitem [ref=e228]:
+          - generic [ref=e230]: 
+          - generic [ref=e231]: תוכן מעניין שמספר את הסיפור שלכם
+        - listitem [ref=e232]:
+          - generic [ref=e234]: 
+          - generic [ref=e235]: דף מותאם לפרסום במדיות השונות
+        - listitem [ref=e236]:
+          - generic [ref=e238]: 
+          - generic [ref=e239]: התאמה מלאה לכל סוגי המכשירים (מחשב, נייד וכו')
+        - listitem [ref=e240]:
+          - generic [ref=e242]: 
+          - generic [ref=e243]: כפתורים לוואטסאפ ולטלפון וחיבור טופס לידים למייל שלכם
+        - listitem [ref=e244]:
+          - generic [ref=e246]: 
+          - generic [ref=e247]: והכי חשוב, שירות אישי מכל הלב
+      - generic [ref=e248]:
+        - link "052-4862948 אלמוג >>" [ref=e252] [cursor=pointer]:
+          - /url: tel:052-4862948
+          - generic [ref=e253]:
+            - generic [ref=e255]: 
+            - generic [ref=e256]: 052-4862948 אלמוג >>
+        - link "Whatsapp >>" [ref=e260] [cursor=pointer]:
+          - /url: https://api.whatsapp.com/send?phone=972524862948&text=היי+מה+נשמע?+הגעתי+דרך+הדף+שלכם+ואשמח+לשמוע+פרטים+על+בניית+דף+נחיתה+לעסק+שלי
+          - generic [ref=e261]:
+            - generic [ref=e263]: 
+            - generic [ref=e264]: Whatsapp >>
+    - generic [ref=e270]:
+      - generic [ref=e271]:
+        - paragraph [ref=e274]: מי אנחנו?
+        - paragraph [ref=e277]: ליאת ואלמוג
+        - paragraph [ref=e280]: או בקיצור, קאפל מרקטינג
+      - generic [ref=e282]:
+        - paragraph [ref=e283]: כבר 6 שנים שאנחנו עוזרים לבעלי עסקים להגדיל את מחזורי המכירות של העסק באמצעות עמודי נחיתה מעוצבים ופרסום ממוקד במנוע החיפוש של גוגל.
+        - paragraph [ref=e284]: ליאת אחראית על העיצוב ויוצרת דפי נחיתה שאי אפשר להתעלם מהם, כאלו שמדגישים למה כדאי לבחור דווקא בכם. אלמוג מתמחה בכתיבת תוכן מכירתי וממיר, עם ניסיון ביצירת תוכן לחברות הגדולות במשק כמו Ynet וישראל היום.
+        - paragraph [ref=e285]: אנחנו שמים דגש גדול על מקצועיות, כבוד הדדי והרבה הנאה מהדרך המשותפת, נשמח להוביל את ההצלחה של העסק שלכם!
+      - generic [ref=e286]:
+        - link "052-4862948 אלמוג >>" [ref=e290] [cursor=pointer]:
+          - /url: tel:052-4862948
+          - generic [ref=e291]:
+            - generic [ref=e293]: 
+            - generic [ref=e294]: 052-4862948 אלמוג >>
+        - link "Whatsapp >>" [ref=e298] [cursor=pointer]:
+          - /url: https://api.whatsapp.com/send?phone=972524862948&text=היי+מה+נשמע?+הגעתי+דרך+הדף+שלכם+ואשמח+לשמוע+פרטים+על+בניית+דף+נחיתה+לעסק+שלי
+          - generic [ref=e299]:
+            - generic [ref=e301]: 
+            - generic [ref=e302]: Whatsapp >>
+    - region "קרוסלת תמונות" [ref=e306]:
+      - generic [ref=e307]:
+        - group [ref=e308]:
+          - figure [ref=e309]:
+            - img [ref=e310]
+        - group [ref=e311]:
+          - figure [ref=e312]:
+            - img [ref=e313]
+        - group [ref=e314]:
+          - figure [ref=e315]:
+            - img [ref=e316]
+        - group [ref=e317]:
+          - figure [ref=e318]:
+            - img [ref=e319]
+        - group [ref=e320]:
+          - figure [ref=e321]:
+            - img [ref=e322]
+        - group [ref=e323]:
+          - figure [ref=e324]:
+            - img [ref=e325]
+        - group [ref=e326]:
+          - figure [ref=e327]:
+            - img [ref=e328]
+        - group [ref=e329]:
+          - figure [ref=e330]:
+            - img [ref=e331]
+        - group [ref=e332]:
+          - figure [ref=e333]:
+            - img [ref=e334]
+        - group [ref=e335]:
+          - figure [ref=e336]:
+            - img [ref=e337]
+        - group [ref=e338]:
+          - figure [ref=e339]:
+            - img [ref=e340]
+        - group [ref=e919]:
+          - figure [ref=e342]:
+            - img [ref=e920]
+        - group [ref=e921]:
+          - figure [ref=e345]:
+            - img [ref=e922]
+        - group [ref=e923]:
+          - figure [ref=e348]:
+            - img [ref=e924]
+        - group [ref=e925]:
+          - figure [ref=e351]:
+            - img [ref=e926]
+        - group [ref=e927]:
+          - figure [ref=e354]:
+            - img [ref=e928]
+        - group [ref=e929]:
+          - figure [ref=e357]:
+            - img [ref=e930]
+        - group [ref=e931]:
+          - figure [ref=e360]:
+            - img [ref=e932]
+        - group [ref=e933]:
+          - figure [ref=e363]:
+            - img [ref=e934]
+        - group [ref=e935]:
+          - figure [ref=e366]:
+            - img [ref=e936]
+        - group [ref=e937]:
+          - figure [ref=e369]:
+            - img [ref=e938]
+        - group [ref=e371]:
+          - figure [ref=e372]:
+            - img [ref=e373]
+        - group [ref=e374]:
+          - figure [ref=e375]:
+            - img [ref=e376]
+        - group [ref=e377]:
+          - figure [ref=e378]:
+            - img [ref=e379]
+        - group [ref=e380]:
+          - figure [ref=e381]:
+            - img [ref=e382]
+        - group [ref=e383]:
+          - figure [ref=e384]:
+            - img [ref=e385]
+        - group [ref=e386]:
+          - figure [ref=e387]:
+            - img [ref=e388]
+        - group [ref=e389]:
+          - figure [ref=e390]:
+            - img [ref=e391]
+        - group [ref=e392]:
+          - figure [ref=e393]:
+            - img [ref=e394]
+        - group [ref=e395]:
+          - figure [ref=e396]:
+            - img [ref=e397]
+        - group [ref=e398]:
+          - figure [ref=e399]:
+            - img [ref=e400]
+        - group [ref=e992]:
+          - figure [ref=e402]:
+            - img [ref=e993]
+        - group [ref=e994]:
+          - figure [ref=e405]:
+            - img [ref=e995]
+        - group [ref=e996]:
+          - figure [ref=e408]:
+            - img [ref=e997]
+        - group [ref=e998]:
+          - figure [ref=e411]:
+            - img [ref=e999]
+        - group "26 / 58" [ref=e947]:
+          - figure [ref=e414]:
+            - img "28" [ref=e948]
+        - group "27 / 58" [ref=e949]:
+          - figure [ref=e417]:
+            - img "8" [ref=e950]
+        - group "28 / 58" [ref=e951]:
+          - figure [ref=e420]:
+            - img "26" [ref=e952]
+        - group "29 / 58" [ref=e953]:
+          - figure [ref=e423]:
+            - img "9" [ref=e954]
+        - group "30 / 58" [ref=e955]:
+          - figure [ref=e426]:
+            - img "10" [ref=e956]
+        - group "31 / 58" [ref=e957]:
+          - figure [ref=e429]:
+            - img "22" [ref=e958]
+        - group "32 / 58" [ref=e1000]:
+          - figure [ref=e432]:
+            - img "21" [ref=e1001]
+        - group "33 / 58" [ref=e1002]:
+          - figure [ref=e435]:
+            - img "20" [ref=e1003]
+        - group "34 / 58" [ref=e1004]:
+          - figure [ref=e438]:
+            - img "18" [ref=e1005]
+        - group "35 / 58" [ref=e1006]:
+          - figure [ref=e441]:
+            - img "16" [ref=e1007]
+        - group [ref=e443]:
+          - figure [ref=e444]:
+            - img [ref=e445]
+        - group [ref=e446]:
+          - figure [ref=e447]:
+            - img [ref=e448]
+        - group [ref=e449]:
+          - figure [ref=e450]:
+            - img [ref=e451]
+        - group [ref=e452]:
+          - figure [ref=e453]:
+            - img [ref=e454]
+        - group [ref=e455]:
+          - figure [ref=e456]:
+            - img [ref=e457]
+        - group [ref=e458]:
+          - figure [ref=e459]:
+            - img [ref=e460]
+        - group [ref=e461]:
+          - figure [ref=e462]:
+            - img [ref=e463]
+        - group [ref=e464]:
+          - figure [ref=e465]:
+            - img [ref=e466]
+        - group [ref=e467]:
+          - figure [ref=e468]:
+            - img [ref=e469]
+        - group [ref=e470]:
+          - figure [ref=e471]:
+            - img [ref=e472]
+        - group [ref=e473]:
+          - figure [ref=e474]:
+            - img [ref=e475]
+        - group [ref=e476]:
+          - figure [ref=e477]:
+            - img [ref=e478]
+        - group [ref=e479]:
+          - figure [ref=e480]:
+            - img [ref=e481]
+        - group [ref=e482]:
+          - figure [ref=e483]:
+            - img [ref=e484]
+        - group [ref=e485]:
+          - figure [ref=e486]:
+            - img [ref=e487]
+        - group [ref=e488]:
+          - figure [ref=e489]:
+            - img [ref=e490]
+        - group [ref=e491]:
+          - figure [ref=e492]:
+            - img [ref=e493]
+        - group [ref=e494]:
+          - figure [ref=e495]:
+            - img [ref=e496]
+        - group [ref=e497]:
+          - figure [ref=e498]:
+            - img [ref=e499]
+        - group [ref=e500]:
+          - figure [ref=e501]:
+            - img [ref=e502]
+        - group [ref=e503]:
+          - figure [ref=e504]:
+            - img [ref=e505]
+        - group [ref=e506]:
+          - figure [ref=e507]:
+            - img [ref=e508]
+        - group [ref=e509]:
+          - figure [ref=e510]:
+            - img [ref=e511]
+        - group [ref=e512]:
+          - figure [ref=e513]:
+            - img [ref=e514]
+        - group [ref=e515]:
+          - figure [ref=e516]:
+            - img [ref=e517]
+        - group [ref=e518]:
+          - figure [ref=e519]:
+            - img [ref=e520]
+        - group [ref=e521]:
+          - figure [ref=e522]:
+            - img [ref=e523]
+        - group [ref=e524]:
+          - figure [ref=e525]:
+            - img [ref=e526]
+        - group [ref=e527]:
+          - figure [ref=e528]:
+            - img [ref=e529]
+        - group [ref=e530]:
+          - figure [ref=e531]:
+            - img [ref=e532]
+        - group [ref=e533]:
+          - figure [ref=e534]:
+            - img [ref=e535]
+        - group [ref=e536]:
+          - figure [ref=e537]:
+            - img [ref=e538]
+        - group [ref=e539]:
+          - figure [ref=e540]:
+            - img [ref=e541]
+    - generic [ref=e543]:
+      - heading "דפי הנחיתה שלנו" [level=2] [ref=e546]
+      - paragraph [ref=e549]:
+        - text: צירפנו מספר דוגמאות לדפי נחיתה שיצרנו.
+        - generic [ref=e550]: יש סגנון מסוים שאתם מחפשים? אין בעיה! אנחנו ניצור כל סגנון שתבקשו.
+        - text: "כדי לראות את העמוד לחצו על התמונה:"
+      - generic [ref=e551]:
+        - heading "דף נחיתה למכון ספא" [level=3] [ref=e555]
+        - heading "דף נחיתה לחברת נדל\"ן" [level=3] [ref=e560]
+        - heading "דף נחיתה לעורך דין" [level=3] [ref=e565]
+        - heading "דף נחיתה לקבלן ואדריכל" [level=3] [ref=e570]
+        - heading "דף נחיתה לצימרים בערבה" [level=3] [ref=e575]
+        - heading "דף נחיתה למנהלת חשבונות" [level=3] [ref=e580]
+        - heading "דף נחיתה למרצה" [level=3] [ref=e585]
+        - heading "דף נחיתה ליועץ משכנתא" [level=3] [ref=e590]
+        - heading "דף נחיתה לחברת הדברה" [level=3] [ref=e595]
+        - heading "דף נחיתה לחברת הלוואות" [level=3] [ref=e600]
+        - heading "דף נחיתה לקורס קוסמטיקה" [level=3] [ref=e605]
+        - heading "דף נחיתה לאימוני כושר קרבי" [level=3] [ref=e610]
+        - heading "דף נחיתה לעו\"ד גירושין" [level=3] [ref=e615]
+        - heading "דף נחיתה ליום גיבוש" [level=3] [ref=e620]
+        - heading "דף נחיתה למעצבת פנים" [level=3] [ref=e625]
+        - heading "דף נחיתה לסוכנות ביטוח" [level=3] [ref=e630]
+        - heading "דף נחיתה לקורס קוסמטיקה" [level=3] [ref=e635]
+        - heading "דף נחיתה למפיקת אירועים" [level=3] [ref=e640]
+        - heading "דף נחיתה לספר דיגיטלי" [level=3] [ref=e645]
+        - heading "דף נחיתה לסדנת רכבים" [level=3] [ref=e650]
+        - heading "דף נחיתה לחברת החזרי מס" [level=3] [ref=e655]
+    - generic [ref=e657]:
+      - heading "כמה מילים מרגשות מהלקוחות שלנו" [level=2] [ref=e660]
+      - region "קרוסלת תמונות" [ref=e663]:
+        - generic [ref=e664]:
+          - group [ref=e665]:
+            - link [ref=e666] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/20-1.webp
+              - figure [ref=e667]:
+                - img [ref=e668]
+          - group [ref=e669]:
+            - link [ref=e670] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/21-1.webp
+              - figure [ref=e671]:
+                - img [ref=e672]
+          - group [ref=e673]:
+            - link [ref=e674] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/22.webp
+              - figure [ref=e675]:
+                - img [ref=e676]
+          - group [ref=e677]:
+            - link [ref=e678] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/23.webp
+              - figure [ref=e679]:
+                - img [ref=e680]
+          - group [ref=e959]:
+            - link [ref=e682] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/1.webp
+              - figure [ref=e683]:
+                - img [ref=e960]
+          - group "2 / 23" [ref=e685]:
+            - link [ref=e686] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/2-1.webp
+              - figure [ref=e687]:
+                - img "2" [ref=e688]
+          - group "3 / 23" [ref=e689]:
+            - link [ref=e690] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/3-1.webp
+              - figure [ref=e691]:
+                - img "3" [ref=e692]
+          - group "4 / 23" [ref=e693]:
+            - link [ref=e694] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/4-1.webp
+              - figure [ref=e695]:
+                - img "4" [ref=e696]
+          - group "5 / 23" [ref=e961]:
+            - link [ref=e698] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/5-1.webp
+              - figure [ref=e699]:
+                - img "5" [ref=e962]
+          - group [ref=e701]:
+            - link [ref=e702] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/6-1.webp
+              - figure [ref=e703]:
+                - img [ref=e704]
+          - group [ref=e705]:
+            - link [ref=e706] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/7-1.webp
+              - figure [ref=e707]:
+                - img [ref=e708]
+          - group [ref=e709]:
+            - link [ref=e710] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/8-1.webp
+              - figure [ref=e711]:
+                - img [ref=e712]
+          - group [ref=e713]:
+            - link [ref=e714] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/9-1.webp
+              - figure [ref=e715]:
+                - img [ref=e716]
+          - group [ref=e717]:
+            - link [ref=e718] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/10-1.webp
+              - figure [ref=e719]:
+                - img [ref=e720]
+          - group [ref=e721]:
+            - link [ref=e722] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/11-1.webp
+              - figure [ref=e723]:
+                - img [ref=e724]
+          - group [ref=e725]:
+            - link [ref=e726] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/12-1.webp
+              - figure [ref=e727]:
+                - img [ref=e728]
+          - group [ref=e729]:
+            - link [ref=e730] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/13-1.webp
+              - figure [ref=e731]:
+                - img [ref=e732]
+          - group [ref=e733]:
+            - link [ref=e734] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/14-1.webp
+              - figure [ref=e735]:
+                - img [ref=e736]
+          - group [ref=e737]:
+            - link [ref=e738] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/15-1.webp
+              - figure [ref=e739]:
+                - img [ref=e740]
+          - group [ref=e741]:
+            - link [ref=e742] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/16-1.webp
+              - figure [ref=e743]:
+                - img [ref=e744]
+          - group [ref=e745]:
+            - link [ref=e746] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/17-1.webp
+              - figure [ref=e747]:
+                - img [ref=e748]
+          - group [ref=e749]:
+            - link [ref=e750] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/18-1.webp
+              - figure [ref=e751]:
+                - img [ref=e752]
+          - group [ref=e753]:
+            - link [ref=e754] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/19-1.webp
+              - figure [ref=e755]:
+                - img [ref=e756]
+          - group [ref=e757]:
+            - link [ref=e758] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/20-1.webp
+              - figure [ref=e759]:
+                - img [ref=e760]
+          - group [ref=e761]:
+            - link [ref=e762] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/21-1.webp
+              - figure [ref=e763]:
+                - img [ref=e764]
+          - group [ref=e765]:
+            - link [ref=e766] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/22.webp
+              - figure [ref=e767]:
+                - img [ref=e768]
+          - group [ref=e769]:
+            - link [ref=e770] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/23.webp
+              - figure [ref=e771]:
+                - img [ref=e772]
+          - group [ref=e773]:
+            - link [ref=e774] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/1.webp
+              - figure [ref=e775]:
+                - img [ref=e776]
+          - group [ref=e777]:
+            - link [ref=e778] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/2-1.webp
+              - figure [ref=e779]:
+                - img [ref=e780]
+          - group [ref=e781]:
+            - link [ref=e782] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/3-1.webp
+              - figure [ref=e783]:
+                - img [ref=e784]
+          - group [ref=e785]:
+            - link [ref=e786] [cursor=pointer]:
+              - /url: https://couple-marketing.co.il/wp-content/uploads/2026/01/4-1.webp
+              - figure [ref=e787]:
+                - img [ref=e788]
+        - button "שקופית קודמת" [ref=e789] [cursor=pointer]:
+          - generic [ref=e790]: 
+        - button "שקופית הבאה" [ref=e791] [cursor=pointer]:
+          - generic [ref=e792]: 
+    - generic [ref=e794]:
+      - heading "למה לבחור בנו?" [level=2] [ref=e797]:
+        - text: למה לבחור
+        - text: בנו?
+      - list [ref=e800]:
+        - listitem [ref=e801]:
+          - generic [ref=e803]: 
+          - generic [ref=e804]: בכל עסק מסתתר סיפור מרתק שמחכה לצאת לאור. אנחנו כאן כדי לספר את הסיפור של העסק שלכם ולהציג אתכם בצורה הכי טובה.
+        - listitem [ref=e805]:
+          - generic [ref=e807]: 
+          - generic [ref=e808]: אנחנו דואגים לשילוב של עיצוב מרשים ונוחות משתמש כדי שכל לקוח שיגיע לדף שלכם יעבור מסע מדויק וירצה לפנות דווקא אליכם.
+        - listitem [ref=e809]:
+          - generic [ref=e811]: 
+          - generic [ref=e812]: אנחנו לא בונים סתם עמודי נחיתה, אנחנו יוצרים חיבור. הדפים שלנו מניעים לפעולה ומפעילים את הרגש. אנחנו יוצרים אותם בצורה ממוקדת ושמים אתכם במרכז.
+    - generic [ref=e815]:
+      - heading "מוכנים לבנות את דף הנחיתה החדש שלכם? דברו איתנו ויחד נגשים לכם את החלומות!" [level=2] [ref=e818]:
+        - text: מוכנים לבנות את דף הנחיתה החדש שלכם?
+        - text: דברו איתנו ויחד נגשים לכם את החלומות!
+      - link "052-4862948 >>" [ref=e822] [cursor=pointer]:
+        - /url: tel:052-4862948
+        - generic [ref=e823]:
+          - generic [ref=e825]: 
+          - generic [ref=e826]: 052-4862948 >>
+      - link "WhatsApp >>" [ref=e830] [cursor=pointer]:
+        - /url: https://api.whatsapp.com/send?phone=972524862948&text=היי+מה+נשמע?+הגעתי+דרך+הדף+שלכם+ואשמח+לשמוע+פרטים+על+בניית+דף+נחיתה+לעסק+שלי
+        - generic [ref=e831]:
+          - generic [ref=e833]: 
+          - generic [ref=e834]: WhatsApp >>
+    - generic [ref=e836]:
+      - heading "שאלות ותשובות" [level=2] [ref=e839]
+      - generic "Accordion. Open links with Enter or Space, close with Escape, and navigate with Arrow Keys" [ref=e842]:
+        - group [ref=e843]:
+          - generic "כמה עולה דף נחיתה?" [ref=e844] [cursor=pointer]:
+            - paragraph [ref=e846]: כמה עולה דף נחיתה?
+            - generic [ref=e847]:
+              - text: 
+              - generic [ref=e849]: 
+        - group [ref=e850]:
+          - generic "כמה זמן לוקח לבנות דף נחיתה?" [ref=e851] [cursor=pointer]:
+            - paragraph [ref=e853]: כמה זמן לוקח לבנות דף נחיתה?
+            - generic [ref=e854]:
+              - text: 
+              - generic [ref=e856]: 
+        - group [ref=e857]:
+          - generic "באיזו פלטפורמה אתם בונים דפי נחיתה?" [ref=e858] [cursor=pointer]:
+            - paragraph [ref=e860]: באיזו פלטפורמה אתם בונים דפי נחיתה?
+            - generic [ref=e861]:
+              - text: 
+              - generic [ref=e863]: 
+        - group [ref=e864]:
+          - generic "מה כלול במחיר בבניית דף הנחיתה?" [ref=e865] [cursor=pointer]:
+            - paragraph [ref=e867]: מה כלול במחיר בבניית דף הנחיתה?
+            - generic [ref=e868]:
+              - text: 
+              - generic [ref=e870]: 
+        - group [ref=e871]:
+          - generic "האם הדף החדש שלי יהיה מותאם לקידום ממומן בגוגל?" [ref=e872] [cursor=pointer]:
+            - paragraph [ref=e874]: האם הדף החדש שלי יהיה מותאם לקידום ממומן בגוגל?
+            - generic [ref=e875]:
+              - text: 
+              - generic [ref=e877]: 
+        - group [ref=e878]:
+          - generic "איך אפשר להגיע לחשיפה גדולה של לקוחות רלוונטיים לעסק?" [ref=e879] [cursor=pointer]:
+            - paragraph [ref=e881]: איך אפשר להגיע לחשיפה גדולה של לקוחות רלוונטיים לעסק?
+            - generic [ref=e882]:
+              - text: 
+              - generic [ref=e884]: 
+        - group [ref=e885]:
+          - generic "למה אתם ממליצים על בניית דף נחיתה בוורדפרס מכל הפלטפורמות?" [ref=e886] [cursor=pointer]:
+            - paragraph [ref=e888]: למה אתם ממליצים על בניית דף נחיתה בוורדפרס מכל הפלטפורמות?
+            - generic [ref=e889]:
+              - text: 
+              - generic [ref=e891]: 
+    - generic [ref=e893]:
+      - img [ref=e966]
+      - heading "משהו קטן מהלב" [level=2] [ref=e897]
+      - generic [ref=e899]:
+        - paragraph [ref=e900]: אנחנו מאמינים שההצלחה שלכם היא ההצלחה שלנו.
+        - paragraph [ref=e901]: האמון שלכם חשוב לנו, אנו מקפידים על תקשורת פתוחה ושקופה בכל שלב של הפרויקט ומערבים אתכם בתהליך כדי שתהיו הכי מרוצים שאפשר!
+        - paragraph [ref=e902]: בחרו בנו לבניית הדף שלכם ותהנו מדף מהמם, מחיר נוח במיוחד ובעיקר שקט נפשי בידיעה שאתם בידיים טובות.
+    - generic:
+      - list [ref=e905]:
+        - listitem [ref=e906]:
+          - link "הצהרת נגישות" [ref=e907] [cursor=pointer]:
+            - /url: https://couple-marketing.co.il/uncategorized/%d7%94%d7%a6%d7%94%d7%a8%d7%aa-%d7%a0%d7%92%d7%99%d7%a9%d7%95%d7%aa/
+            - generic [ref=e908]: הצהרת נגישות
+        - listitem [ref=e909]:
+          - link "מדיניות פרטיות" [ref=e910] [cursor=pointer]:
+            - /url: https://couple-marketing.co.il/privacy-policy/
+            - generic [ref=e911]: מדיניות פרטיות
+      - generic:
+        - generic: ©2026 כל הזכויות שמורות לליאת ואלמוג אחדות. | ט.ל.ח
+    - generic [ref=e971]:
+      - paragraph [ref=e974]:
+        - text: הדף החדש שלכם במרחק לחיצת כפתור
+        - text: פנו אלינו לייעוץ ראשוני ובדיקת התאמה
+      - generic [ref=e975]:
+        - link "052-4862948 >>" [ref=e979] [cursor=pointer]:
+          - /url: tel:052-4862948
+          - generic [ref=e980]:
+            - generic [ref=e982]: 
+            - generic [ref=e983]: 052-4862948 >>
+        - link "WhatsApp >>" [ref=e987] [cursor=pointer]:
+          - /url: https://api.whatsapp.com/send?phone=972524862948&text=היי+מה+נשמע?+הגעתי+דרך+הדף+שלכם+ואשמח+לשמוע+פרטים+על+בניית+דף+נחיתה+לעסק+שלי
+          - generic [ref=e988]:
+            - generic [ref=e990]: 
+            - generic [ref=e991]: WhatsApp >>
+  - generic [ref=e914]: desktop

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ספיר אזולאי — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;800;900&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #F4EFE6;
+    --bg-card:      #FBF8F1;
+    --text:         #1A1814;
+    --text-soft:    #3A352D;
+    --text-mute:    #7A6F5F;
+    --rule:         #D9D2C5;
+    --forest:       #2D4A3E;
+    --forest-dark:  #1F362C;
+    --forest-soft:  #3F5D50;
+    --font-serif:   'Frank Ruhl Libre', Georgia, serif;
+    --font-sans:    'Heebo', system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.65;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* subtle grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* TOP BAR */
+  .topbar {
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0;
+  }
+  .topbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand-mark {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .brand-mark em {
+    font-style: italic;
+    color: var(--forest);
+  }
+  .nav {
+    display: flex;
+    gap: 36px;
+  }
+  .nav a {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    transition: color 200ms;
+  }
+  .nav a:hover { color: var(--forest); }
+  .nav-cta {
+    color: var(--forest) !important;
+    border-bottom: 1px solid var(--forest);
+    padding-bottom: 2px;
+  }
+
+  /* HERO */
+  .hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-text {
+    position: relative;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--forest);
+    margin-bottom: 32px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--forest);
+  }
+
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(44px, 5.5vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+  .hero h1 .accent {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--forest);
+  }
+  .hero h1 .underline {
+    position: relative;
+    display: inline-block;
+  }
+  .hero h1 .underline::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; right: 0; left: 0;
+    height: 8px;
+    background: rgba(45, 74, 62, 0.15);
+    z-index: -1;
+  }
+
+  .hero-sub {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-soft);
+    max-width: 540px;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+
+  .cta-row {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--forest);
+    color: var(--bg);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 2px;
+    text-decoration: none;
+    border: none;
+    transition: background 200ms ease;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { background: var(--forest-dark); }
+  .btn-primary svg { width: 16px; height: 16px; }
+
+  .btn-link {
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 15px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: color 200ms, border-color 200ms;
+  }
+  .btn-link:hover { color: var(--forest); border-color: var(--forest); }
+
+  .trust-line {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    color: var(--text-mute);
+    font-weight: 400;
+  }
+  .trust-line .dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--text-mute);
+  }
+  .trust-line strong {
+    color: var(--text-soft);
+    font-weight: 500;
+  }
+
+  /* HERO IMAGE */
+  .hero-image-wrap {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    max-width: 520px;
+    margin-right: auto;
+    margin-left: 0;
+  }
+  .hero-image-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 24px -24px -24px 24px;
+    background: var(--forest);
+    z-index: 0;
+  }
+  .hero-image {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.15) contrast(1.05);
+  }
+  .image-caption {
+    position: absolute;
+    bottom: -56px;
+    right: 0;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text-mute);
+    letter-spacing: 0.02em;
+  }
+
+  /* QUOTE STRIP */
+  .quote-strip {
+    border-top: 1px solid var(--rule);
+    padding: 40px 0;
+  }
+  .quote-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+  }
+  .quote {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--text-soft);
+    font-style: italic;
+    max-width: 720px;
+    letter-spacing: -0.005em;
+  }
+  .quote-author {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 60px;
+      padding: 48px 24px 80px;
+    }
+    .hero-image-wrap { max-width: 380px; margin: 0 auto; }
+    .nav { display: none; }
+    .quote-strip-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .image-caption { position: static; margin-top: 20px; display: block; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-mark">ספיר אזולאי <em>·</em> גיוס</div>
+    <nav class="nav">
+      <a href="#">המתודה</a>
+      <a href="#">לקוחות</a>
+      <a href="#">עליי</a>
+      <a href="#">שאלות נפוצות</a>
+      <a href="#" class="nav-cta">דברו איתי</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">גיוס בוטיק למפעלים בישראל</div>
+
+    <h1>
+      מנהל ייצור<br>
+      שלא תמצאו <span class="accent">ב-LinkedIn.</span>
+    </h1>
+
+    <p class="hero-sub">
+      אני ספיר. כמעט עשור של גיוס — חצי מזה במנפאואר.
+      היום אני בונה צוותים למפעלים בישראל. בלי דאטאבייס.
+      בלי לחץ. <strong>אישית עם המנכ"ל.</strong>
+    </p>
+
+    <div class="cta-row">
+      <a href="#" class="btn-primary">
+        בואו נדבר על המשרה
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.5 2L7.4 3.1l4.1 4.1H1v1.6h10.5l-4.1 4.1L8.5 14l6-6z"/></svg>
+      </a>
+      <a href="#" class="btn-link">או צפו ב-12 השמות אחרונות →</a>
+    </div>
+
+    <div class="trust-line">
+      <span><strong>12</strong> השמות בשנה האחרונה</span>
+      <span class="dot"></span>
+      <span><strong>0</strong> השמות שהתפטרו לפני 6 חודשים</span>
+      <span class="dot"></span>
+      <span>תקופת אחריות בכתב</span>
+    </div>
+  </div>
+
+  <div class="hero-image-wrap">
+    <img class="hero-image" src="img/sapir-real.webp" alt="ספיר אזולאי" onerror="this.style.background='var(--forest-soft)'; this.style.display='block'">
+    <div class="image-caption">צולם בכפר סבא, 2026</div>
+  </div>
+</section>
+
+<section class="quote-strip">
+  <div class="quote-strip-inner">
+    <blockquote class="quote">
+      "ניסינו 4 חברות השמה. ספיר הביאה את מנהל הייצור שאנחנו מחפשים שנתיים. בשבועיים."
+    </blockquote>
+    <div class="quote-author">— יוסי לוי, מנכ"ל פלסטיק 2000</div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "sapir-promo-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sapir Azulay — 9-step recruitment process promo video (Hebrew, 30s)",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts SapirPromo out/sapir-promo.mp4 --scale=2",
+    "render:4k": "remotion render src/index.ts SapirPromo out/sapir-promo-4k.mp4 --scale=3",
+    "render:draft": "remotion render src/index.ts SapirPromo out/draft.mp4 --scale=1"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.448",
+    "@remotion/cli": "4.0.448",
+    "@remotion/google-fonts": "4.0.448",
+    "@remotion/shapes": "4.0.448",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.448"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@types/web": "0.0.166",
+    "typescript": "5.9.3"
+  }
+}
