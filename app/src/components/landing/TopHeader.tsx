@@ -33,19 +33,8 @@ export default function TopHeader() {
           className="brand-mark group"
           aria-label="ספיר אזולאי — דף הבית"
         >
-          {/* Real logo — bigger, sharper, glowing pill */}
-          <span className="brand-monogram" aria-hidden>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/sapir/logo.webp"
-              alt=""
-              width={144}
-              height={144}
-              className="brand-logo-img"
-              draggable={false}
-            />
-          </span>
-          {/* Wordmark text */}
+          {/* Wordmark — text-first brand */}
+          <span className="brand-mark-accent" aria-hidden />
           <span className="brand-text">
             <span className="brand-name">ספיר אזולאי</span>
             <span className="brand-tagline">בוטיק גיוס · מפעלים ועסקים</span>

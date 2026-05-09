@@ -4059,8 +4059,8 @@ footer { background: #FAF7F1; }
 }
 
 /* Page padding adjustment when announcement bar is visible */
-body:has(.announcement-bar) main { padding-top: 136px; }
-@media (min-width: 1024px) { body:has(.announcement-bar) main { padding-top: 160px; } }
+body:has(.announcement-bar) main { padding-top: 132px; }
+@media (min-width: 1024px) { body:has(.announcement-bar) main { padding-top: 148px; } }
 
 /* Push fixed header down when announcement bar is visible */
 body:has(.announcement-bar) header.fixed { top: 36px; }
@@ -4119,9 +4119,9 @@ body:has(.announcement-bar) header.fixed { top: 36px; }
 .header-nav a {
   position: relative;
   font-family: var(--font-heebo), system-ui, sans-serif;
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: rgba(245, 241, 234, 0.78);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0E1A2E;
   text-decoration: none;
   letter-spacing: 0.01em;
   padding: 4px 2px;
@@ -4156,9 +4156,9 @@ body:has(.announcement-bar) header.fixed { top: 36px; }
 .header-nav a {
   position: relative;
   font-family: var(--font-heebo), system-ui, sans-serif;
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: rgba(245, 241, 234, 0.78);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0E1A2E;
   text-decoration: none;
   letter-spacing: 0.01em;
   padding: 4px 2px;
@@ -4329,10 +4329,18 @@ body:has(.announcement-bar) section[id] { scroll-margin-top: 146px; }
   }
 }
 
-/* Crisper logo image */
+/* Crisper logo image — extreme contrast for faded source */
 .brand-logo-img {
-  filter: contrast(1.2) saturate(1.18) brightness(1.04) drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+  filter:
+    contrast(1.65)
+    saturate(1.4)
+    brightness(0.85)
+    drop-shadow(0 1px 0 rgba(0,0,0,0.5))
+    drop-shadow(0 0 1px rgba(0,0,0,0.3));
   image-rendering: -webkit-optimize-contrast;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
 }
 
 /* Brand text — bigger, bolder, better hierarchy */
@@ -4375,17 +4383,7 @@ body:has(.announcement-bar) section[id] { scroll-margin-top: 146px; }
   flex-shrink: 0;
 }
 
-/* When header is on TRANSPARENT (over hero dark bg) — invert text */
-header.fixed.top-0:not(.has-bg) .brand-name {
-  background: linear-gradient(135deg, #F5F1EA 0%, #FFFFFF 100%);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-header.fixed.top-0:not(.has-bg) .brand-tagline {
-  color: #DCEB5C !important;
-  opacity: 1;
-}
+/* Note: previous transparent-header inversion removed — header always has white bg in v3 */
 
 /* Hover: subtle scale + shimmer */
 .brand-mark:hover .brand-monogram {
@@ -4398,4 +4396,54 @@ header.fixed.top-0:not(.has-bg) .brand-tagline {
 }
 .brand-mark:hover .brand-name {
   letter-spacing: -0.022em !important;
+}
+
+/* ============================================================
+   BRAND MARK ACCENT — replaces the logo image
+   Yellow-green vertical bar with glow as visual anchor
+   ============================================================ */
+.brand-mark-accent {
+  display: inline-block;
+  width: 6px;
+  height: 52px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #DCEB5C 0%, #C5D635 100%);
+  box-shadow:
+    0 0 0 1px rgba(220, 235, 92, 0.30),
+    0 0 18px rgba(220, 235, 92, 0.55),
+    0 0 36px -8px rgba(220, 235, 92, 0.65);
+  transition: transform 280ms cubic-bezier(.2,.8,.2,1), box-shadow 280ms ease, height 280ms ease;
+  margin-inline-end: 0.85rem;
+  flex-shrink: 0;
+}
+@media (min-width: 1024px) {
+  .brand-mark-accent {
+    width: 7px;
+    height: 64px;
+  }
+}
+.brand-mark:hover .brand-mark-accent {
+  transform: scaleY(1.08);
+  box-shadow:
+    0 0 0 1px rgba(220, 235, 92, 0.50),
+    0 0 24px rgba(220, 235, 92, 0.75),
+    0 0 48px -8px rgba(220, 235, 92, 0.85);
+}
+
+/* Bigger, clearer brand name now that the logo image is gone */
+.brand-name {
+  font-size: 1.55rem !important;
+}
+@media (min-width: 1024px) {
+  .brand-name {
+    font-size: 1.95rem !important;
+  }
+}
+.brand-tagline {
+  font-size: 0.95rem !important;
+}
+@media (min-width: 1024px) {
+  .brand-tagline {
+    font-size: 1rem !important;
+  }
 }
