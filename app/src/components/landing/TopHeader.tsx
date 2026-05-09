@@ -53,7 +53,7 @@ export default function TopHeader() {
         </a>
 
         {/* Center nav — section anchors */}
-        <nav className="header-nav hidden md:flex" aria-label="ניווט בעמוד">
+        <nav className="header-nav hidden sm:flex" aria-label="ניווט בעמוד">
           <a href="#reasons">למה אני</a>
           <a href="#full-service">תהליך העבודה</a>
           <a href="#social-proof">המלצות</a>

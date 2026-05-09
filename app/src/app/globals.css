@@ -4177,3 +4177,13 @@ body:has(.announcement-bar) header.fixed { top: 36px; }
 }
 .header-nav a:hover { color: #DCEB5C; }
 .header-nav a:hover::after { transform: scaleX(1); }
+
+/* ============================================================
+   SCROLL OFFSET — account for fixed header + announcement bar
+   ============================================================ */
+section[id] { scroll-margin-top: 110px; }
+@media (min-width: 1024px) { section[id] { scroll-margin-top: 130px; } }
+body:has(.announcement-bar) section[id] { scroll-margin-top: 146px; }
+@media (min-width: 1024px) {
+  body:has(.announcement-bar) section[id] { scroll-margin-top: 166px; }
+}
