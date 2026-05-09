@@ -4340,28 +4340,39 @@ body:has(.announcement-bar) section[id] { scroll-margin-top: 146px; }
   gap: 2px;
 }
 .brand-name {
-  font-size: 1.35rem !important;
+  font-size: 1.4rem !important;
   font-weight: 900 !important;
   letter-spacing: -0.025em !important;
-  line-height: 1.1;
-  background: linear-gradient(135deg, #14213D 0%, #1A365D 100%);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
+  line-height: 1.05;
+  color: #0A0E1A !important;
+  -webkit-text-fill-color: #0A0E1A;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
 }
 @media (min-width: 1024px) {
   .brand-name {
-    font-size: 1.65rem !important;
+    font-size: 1.7rem !important;
   }
 }
 .brand-tagline {
-  font-size: 0.85rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.01em !important;
+  font-size: 0.88rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.005em !important;
   text-transform: none !important;
-  color: #1A365D !important;
-  margin-top: 4px !important;
-  opacity: 0.85;
+  color: #0E1A2E !important;
+  margin-top: 6px !important;
+  opacity: 1 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.brand-tagline::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #DCEB5C;
+  box-shadow: 0 0 0 2px rgba(220, 235, 92, 0.30), 0 0 8px rgba(220, 235, 92, 0.55);
+  flex-shrink: 0;
 }
 
 /* When header is on TRANSPARENT (over hero dark bg) — invert text */
