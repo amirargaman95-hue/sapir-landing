@@ -162,44 +162,10 @@ export type VideoItem = {
   caption: string;
   who: string;
 };
-export const videos: VideoItem[] = [
-  {
-    src: "/videos/v1.mp4",
-    poster: "/videos/v1_poster.jpg",
-    caption: "מעסיק על השמה שעבדה",
-    who: "בעל מפעל",
-  },
-  {
-    src: "/videos/v2.mp4",
-    poster: "/videos/v2_poster.jpg",
-    caption: "הושמה אצל לקוח של ספיר",
-    who: "מועמדת שהושמה",
-  },
-  {
-    src: "/videos/v3.mp4",
-    poster: "/videos/v3_poster.jpg",
-    caption: "על תהליך הגיוס האישי",
-    who: "לקוחה",
-  },
-  {
-    src: "/videos/v4.mp4",
-    poster: "/videos/v4_poster.jpg",
-    caption: "מעסיק שגייס דרכי",
-    who: "בעל עסק",
-  },
-  {
-    src: "/videos/v5.mp4",
-    poster: "/videos/v5_poster.jpg",
-    caption: "על התחייבות וליווי",
-    who: "מועמדת שהושמה",
-  },
-  {
-    src: "/videos/v6.mp4",
-    poster: "/videos/v6_poster.jpg",
-    caption: "על הסינון האישי",
-    who: "לקוחה",
-  },
-];
+// Videos temporarily removed — content was personal/non-business.
+// Section auto-hides when videos.length === 0 (see SocialProof.tsx).
+// Add real factory-owner testimonial videos when ready.
+export const videos: VideoItem[] = [];
 
 export const usps = [
   {
