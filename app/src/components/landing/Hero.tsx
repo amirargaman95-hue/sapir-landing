@@ -5,8 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import {
   WhatsappLogo,
-  ShieldCheck,
-  Star,
   Wrench,
   Hammer,
   Factory,
@@ -23,6 +21,17 @@ import {
 } from "@phosphor-icons/react";
 import StatCounter from "@/components/ui/StatCounter";
 import { hero, WHATSAPP_URL, PHONE } from "@/data/content";
+
+const ROTATING_ROLES = [
+  "מנהל אחזקה",
+  "מנהל ייצור",
+  "טכנאי CNC",
+  "ראש צוות ייצור",
+  "מנהל איכות",
+  "מנהל מפעל",
+  "חשמלאי תעשייתי",
+  "מנהל לוגיסטיקה",
+];
 
 const sectors = [
   { name: "מתכת ומסגרות", Icon: Wrench },
@@ -45,6 +54,14 @@ export default function Hero() {
   const stageRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const [imgSrc, setImgSrc] = useState(hero.imageSrc);
+  const [roleIdx, setRoleIdx] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setRoleIdx((i) => (i + 1) % ROTATING_ROLES.length);
+    }, 2400);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     if (!photoRef.current || !textRef.current) return;
@@ -127,35 +144,6 @@ export default function Hero() {
                 />
               </div>
 
-              {/* Just 2 cards now — outside the face area */}
-              <div className="float-card float-card-2">
-                <div className="fc-row">
-                  <span className="dot">
-                    <ShieldCheck size={12} weight="fill" color="#DCEB5C" />
-                  </span>
-                  אחריות
-                  <span className="fc-pill">100%</span>
-                </div>
-                <div className="fc-value">בכתב</div>
-                <div className="fc-row" style={{ textTransform: "none", letterSpacing: 0 }}>
-                  על כל השמה
-                </div>
-              </div>
-
-              <div className="float-card float-card-3">
-                <div className="fc-row">
-                  <span className="dot">
-                    <Star size={12} weight="fill" color="#DCEB5C" />
-                  </span>
-                  מודל
-                </div>
-                <div className="fc-value" style={{ fontSize: "1.05rem" }}>
-                  תשלום רק
-                </div>
-                <div className="fc-row" style={{ textTransform: "none", letterSpacing: 0 }}>
-                  אחרי הצלחה
-                </div>
-              </div>
             </div>
           </div>
 
@@ -174,6 +162,16 @@ export default function Hero() {
             </h1>
 
             <p className="hero-v2-sub">{hero.subheadline}</p>
+
+            {/* Rotating role line */}
+            <p className="hero-rotating-line" aria-live="polite">
+              <span className="hero-rotating-label">כרגע מגייסת:</span>
+              <span className="hero-rotating-word-wrap">
+                <span key={roleIdx} className="hero-rotating-word">
+                  {ROTATING_ROLES[roleIdx]}
+                </span>
+              </span>
+            </p>
 
             <div className="mt-9 flex flex-col sm:flex-row sm:items-center gap-3">
               <a
@@ -197,14 +195,6 @@ export default function Hero() {
 
             <p className="hero-v2-microcopy">{hero.ctaMicrocopy}</p>
 
-            {/* Quick-nav chips */}
-            <nav className="hero-quick-nav" aria-label="ניווט מהיר">
-              <a href="#reasons">למה אני <span className="arrow" aria-hidden>↓</span></a>
-              <a href="#full-service">תהליך העבודה <span className="arrow" aria-hidden>↓</span></a>
-              <a href="#social-proof">המלצות <span className="arrow" aria-hidden>↓</span></a>
-              <a href="#contact">צרו קשר <span className="arrow" aria-hidden>↓</span></a>
-            </nav>
-
             {/* Animated stats row */}
             <div className="hero-stats">
               <StatCounter value={10} suffixWord="שנים" label="ניסיון בגיוס" />
@@ -216,12 +206,12 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Sectors strip — full width below */}
-        <div className="sector-strip">
+        {/* Sectors strip — animated marquee */}
+        <div className="sector-strip-marquee" aria-label="מגייסת לעסקים בתחומים">
           <span className="label">מגייסת לעסקים בתחומים</span>
-          <ul>
-            {sectors.map(({ name, Icon }) => (
-              <li key={name}>
+          <ul className="sector-strip-track" aria-hidden>
+            {[...sectors, ...sectors].map(({ name, Icon }, i) => (
+              <li key={`${name}-${i}`}>
                 <Icon size={20} weight="duotone" />
                 <span>{name}</span>
               </li>

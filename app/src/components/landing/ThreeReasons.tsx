@@ -19,20 +19,38 @@ const iconMap = {
 } as const;
 
 export default function ThreeReasons() {
-  // Spotlight cursor effect — sets --x / --y CSS vars on hover
+  // Spotlight cursor + 3D tilt — sets --x/--y/--rx/--ry CSS vars
   useEffect(() => {
     const cards = document.querySelectorAll<HTMLElement>(".reason-glass-card");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const TILT = reduceMotion ? 0 : 6;
+
     const onMove = (e: MouseEvent) => {
       const target = e.currentTarget as HTMLElement;
       const r = target.getBoundingClientRect();
-      target.style.setProperty("--x", `${e.clientX - r.left}px`);
-      target.style.setProperty("--y", `${e.clientY - r.top}px`);
+      const px = e.clientX - r.left;
+      const py = e.clientY - r.top;
+      target.style.setProperty("--x", `${px}px`);
+      target.style.setProperty("--y", `${py}px`);
+      const dx = (px / r.width - 0.5) * 2;
+      const dy = (py / r.height - 0.5) * 2;
+      target.style.setProperty("--ry", `${dx * TILT}deg`);
+      target.style.setProperty("--rx", `${-dy * TILT}deg`);
     };
-    cards.forEach((c) => c.addEventListener("mousemove", onMove as EventListener));
+    const onLeave = (e: MouseEvent) => {
+      const target = e.currentTarget as HTMLElement;
+      target.style.setProperty("--rx", "0deg");
+      target.style.setProperty("--ry", "0deg");
+    };
+    cards.forEach((c) => {
+      c.addEventListener("mousemove", onMove as EventListener);
+      c.addEventListener("mouseleave", onLeave as EventListener);
+    });
     return () => {
-      cards.forEach((c) =>
-        c.removeEventListener("mousemove", onMove as EventListener)
-      );
+      cards.forEach((c) => {
+        c.removeEventListener("mousemove", onMove as EventListener);
+        c.removeEventListener("mouseleave", onLeave as EventListener);
+      });
     };
   }, []);
 
@@ -60,6 +78,8 @@ export default function ThreeReasons() {
             const Icon = iconMap[u.iconName as keyof typeof iconMap] ?? UserCircle;
             return (
               <li key={u.title} className="reason-glass-card">
+                <span className="border-beam" aria-hidden />
+                <span className="shine-sweep" aria-hidden />
                 <div className="reason-card-content">
                   <span className="reason-icon" aria-hidden>
                     <Icon size={28} weight="duotone" color="#DCEB5C" />

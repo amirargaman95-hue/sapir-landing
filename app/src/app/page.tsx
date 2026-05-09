@@ -1,6 +1,6 @@
+import AnnouncementBar from "@/components/landing/AnnouncementBar";
 import TopHeader from "@/components/landing/TopHeader";
 import Hero from "@/components/landing/Hero";
-import RiskReversalBanner from "@/components/landing/RiskReversalBanner";
 import StatsBanner from "@/components/landing/StatsBanner";
 import ThreeReasons from "@/components/landing/ThreeReasons";
 import FullService from "@/components/landing/FullService";
@@ -16,10 +16,10 @@ import StickyWhatsApp from "@/components/landing/StickyWhatsApp";
 export default function Home() {
   return (
     <>
+      <AnnouncementBar />
       <TopHeader />
-      <main id="main" className="pt-[88px] lg:pt-[104px]">
+      <main id="main" className="pt-[96px] lg:pt-[112px]">
         <Hero />
-        <RiskReversalBanner />
         <StatsBanner />
         <ThreeReasons />
         <MidPageCTA
