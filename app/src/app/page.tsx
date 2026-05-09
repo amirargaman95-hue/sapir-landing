@@ -1,7 +1,6 @@
 import AnnouncementBar from "@/components/landing/AnnouncementBar";
 import TopHeader from "@/components/landing/TopHeader";
 import Hero from "@/components/landing/Hero";
-import RiskReversalBanner from "@/components/landing/RiskReversalBanner";
 import StatsBanner from "@/components/landing/StatsBanner";
 import ThreeReasons from "@/components/landing/ThreeReasons";
 import FullService from "@/components/landing/FullService";
@@ -21,7 +20,6 @@ export default function Home() {
       <TopHeader />
       <main id="main" className="pt-[88px] lg:pt-[104px]">
         <Hero />
-        <RiskReversalBanner />
         <StatsBanner />
         <ThreeReasons />
         <MidPageCTA
