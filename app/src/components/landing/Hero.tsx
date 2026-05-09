@@ -20,6 +20,7 @@ import {
   Gear,
   GearSix,
   Shield,
+  ArrowLeft,
 } from "@phosphor-icons/react";
 import StatCounter from "@/components/ui/StatCounter";
 import { hero, WHATSAPP_URL, PHONE } from "@/data/content";
@@ -45,6 +46,17 @@ export default function Hero() {
   const stageRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const [imgSrc, setImgSrc] = useState(hero.imageSrc);
+  const [roleInput, setRoleInput] = useState("");
+
+  const handleQuickFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const role = roleInput.trim();
+    const message = role
+      ? `שלום ספיר, אני מחפש לגייס ל${role}.`
+      : "שלום ספיר, רוצה לדבר על גיוס.";
+    const url = `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   useEffect(() => {
     if (!photoRef.current || !textRef.current) return;
@@ -197,6 +209,29 @@ export default function Hero() {
 
             <p className="hero-v2-microcopy">{hero.ctaMicrocopy}</p>
 
+            {/* Tertiary CTA — read process */}
+            <a href="#full-service" className="cta-tertiary">
+              תקרא איך אני עובדת
+              <span className="arrow" aria-hidden>↓</span>
+            </a>
+
+            {/* Quick form — alternative entry */}
+            <p className="hero-quick-form-label">או — תכתוב בקצרה מה אתה מחפש:</p>
+            <form className="hero-quick-form" onSubmit={handleQuickFormSubmit}>
+              <input
+                type="text"
+                value={roleInput}
+                onChange={(e) => setRoleInput(e.target.value)}
+                placeholder="לדוגמה: מנהל אחזקה למפעל פלסטיק"
+                aria-label="מה אתה מחפש"
+                maxLength={120}
+              />
+              <button type="submit" aria-label="שלח לוואטסאפ">
+                שלח לוואטסאפ
+                <ArrowLeft size={16} weight="bold" />
+              </button>
+            </form>
+
             {/* Quick-nav chips */}
             <nav className="hero-quick-nav" aria-label="ניווט מהיר">
               <a href="#reasons">למה אני <span className="arrow" aria-hidden>↓</span></a>
@@ -216,12 +251,12 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Sectors strip — full width below */}
-        <div className="sector-strip">
+        {/* Sectors strip — animated marquee */}
+        <div className="sector-strip-marquee" aria-label="מגייסת לעסקים בתחומים">
           <span className="label">מגייסת לעסקים בתחומים</span>
-          <ul>
-            {sectors.map(({ name, Icon }) => (
-              <li key={name}>
+          <ul className="sector-strip-track" aria-hidden>
+            {[...sectors, ...sectors].map(({ name, Icon }, i) => (
+              <li key={`${name}-${i}`}>
                 <Icon size={20} weight="duotone" />
                 <span>{name}</span>
               </li>

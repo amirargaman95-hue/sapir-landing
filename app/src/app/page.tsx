@@ -1,3 +1,4 @@
+import AnnouncementBar from "@/components/landing/AnnouncementBar";
 import TopHeader from "@/components/landing/TopHeader";
 import Hero from "@/components/landing/Hero";
 import RiskReversalBanner from "@/components/landing/RiskReversalBanner";
@@ -16,6 +17,7 @@ import StickyWhatsApp from "@/components/landing/StickyWhatsApp";
 export default function Home() {
   return (
     <>
+      <AnnouncementBar />
       <TopHeader />
       <main id="main" className="pt-[88px] lg:pt-[104px]">
         <Hero />
