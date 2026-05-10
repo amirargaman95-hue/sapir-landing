@@ -37,7 +37,7 @@ export default function TopHeader() {
           <span className="brand-mark-accent" aria-hidden />
           <span className="brand-text">
             <span className="brand-name">ספיר אזולאי</span>
-            <span className="brand-tagline">בוטיק גיוס · מפעלים ועסקים</span>
+            <span className="brand-tagline">גיוס והשמה לעסקים</span>
           </span>
         </a>
 
