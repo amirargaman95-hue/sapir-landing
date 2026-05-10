@@ -86,11 +86,14 @@ export default function SocialProof() {
           <div className="max-w-[760px] flex flex-col gap-3 mx-auto text-center items-center">
             <div className="flex items-center gap-2">
               <ChatTeardropDots size={22} weight="duotone" color="var(--color-accent)" />
-              <p className="eyebrow-amber">צילומי וואטסאפ</p>
+              <p className="eyebrow-amber">עדויות אמיתיות</p>
             </div>
             <h3 className="h-display-md max-w-[26ch]">
-              אחרי ההשמה — <span className="gold-gradient">מה הם כתבו לי.</span>
+              ההודעות שקיבלתי אחרי ההשמה. <span className="gold-gradient">מהלקוחות עצמם.</span>
             </h3>
+            <p className="mt-2 text-[var(--color-muted)] leading-relaxed">
+              {proofs.length} הודעות וואטסאפ מבעלי מפעלים ועסקים שונים. אמיתיות. בלי תסריט. פרטים אישיים מטושטשים.
+            </p>
           </div>
         </div>
       )}
