@@ -4,6 +4,16 @@ import { useState } from "react";
 import { CaretDown, Question } from "@phosphor-icons/react";
 import { faqs } from "@/data/content";
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function FAQ() {
   const initialOpen = faqs.findIndex((f) => f.openByDefault);
   const [open, setOpen] = useState<number>(initialOpen >= 0 ? initialOpen : -1);
@@ -14,6 +24,10 @@ export default function FAQ() {
       className="faq-section"
       aria-labelledby="faq-heading"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="container-prose max-w-[920px]">
         <p className="eyebrow-amber inline-flex items-center gap-2">
           <Question size={18} weight="fill" color="#DCEB5C" />
