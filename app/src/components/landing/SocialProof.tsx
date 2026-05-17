@@ -22,6 +22,9 @@ export default function SocialProof() {
   const showProofs = proofs.length > 0;
   const bentoProofs = proofs.slice(0, 3); // exactly 3 screenshots around the video
 
+  // Hide entire section when there's nothing real to show (no videos AND no proofs).
+  if (!featured && !showProofs) return null;
+
   const fadeUp = {
     hidden: { opacity: 0, y: 28 },
     visible: (i: number) => ({
@@ -63,8 +66,8 @@ export default function SocialProof() {
 
         {/* Bento grid */}
         <div className="proof-bento">
-          {/* Featured video — large left tile */}
-          {featured ? (
+          {/* Featured video — large left tile (only when a real video exists) */}
+          {featured && (
             <motion.button
               type="button"
               custom={0}
@@ -97,21 +100,6 @@ export default function SocialProof() {
                 <p className="what">{featured.caption}</p>
               </div>
             </motion.button>
-          ) : (
-            <motion.div
-              custom={0}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={fadeUp}
-              className="proof-bento-video proof-bento-video-empty"
-            >
-              <div className="proof-bento-video-empty-inner">
-                <FilmReel size={48} weight="duotone" color="var(--color-accent)" />
-                <p className="eyebrow-amber">סרטונים בקרוב</p>
-                <p>מקליטים עדויות אמיתיות מהמפעלים. בינתיים — תקרא את ההודעות.</p>
-              </div>
-            </motion.div>
           )}
 
           {/* 3 WhatsApp screenshots — right column */}

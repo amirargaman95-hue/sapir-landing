@@ -52,7 +52,7 @@ export default function About() {
               {aboutCopy.heading}
             </h2>
 
-            <div className="mt-6 space-y-4 leading-relaxed text-lg" style={{ color: "#C9BDA8" }}>
+            <div className="mt-6 space-y-4 leading-relaxed text-lg" style={{ color: "#D4D4D8" }}>
               {aboutCopy.body.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}

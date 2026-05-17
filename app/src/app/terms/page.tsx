@@ -14,8 +14,8 @@ export default function TermsPage() {
       dir="rtl"
       style={{
         minHeight: "100vh",
-        background: "#0F1729",
-        color: "#F5EDE0",
+        background: "#09090B",
+        color: "#FAFAFA",
         padding: "5rem 1.5rem",
       }}
     >
@@ -29,7 +29,7 @@ export default function TermsPage() {
       >
         <p
           style={{
-            color: "#C49A65",
+            color: "#3B82F6",
             letterSpacing: 3,
             fontSize: "0.8rem",
             marginBottom: "0.6rem",
@@ -104,7 +104,7 @@ export default function TermsPage() {
             href="/"
             style={{
               display: "inline-block",
-              background: "#C49A65",
+              background: "#3B82F6",
               color: "#FFFFFF",
               padding: "0.7rem 1.4rem",
               borderRadius: 999,

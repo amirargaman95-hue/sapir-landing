@@ -233,7 +233,7 @@ export default function FullService() {
                         </span>
                         <span className="lottie-icon" aria-hidden>
                           <span className="anim">
-                            <Icon size={32} weight="duotone" color="#C49A65" />
+                            <Icon size={32} weight="duotone" color="#3B82F6" />
                           </span>
                         </span>
                       </div>

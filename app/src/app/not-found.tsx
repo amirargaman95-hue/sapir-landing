@@ -11,14 +11,14 @@ export default function NotFound() {
         justifyContent: "center",
         padding: "2rem",
         textAlign: "center",
-        background: "#0F1729",
-        color: "#F5EDE0",
+        background: "#09090B",
+        color: "#FAFAFA",
       }}
     >
       <div style={{ maxWidth: "32rem" }}>
         <p
           style={{
-            color: "#C49A65",
+            color: "#3B82F6",
             letterSpacing: 3,
             fontSize: "0.85rem",
             marginBottom: "0.8rem",
@@ -49,7 +49,7 @@ export default function NotFound() {
           href="/"
           style={{
             display: "inline-block",
-            background: "#C49A65",
+            background: "#3B82F6",
             color: "#FFFFFF",
             padding: "0.7rem 1.4rem",
             borderRadius: 999,

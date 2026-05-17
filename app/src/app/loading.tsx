@@ -8,8 +8,8 @@ export default function Loading() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "#0F1729",
-        color: "#F5EDE0",
+        background: "#09090B",
+        color: "#FAFAFA",
       }}
     >
       <div style={{ textAlign: "center" }}>
@@ -18,8 +18,8 @@ export default function Loading() {
           style={{
             width: 36,
             height: 36,
-            border: "3px solid rgba(196, 154, 101, 0.25)",
-            borderTopColor: "#C49A65",
+            border: "3px solid rgba(59, 130, 246, 0.25)",
+            borderTopColor: "#3B82F6",
             borderRadius: "50%",
             margin: "0 auto 1rem",
             animation: "spin 0.9s linear infinite",

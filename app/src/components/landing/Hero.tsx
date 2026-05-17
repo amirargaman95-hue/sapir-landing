@@ -23,17 +23,6 @@ import StatCounter from "@/components/ui/StatCounter";
 import { hero, WHATSAPP_URL, PHONE } from "@/data/content";
 import { track } from "@/lib/track";
 
-const ROTATING_ROLES = [
-  "מנהל אחזקה",
-  "מנהל ייצור",
-  "טכנאי CNC",
-  "ראש צוות ייצור",
-  "מנהל איכות",
-  "מנהל מפעל",
-  "חשמלאי תעשייתי",
-  "מנהל לוגיסטיקה",
-];
-
 const sectors = [
   { name: "מתכת ומסגרות", Icon: Wrench },
   { name: "נגרות", Icon: Hammer },
@@ -55,7 +44,6 @@ export default function Hero() {
   const stageRef = useRef<HTMLDivElement>(null);
   const blobRef = useRef<HTMLDivElement>(null);
   const [imgSrc, setImgSrc] = useState(hero.imageSrc);
-  const [roleIdx, setRoleIdx] = useState(0);
   const reduce = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
@@ -64,14 +52,6 @@ export default function Hero() {
   });
   const portraitY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "12%"]);
   const portraitScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.04]);
-
-  useEffect(() => {
-    if (reduce) return;
-    const id = setInterval(() => {
-      setRoleIdx((i) => (i + 1) % ROTATING_ROLES.length);
-    }, 2400);
-    return () => clearInterval(id);
-  }, [reduce]);
 
   // mouse-tracking gradient blob — slower lerp, larger radius
   useEffect(() => {
@@ -201,16 +181,6 @@ export default function Hero() {
 
             <motion.p {...fadeUpAt(0.3)} className="hero-v3-sub">
               {hero.subheadline}
-            </motion.p>
-
-            <motion.p {...fadeUpAt(0.38)} className="hero-rotating-line">
-              <span className="hero-rotating-label">כרגע מגייסת:</span>
-              <span className="hero-rotating-word-wrap" aria-hidden="true">
-                <span key={roleIdx} className="hero-rotating-word">
-                  {ROTATING_ROLES[roleIdx]}
-                </span>
-              </span>
-              <span className="sr-only">משרות פתוחות בענפי תעשייה</span>
             </motion.p>
 
             <motion.div {...fadeUpAt(0.45)} className="hero-v3-cta-row">

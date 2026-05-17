@@ -1,6 +1,7 @@
 import AnnouncementBar from "@/components/landing/AnnouncementBar";
 import TopHeader from "@/components/landing/TopHeader";
 import Hero from "@/components/landing/Hero";
+import ActiveJobs from "@/components/landing/ActiveJobs";
 import StatsBanner from "@/components/landing/StatsBanner";
 import ThreeReasons from "@/components/landing/ThreeReasons";
 import FullService from "@/components/landing/FullService";
@@ -21,6 +22,11 @@ export default function Home() {
       <main id="main" className="pt-[96px] lg:pt-[112px]">
         {/* Hero — dark */}
         <Hero />
+
+        {/* Active Jobs — dark */}
+        <div className="alt-dark">
+          <ActiveJobs />
+        </div>
 
         {/* Stats — cream */}
         <div className="alt-cream">

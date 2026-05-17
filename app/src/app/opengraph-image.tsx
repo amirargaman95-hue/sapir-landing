@@ -17,15 +17,15 @@ export default function OpengraphImage() {
           justifyContent: "center",
           padding: "80px",
           background:
-            "linear-gradient(135deg, #0F1729 0%, #1A2238 60%, #243049 100%)",
-          color: "#F5EDE0",
+            "linear-gradient(135deg, #09090B 0%, #18181B 60%, #27272A 100%)",
+          color: "#FAFAFA",
           fontFamily: "system-ui, sans-serif",
         }}
       >
         <div
           style={{
             fontSize: 28,
-            color: "#E8B574",
+            color: "#60A5FA",
             letterSpacing: 4,
             marginBottom: 24,
           }}
@@ -47,7 +47,7 @@ export default function OpengraphImage() {
           style={{
             fontSize: 44,
             fontWeight: 700,
-            color: "#E8B574",
+            color: "#60A5FA",
             marginTop: 16,
             textAlign: "right",
           }}
@@ -57,7 +57,7 @@ export default function OpengraphImage() {
         <div
           style={{
             fontSize: 26,
-            color: "rgba(245,237,224,0.72)",
+            color: "rgba(255,255,255,0.72)",
             marginTop: 32,
             textAlign: "right",
           }}

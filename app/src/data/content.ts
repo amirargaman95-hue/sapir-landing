@@ -299,3 +299,15 @@ export const finalCta = {
   sub: "וואטסאפ ישיר אליי. בלי בוטים, בלי טפסים. אני עונה אישית — לרוב עד שעה בשעות פעילות.",
   hours: "א׳–ה׳ 08:00–18:00 · מענה אישי בשעות פעילות",
 };
+
+export type ActiveJob = { title: string; sector: string };
+export const activeJobs: ActiveJob[] = [
+  { title: "מנהל אחזקה", sector: "ברזל ומתכת" },
+  { title: "רתך אינרטי", sector: "ברזל ומתכת" },
+  { title: "מפעיל CNC", sector: "ברזל ומתכת" },
+  { title: "מנהל ייצור", sector: "מזון ומשקאות" },
+  { title: "ראש צוות ייצור", sector: "פלסטיק וגומי" },
+  { title: "מנהל איכות", sector: "פלסטיק וגומי" },
+  { title: "מנהל מחסן", sector: "לוגיסטיקה" },
+  { title: "חשמלאי תעשייתי", sector: "ייצור תעשייתי" },
+];
