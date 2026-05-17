@@ -20,7 +20,7 @@ export default function Footer() {
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
-        כותרת תחתונה
+        ספיר אזולאי — ניווט תחתון
       </h2>
 
       <div className="container-prose py-12 lg:py-16">
