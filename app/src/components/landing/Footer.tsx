@@ -90,6 +90,9 @@ export default function Footer() {
                   <Phone size={16} weight="fill" />
                   <span dir="ltr">{PHONE}</span>
                 </a>
+                <p className="text-xs text-[var(--color-muted)] mt-1 mr-6">
+                  א׳–ה׳ 08:00–18:00 · מענה אישי בשעות פעילות
+                </p>
               </li>
               <li>
                 <a
@@ -109,10 +112,26 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li>
                 <a
-                  href="#accessibility"
+                  href="/accessibility"
                   className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors"
                 >
                   הצהרת נגישות
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/privacy"
+                  className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  מדיניות פרטיות
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/terms"
+                  className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  תנאי שימוש
                 </a>
               </li>
               <li>

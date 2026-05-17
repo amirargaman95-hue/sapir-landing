@@ -87,7 +87,7 @@ export default function WhatsAppWall() {
           {proofs.map((p, i) => (
             <li
               key={p.src}
-              className={`relative overflow-hidden rounded-[14px] border border-[var(--color-border)] bg-[var(--color-surface-2)] transition-colors hover:border-[rgba(242,182,94,0.5)] ${spans[i] ?? ""}`}
+              className={`relative overflow-hidden rounded-[14px] border border-[var(--color-border)] bg-[var(--color-surface-2)] transition-colors hover:border-[rgba(196,154,101,0.5)] ${spans[i] ?? ""}`}
             >
               <button
                 type="button"

@@ -3,27 +3,34 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, X } from "@phosphor-icons/react";
 import { WHATSAPP_URL } from "@/data/content";
+import { track } from "@/lib/track";
 
 const STORAGE_KEY = "sapir-announcement-dismissed-v1";
 const ANNOUNCEMENT_TEXT = "החודש פתחתי 4 משרות חדשות במפעלים בישראל";
 const ANNOUNCEMENT_CTA = "רוצה אחת? בוא נדבר";
 
 export default function AnnouncementBar() {
-  const [visible, setVisible] = useState(false);
+  // SSR-stable: render visually-empty 36px stub to avoid CLS. After hydration,
+  // hide entirely if user previously dismissed.
+  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    const dismissed = typeof window !== "undefined" && localStorage.getItem(STORAGE_KEY);
-    if (!dismissed) setVisible(true);
+    try {
+      if (localStorage.getItem(STORAGE_KEY)) setDismissed(true);
+    } catch {}
   }, []);
-
-  if (!visible) return null;
 
   const handleDismiss = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    localStorage.setItem(STORAGE_KEY, "1");
-    setVisible(false);
+    try {
+      localStorage.setItem(STORAGE_KEY, "1");
+    } catch {}
+    track("announcement_bar_dismiss");
+    setDismissed(true);
   };
+
+  if (dismissed) return null;
 
   return (
     <div className="announcement-bar" role="region" aria-label="הודעה חשובה">
@@ -32,6 +39,7 @@ export default function AnnouncementBar() {
         target="_blank"
         rel="noopener noreferrer"
         className="announcement-bar-link"
+        onClick={() => track("announcement_bar_click")}
       >
         <span className="announcement-bar-dot" aria-hidden />
         <span className="announcement-bar-text">{ANNOUNCEMENT_TEXT}</span>

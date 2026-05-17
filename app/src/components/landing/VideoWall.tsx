@@ -48,7 +48,7 @@ export default function VideoWall() {
                   />
                   <div className="play-badge">
                     <span className="play-disc">
-                      <Play size={26} weight="fill" color="#14141C" />
+                      <Play size={26} weight="fill" color="#FFFFFF" />
                     </span>
                   </div>
                   <span className="duration-badge">0:42</span>

@@ -16,7 +16,7 @@ export default function WhatsAppSwiper() {
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
 
-  // Track scroll position to update active index
+  // Track scroll position to update active index (for dots / arrows)
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -41,6 +41,61 @@ export default function WhatsAppSwiper() {
     onScroll();
     track.addEventListener("scroll", onScroll, { passive: true });
     return () => track.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Mobile center-focus: mark the card closest to the horizontal center
+  // of the track as `.is-center` via IntersectionObserver with a narrow
+  // centered root margin. Only active on mobile viewport.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    if (typeof window === "undefined") return;
+    if (typeof IntersectionObserver === "undefined") return;
+
+    const mq = window.matchMedia("(max-width: 768px)");
+    let obs: IntersectionObserver | null = null;
+    const cards = Array.from(
+      track.querySelectorAll<HTMLElement>(".wa-wall-card")
+    );
+
+    const teardown = () => {
+      obs?.disconnect();
+      obs = null;
+      cards.forEach((c) => c.classList.remove("is-center"));
+    };
+
+    const setup = () => {
+      teardown();
+      if (!mq.matches) return;
+      obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const el = entry.target as HTMLElement;
+            if (entry.isIntersecting) {
+              cards.forEach((c) => {
+                if (c !== el) c.classList.remove("is-center");
+              });
+              el.classList.add("is-center");
+            }
+          });
+        },
+        {
+          root: track,
+          // Narrow horizontal band in the middle of the track.
+          rootMargin: "0px -45% 0px -45%",
+          threshold: 0.01,
+        }
+      );
+      cards.forEach((c) => obs!.observe(c));
+    };
+
+    setup();
+    const onChange = () => setup();
+    mq.addEventListener?.("change", onChange);
+    return () => {
+      mq.removeEventListener?.("change", onChange);
+      teardown();
+    };
   }, []);
 
   const nudge = (dir: "next" | "prev") => {

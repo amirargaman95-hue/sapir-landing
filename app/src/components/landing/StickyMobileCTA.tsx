@@ -1,20 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { WhatsappLogo } from "@phosphor-icons/react";
 import { WHATSAPP_URL } from "@/data/content";
+import { useScrollY } from "@/lib/hooks/useScrollY";
+import { track } from "@/lib/track";
 
 export default function StickyMobileCTA() {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      setShow(window.scrollY > 600);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const y = useScrollY();
+  const show = y > 600;
 
   return (
     <div
@@ -29,6 +22,9 @@ export default function StickyMobileCTA() {
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary w-full"
+          onClick={() =>
+            track("cta_whatsapp_click", { location: "sticky_mobile" })
+          }
         >
           <WhatsappLogo size={20} weight="fill" />
           <span>דבר איתי בוואטסאפ</span>

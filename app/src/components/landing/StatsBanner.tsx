@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import StatCounter from "@/components/ui/StatCounter";
 
 type StatItem = {
   value: number;
@@ -14,74 +14,22 @@ const STATS: StatItem[] = [
   {
     value: 10,
     word: "שנים",
-    label: "ניסיון בגיוס והשמה",
+    label: "ניסיון בגיוס",
     sub: "כמעט עשור של ניהול תהליכי גיוס מקצה לקצה",
   },
   {
     value: 9,
     word: "שלבים",
     label: "תהליך מסודר",
-    sub: "מהגדרת המשרה ועד שהעובד נקלט אצלך בעסק",
+    sub: "מהגדרת התפקיד ועד שהעובד נקלט במפעל שלך",
   },
   {
-    value: 100,
-    suffix: "%",
+    value: 30,
+    word: "יום",
     label: "אחריות בכתב",
-    sub: "תשלום רק לאחר גיוס בפועל. הכל סגור בחוזה.",
+    sub: "מעוגן בחוזה. עזב? אני מחליפה על חשבוני.",
   },
 ];
-
-function CountUpNum({ stat }: { stat: StatItem }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(0);
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    if (!ref.current) return;
-    const r = ref.current.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) {
-      setStarted(true);
-      return;
-    }
-    const obs = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            setStarted(true);
-            obs.unobserve(e.target);
-          }
-        }
-      },
-      { threshold: 0.3 }
-    );
-    obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!started) return;
-    const start = performance.now();
-    let raf = 0;
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / 1400);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setShown(Math.round(stat.value * eased));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [started, stat.value]);
-
-  return (
-    <div ref={ref} className="num">
-      <span dir="ltr">
-        {shown}
-        {stat.suffix ?? ""}
-      </span>
-      {stat.word && <span className="word">{stat.word}</span>}
-    </div>
-  );
-}
 
 export default function StatsBanner() {
   return (
@@ -97,8 +45,12 @@ export default function StatsBanner() {
         <div className="stats">
           {STATS.map((stat) => (
             <div key={stat.label} className="stat">
-              <CountUpNum stat={stat} />
-              <span className="label">{stat.label}</span>
+              <StatCounter
+                value={stat.value}
+                suffix={stat.suffix}
+                suffixWord={stat.word}
+                label={stat.label}
+              />
               <p className="sub">{stat.sub}</p>
             </div>
           ))}

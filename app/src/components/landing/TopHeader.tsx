@@ -7,24 +7,34 @@ import {
   FacebookLogo,
 } from "@phosphor-icons/react";
 import { WHATSAPP_URL, INSTAGRAM_URL, FACEBOOK_URL } from "@/data/content";
+import { useScrollY } from "@/lib/hooks/useScrollY";
+import { track } from "@/lib/track";
+
+const ANNOUNCEMENT_STORAGE_KEY = "sapir-announcement-dismissed-v1";
 
 export default function TopHeader() {
-  const [scrolled, setScrolled] = useState(false);
+  const y = useScrollY();
+  const scrolled = y > 24;
 
+  // Push header down by AnnouncementBar height (36px) unless the bar was
+  // previously dismissed. Fixes z-fight where AnnouncementBar overlapped header.
+  const [barVisible, setBarVisible] = useState(true);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    try {
+      if (localStorage.getItem(ANNOUNCEMENT_STORAGE_KEY)) setBarVisible(false);
+    } catch {}
   }, []);
+
+  const topOffset = barVisible ? 36 : 0;
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[rgba(10,10,15,0.88)] backdrop-blur-md border-b border-[var(--color-border)]"
+          ? "bg-[rgba(15,23,41,0.92)] backdrop-blur-md border-b border-[var(--color-border)]"
           : "bg-transparent border-b border-transparent"
       }`}
+      style={{ top: topOffset }}
     >
       <div className="container-prose flex items-center justify-between py-3 lg:py-4">
         {/* Wordmark */}
@@ -37,7 +47,7 @@ export default function TopHeader() {
           <span className="brand-mark-accent" aria-hidden />
           <span className="brand-text">
             <span className="brand-name">ספיר אזולאי</span>
-            <span className="brand-tagline">גיוס לבעלי מפעלים ובוטיקים</span>
+            <span className="brand-tagline">מגייסת למפעלים בישראל</span>
           </span>
         </a>
 
@@ -77,6 +87,7 @@ export default function TopHeader() {
             rel="noopener noreferrer"
             className="btn-wa-header"
             aria-label="דבר איתי בוואטסאפ"
+            onClick={() => track("cta_whatsapp_click", { location: "header" })}
           >
             <WhatsappLogo size={18} weight="fill" />
             <span className="hidden sm:inline">וואטסאפ</span>

@@ -1,5 +1,17 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment variables
+
+Copy `.env.local` and fill in real values before production:
+
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (used by metadata, sitemap, robots, JSON-LD). |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (e.g. `G-XXXXXXXXXX`). If unset, GA is not loaded. |
+| `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity project ID. If unset, Clarity is not loaded. |
+
+Analytics scripts only load when both an ID is set AND the user accepts the cookie consent banner (consent default = denied, updated via gtag consent API).
+
 ## Getting Started
 
 First, run the development server:

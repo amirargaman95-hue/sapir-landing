@@ -1,18 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { WhatsappLogo } from "@phosphor-icons/react";
 import { WHATSAPP_URL } from "@/data/content";
+import { useScrollY } from "@/lib/hooks/useScrollY";
+import { track } from "@/lib/track";
 
 export default function StickyWhatsApp() {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 200);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const y = useScrollY();
+  const show = y > 200;
 
   return (
     <a
@@ -22,6 +17,8 @@ export default function StickyWhatsApp() {
       className={`sticky-wa ${show ? "is-shown" : "is-hidden"}`}
       aria-label="דבר עם ספיר בוואטסאפ"
       aria-hidden={!show}
+      tabIndex={show ? 0 : -1}
+      onClick={() => track("cta_whatsapp_click", { location: "sticky_wa" })}
     >
       <WhatsappLogo size={28} weight="fill" />
       <span className="label">דבר איתי</span>

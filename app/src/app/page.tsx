@@ -11,7 +11,7 @@ import SocialProof from "@/components/landing/SocialProof";
 import FAQ from "@/components/landing/FAQ";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
-import StickyWhatsApp from "@/components/landing/StickyWhatsApp";
+import MobileDock from "@/components/landing/MobileDock";
 
 export default function Home() {
   return (
@@ -19,26 +19,55 @@ export default function Home() {
       <AnnouncementBar />
       <TopHeader />
       <main id="main" className="pt-[96px] lg:pt-[112px]">
+        {/* Hero — dark */}
         <Hero />
-        <StatsBanner />
-        <ThreeReasons />
-        <MidPageCTA
-          text="מתאים לך? בוא נדבר 5 דקות."
-          buttonText="WhatsApp"
-        />
-        <FullService />
+
+        {/* Stats — cream */}
+        <div className="alt-cream">
+          <StatsBanner />
+        </div>
+
+        {/* Three reasons — dark */}
+        <div className="alt-dark">
+          <ThreeReasons />
+        </div>
+
+        <div className="alt-cream">
+          <MidPageCTA text="מתאים לך? בוא נדבר 5 דקות." buttonText="WhatsApp" />
+        </div>
+
+        {/* Full service — dark */}
+        <div className="alt-dark">
+          <FullService />
+        </div>
+
+        {/* Social proof — cream (bento) */}
         <SocialProof />
-        <MidPageCTA
-          text="רוצה לראות את התוצאות אצלך? בוא נדבר."
-          buttonText="WhatsApp"
-        />
+
+        <div className="alt-dark">
+          <MidPageCTA text="רוצה לראות את התוצאות אצלך? בוא נדבר." buttonText="WhatsApp" />
+        </div>
+
+        {/* About manifesto — split dark/cream */}
         <AboutManifesto />
-        <BusinessModel />
-        <FAQ />
-        <FinalCTA />
+
+        {/* Business model — dark */}
+        <div className="alt-dark">
+          <BusinessModel />
+        </div>
+
+        {/* FAQ — cream */}
+        <div className="alt-cream">
+          <FAQ />
+        </div>
+
+        {/* Final CTA — dark */}
+        <div className="alt-dark">
+          <FinalCTA />
+        </div>
       </main>
       <Footer />
-      <StickyWhatsApp />
+      <MobileDock />
     </>
   );
 }

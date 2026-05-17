@@ -13,7 +13,7 @@ type Props = {
   className?: string;
 };
 
-/** Counts up from 0 to `value` once the element is in view. */
+/** Counts up from 0 to `value` once the element is in view. SSR-safe: renders final value on server. */
 export default function StatCounter({
   value,
   suffix = "",
@@ -24,21 +24,39 @@ export default function StatCounter({
   className = "",
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(0);
+  // SSR renders the final value so server output is not 0.
+  const [shown, setShown] = useState(value);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
     if (!ref.current) return;
+
+    // Respect reduced motion — keep final value, skip animation.
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      return;
+    }
+
     if (typeof IntersectionObserver === "undefined") {
-      setStarted(true);
+      // No IO support — just leave the final value rendered (already set).
       return;
     }
-    // If already in viewport on mount (Hero stats), trigger immediately.
+
     const r = ref.current.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) {
+    const inViewport = r.top < window.innerHeight && r.bottom > 0;
+
+    if (inViewport) {
+      // Already visible on mount (e.g. Hero stats): skip the count-up,
+      // keep the final value that SSR already rendered.
       setStarted(true);
       return;
     }
+
+    // Not yet visible — reset to 0 and animate when it scrolls in.
+    setShown(0);
     const obs = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
@@ -56,6 +74,8 @@ export default function StatCounter({
 
   useEffect(() => {
     if (!started) return;
+    // If we never reset to 0 (in-viewport-on-mount case), don't re-animate.
+    if (shown === value) return;
     const start = performance.now();
     let raf = 0;
     const tick = (now: number) => {
@@ -66,6 +86,7 @@ export default function StatCounter({
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [started, value, duration]);
 
   return (

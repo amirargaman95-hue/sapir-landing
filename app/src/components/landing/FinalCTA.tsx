@@ -14,7 +14,7 @@ export default function FinalCTA() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 50% 60%, rgba(200,162,75,0.18) 0%, rgba(200,162,75,0.06) 30%, transparent 70%)",
+            "radial-gradient(circle at 50% 60%, rgba(196, 154, 101,0.18) 0%, rgba(196, 154, 101,0.06) 30%, transparent 70%)",
         }}
       />
 
@@ -46,7 +46,7 @@ export default function FinalCTA() {
                 padding: "1.25rem 3rem",
                 fontSize: "1.25rem",
                 fontWeight: 800,
-                boxShadow: "0 0 90px rgba(200,162,75,0.55)",
+                boxShadow: "0 0 90px rgba(196, 154, 101,0.55)",
               }}
               aria-label="פתח שיחה בוואטסאפ עם ספיר"
             >
@@ -54,7 +54,10 @@ export default function FinalCTA() {
               <span>דבר איתי בוואטסאפ</span>
             </a>
             <p className="text-sm text-[var(--color-muted)] mt-2">
-              ספיר עונה אישית, לא בוט, לא מזכירה.
+              ספיר עונה אישית — לא בוט, לא מזכירה.
+            </p>
+            <p className="text-xs text-[var(--color-muted)] mt-1">
+              א׳–ה׳ 08:00–18:00 · מענה אישי בשעות פעילות
             </p>
           </div>
         </div>

@@ -2,70 +2,119 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Quotes, WhatsappLogo } from "@phosphor-icons/react";
 import { aboutManifesto, WHATSAPP_URL } from "@/data/content";
 
+// Alternating-section pattern: dark half (portrait) | cream half (manifesto).
+// The two halves meet at the vertical center — visual contrast at the seam.
 export default function AboutManifesto() {
   const [imgSrc, setImgSrc] = useState(aboutManifesto.imageSrc);
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        delay: i * 0.08,
+        ease: [0.2, 0.8, 0.2, 1] as [number, number, number, number],
+      },
+    }),
+  };
 
   return (
     <section
       id="about"
-      className="section-y border-t border-[var(--color-border)]"
+      className="about-split"
       aria-labelledby="about-manifesto-heading"
     >
-      <div className="container-prose">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          {/* Photo with subtle glow */}
-          <div className="lg:col-span-5 order-1 lg:order-1">
-            <div className="about-photo-frame">
-              <Image
-                src={imgSrc}
-                alt={aboutManifesto.imageAlt}
-                fill
-                sizes="(max-width: 1024px) 80vw, 40vw"
-                className="object-cover"
-                onError={() => {
-                  if (imgSrc !== aboutManifesto.imageFallback) {
-                    setImgSrc(aboutManifesto.imageFallback);
-                  }
-                }}
-              />
-              <span className="about-photo-quote" aria-hidden>
-                <Quotes size={28} weight="fill" color="var(--color-accent)" />
-              </span>
-            </div>
-          </div>
+      {/* Left: dark half with portrait */}
+      <motion.div
+        className="about-split-dark"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1.0, ease: [0.2, 0.8, 0.2, 1] }}
+          className="about-split-photo"
+        >
+          <Image
+            src={imgSrc}
+            alt={aboutManifesto.imageAlt}
+            fill
+            sizes="(max-width: 1024px) 80vw, 42vw"
+            className="object-cover"
+            onError={() => {
+              if (imgSrc !== aboutManifesto.imageFallback) {
+                setImgSrc(aboutManifesto.imageFallback);
+              }
+            }}
+          />
+          <span className="about-split-quote-icon" aria-hidden>
+            <Quotes size={32} weight="fill" />
+          </span>
+        </motion.div>
+      </motion.div>
 
-          {/* Manifesto */}
-          <div className="lg:col-span-7 order-2 lg:order-2">
-            <p className="eyebrow-amber mb-4">{aboutManifesto.eyebrow}</p>
-            <h2 id="about-manifesto-heading" className="h-display-md max-w-[24ch]">
-              {aboutManifesto.heading}
-            </h2>
+      {/* Right: cream half with manifesto */}
+      <div className="about-split-cream">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="about-split-content"
+        >
+          <motion.p custom={0} variants={fadeUp} className="eyebrow-amber">
+            {aboutManifesto.eyebrow}
+          </motion.p>
 
-            <div className="mt-6 space-y-4 text-[var(--color-muted)] leading-relaxed text-lg max-w-[60ch]">
-              {aboutManifesto.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+          <motion.h2
+            custom={1}
+            variants={fadeUp}
+            id="about-manifesto-heading"
+            className="h-display-md max-w-[24ch]"
+          >
+            {aboutManifesto.heading}
+          </motion.h2>
 
-            <blockquote className="about-highlight">
-              {aboutManifesto.highlight}
-            </blockquote>
+          <motion.div
+            custom={2}
+            variants={fadeUp}
+            className="mt-6 space-y-4 text-[var(--color-muted)] leading-relaxed text-lg max-w-[60ch]"
+          >
+            {aboutManifesto.body.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </motion.div>
 
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary mt-7"
-              style={{ padding: "1rem 1.75rem" }}
-            >
-              <WhatsappLogo size={20} weight="fill" />
-              <span>נשמע טוב? בואו נדבר</span>
-            </a>
-          </div>
-        </div>
+          <motion.blockquote
+            custom={3}
+            variants={fadeUp}
+            className="about-highlight-v3"
+          >
+            {aboutManifesto.highlight}
+          </motion.blockquote>
+
+          <motion.a
+            custom={4}
+            variants={fadeUp}
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary mt-7"
+            style={{ padding: "1rem 1.75rem" }}
+          >
+            <WhatsappLogo size={20} weight="fill" />
+            <span>בוא נדבר 5 דקות</span>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

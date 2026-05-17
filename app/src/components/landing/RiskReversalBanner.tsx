@@ -16,7 +16,7 @@ export default function RiskReversalBanner() {
           אם העובד הולך — <span className="gold-gradient">אני מחליפה.</span>
         </h2>
         <p className="sub">
-          תקופת התחייבות בכתב, חתומה. אף סוכנות בארץ לא נותנת את זה.
+          30 יום אחריות בכתב — מעוגן בחוזה. כולל מקרה של פיטור משמעתי בתוך התקופה. אם העובד עוזב, אני מחליפה אותו על חשבוני.
         </p>
         <a
           href={WHATSAPP_URL}
@@ -24,7 +24,7 @@ export default function RiskReversalBanner() {
           rel="noopener noreferrer"
           className="ask-link"
         >
-          שאל אותי איך
+          שאל/י אותי איך
           <span aria-hidden>←</span>
         </a>
       </div>
