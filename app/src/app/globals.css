@@ -2785,7 +2785,7 @@ footer { background: #18181B; }
   inset-inline-start: -8px;
   font-family: var(--font-heebo), system-ui, sans-serif;
   font-weight: 900;
-  font-size: 220px;
+  font-size: clamp(7rem, 14vw, 11rem);
   line-height: 0.85;
   letter-spacing: -0.06em;
   color: rgba(255, 255, 255, 0.06);
