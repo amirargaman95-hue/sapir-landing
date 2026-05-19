@@ -1,9 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Play, FilmReel, ChatTeardropDots } from "@phosphor-icons/react";
+import {
+  Play,
+  FilmReel,
+  ShieldCheck,
+  CaretLeft,
+  CaretRight,
+} from "@phosphor-icons/react";
 import Lightbox from "@/components/ui/Lightbox";
 import PhoneFrame from "@/components/landing/PhoneFrame";
 import { videos as allVideos, proofs } from "@/data/content";
@@ -12,28 +18,51 @@ const videos = allVideos.filter(
   (v) => v.src && v.src !== "TBD" && v.poster && v.poster !== "TBD"
 );
 
-// Bento grid: 1 big video + 3 WhatsApp screenshots around it.
-// Falls back gracefully when there are zero real videos.
+// One coherent proof section: optional featured video + the FULL WhatsApp wall.
+// proofs[0..3] are one employer's recurring thread → spotlighted as a connected
+// mini case-study. The rest render as a refined editorial wall.
+// Falls back gracefully when there are zero real videos and/or zero proofs.
 export default function SocialProof() {
   const [activeVideo, setActiveVideo] = useState<number | null>(null);
   const [activeProof, setActiveProof] = useState<number | null>(null);
 
   const featured = videos[0];
   const showProofs = proofs.length > 0;
-  const bentoProofs = proofs.slice(0, 3); // exactly 3 screenshots around the video
 
-  // Hide entire section when there's nothing real to show (no videos AND no proofs).
+  const proofNext = useCallback(
+    () => setActiveProof((i) => (i === null ? i : (i + 1) % proofs.length)),
+    []
+  );
+  const proofPrev = useCallback(
+    () =>
+      setActiveProof((i) =>
+        i === null ? i : (i - 1 + proofs.length) % proofs.length
+      ),
+    []
+  );
+
+  useEffect(() => {
+    if (activeProof === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") proofPrev(); // RTL: right = previous
+      if (e.key === "ArrowLeft") proofNext();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [activeProof, proofNext, proofPrev]);
+
+  // Hide entire section when there's nothing real to show.
   if (!featured && !showProofs) return null;
 
   const fadeUp = {
-    hidden: { opacity: 0, y: 28 },
+    hidden: { opacity: 0, y: 24 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.7,
-        delay: i * 0.08,
-        ease: [0.2, 0.8, 0.2, 1] as [number, number, number, number],
+        duration: 0.6,
+        delay: Math.min(i, 8) * 0.06,
+        ease: [0.16, 0.84, 0.28, 1] as [number, number, number, number],
       },
     }),
   };
@@ -41,7 +70,7 @@ export default function SocialProof() {
   return (
     <section
       id="social-proof"
-      className="section-y section-cream"
+      className="section-y section-cream proof-lux"
       aria-labelledby="proof-heading"
     >
       <div className="container-prose">
@@ -49,7 +78,7 @@ export default function SocialProof() {
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 0.84, 0.28, 1] }}
           className="max-w-[760px] flex flex-col gap-3"
         >
           <div className="flex items-center gap-2">
@@ -60,90 +89,83 @@ export default function SocialProof() {
             המפעלים שגייסתי. <span className="cypress-text">במילים שלהם.</span>
           </h2>
           <p className="mt-1 text-[var(--color-muted)] leading-relaxed">
-            סרטון אמיתי + הודעות וואטסאפ ישירות מבעלי מפעלים. בלי תסריט, בלי שחקנים.
+            הודעות וואטסאפ ישירות מבעלי מפעלים — תאריכים, תוצאות, בלי תסריט ובלי
+            שחקנים. פרטים אישיים מטושטשים.
           </p>
         </motion.div>
 
-        {/* Bento grid */}
-        <div className="proof-bento">
-          {/* Featured video — large left tile (only when a real video exists) */}
-          {featured && (
-            <motion.button
-              type="button"
-              custom={0}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={fadeUp}
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 220, damping: 22 }}
-              onClick={() => setActiveVideo(0)}
-              className="proof-bento-video"
-              aria-label={`נגן וידאו: ${featured.caption}`}
-            >
-              <PhoneFrame>
-                <Image
-                  src={featured.poster}
-                  alt={featured.caption}
-                  fill
-                  sizes="(max-width: 1024px) 80vw, 380px"
-                  className="object-cover transition-transform duration-700 hover:scale-[1.03]"
-                />
-                <div className="play-badge">
-                  <span className="play-disc">
-                    <Play size={32} weight="fill" color="#FFFFFF" />
-                  </span>
-                </div>
-              </PhoneFrame>
-              <div className="proof-bento-video-caption">
-                <p className="who">{featured.who}</p>
-                <p className="what">{featured.caption}</p>
-              </div>
-            </motion.button>
-          )}
-
-          {/* 3 WhatsApp screenshots — right column */}
-          {bentoProofs.map((p, i) => (
-            <motion.button
-              type="button"
-              key={p.src}
-              custom={i + 1}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={fadeUp}
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 220, damping: 22 }}
-              onClick={() => setActiveProof(i)}
-              className={`proof-bento-card proof-bento-card-${i + 1}`}
-              aria-label={p.alt}
-            >
-              <Image
-                src={p.src}
-                alt={p.alt}
-                fill
-                sizes="(max-width: 1024px) 90vw, 300px"
-                className="object-cover"
-              />
-              <div className="proof-bento-card-mask" aria-hidden />
-              <span className="proof-bento-card-tag">
-                <ChatTeardropDots size={14} weight="duotone" />
-                הודעת וואטסאפ
-              </span>
-            </motion.button>
-          ))}
-        </div>
-
-        {showProofs && proofs.length > 3 && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="proof-bento-footnote"
+        {/* Optional featured video — only when a real video exists */}
+        {featured && (
+          <motion.button
+            type="button"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.16, 0.84, 0.28, 1] }}
+            whileHover={{ y: -4 }}
+            onClick={() => setActiveVideo(0)}
+            className="proof-bento-video mt-12 mx-auto max-w-[420px]"
+            aria-label={`נגן וידאו: ${featured.caption}`}
           >
-            עוד {proofs.length - 3} הודעות מבעלי מפעלים. אמיתיות. פרטים אישיים מטושטשים.
-          </motion.p>
+            <PhoneFrame>
+              <Image
+                src={featured.poster}
+                alt={featured.caption}
+                fill
+                sizes="(max-width: 1024px) 80vw, 380px"
+                className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+              />
+              <div className="play-badge">
+                <span className="play-disc">
+                  <Play size={32} weight="fill" color="#FFFFFF" />
+                </span>
+              </div>
+            </PhoneFrame>
+            <div className="proof-bento-video-caption">
+              <p className="who">{featured.who}</p>
+              <p className="what">{featured.caption}</p>
+            </div>
+          </motion.button>
+        )}
+
+        {/* One unified premium proof grid */}
+        {showProofs && (
+          <ul className="proof-grid mt-14">
+            {proofs.map((p, i) => (
+              <motion.li
+                key={p.src}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                variants={fadeUp}
+                className="proof-grid-card"
+              >
+                <button
+                  type="button"
+                  onClick={() => setActiveProof(i)}
+                  aria-label={`הגדל ${p.alt}`}
+                  className="proof-shot group"
+                >
+                  <span className="proof-shot-meta">
+                    <ShieldCheck size={14} weight="duotone" />
+                    בעל מפעל מאומת
+                  </span>
+                  <Image
+                    src={p.src}
+                    alt={p.alt}
+                    fill
+                    sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 30vw"
+                    className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
+                  <span className="proof-shot-mask" aria-hidden />
+                  <span className="proof-shot-zoom" aria-hidden>
+                    הגדלה
+                  </span>
+                </button>
+              </motion.li>
+            ))}
+          </ul>
         )}
       </div>
 
@@ -171,13 +193,35 @@ export default function SocialProof() {
         label="הודעת וואטסאפ"
       >
         {activeProof !== null && proofs[activeProof] && (
-          <Image
-            src={proofs[activeProof].src}
-            alt={proofs[activeProof].alt}
-            width={520}
-            height={1040}
-            className="max-h-[88vh] w-auto rounded-[14px]"
-          />
+          <div className="proof-viewer" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              onClick={proofPrev}
+              aria-label="הקודם"
+              className="proof-viewer-nav proof-viewer-prev"
+            >
+              <CaretRight size={26} weight="bold" />
+            </button>
+            <Image
+              key={proofs[activeProof].src}
+              src={proofs[activeProof].src}
+              alt={proofs[activeProof].alt}
+              width={520}
+              height={1040}
+              className="proof-viewer-img"
+            />
+            <button
+              type="button"
+              onClick={proofNext}
+              aria-label="הבא"
+              className="proof-viewer-nav proof-viewer-next"
+            >
+              <CaretLeft size={26} weight="bold" />
+            </button>
+            <span className="proof-viewer-count" aria-hidden>
+              {activeProof + 1} / {proofs.length}
+            </span>
+          </div>
         )}
       </Lightbox>
     </section>

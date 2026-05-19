@@ -24,7 +24,6 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://sapirazulay.co.il";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -102,7 +101,7 @@ const jsonLdPerson = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "ספיר אזולאי",
-  jobTitle: "רכזת גיוס והשמה",
+  jobTitle: "מגייסת למפעלים",
   worksFor: { "@type": "Organization", name: "ספיר אזולאי — שירותי גיוס" },
   knowsAbout: [
     "גיוס עובדים",
@@ -120,8 +119,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="he" dir="rtl" className={`${heebo.variable} ${frankRuhl.variable}`}>
+    <html
+      lang="he"
+      dir="rtl"
+      className={`${heebo.variable} ${frankRuhl.variable}`}
+      suppressHydrationWarning
+    >
       <head>
+        {/* Arm JS-driven reveal animations before paint. The class is added
+            to <html> *before* React hydrates, so React's hydration diff would
+            flag the className mismatch — suppressHydrationWarning on <html>
+            is the sanctioned Next/React escape for intentional pre-hydration
+            html mutation. Without JS the class is never added, so the SSR
+            HTML carries NO js-armed and .reveal/.curtain content stays fully
+            visible (no-JS / SEO / screen-reader fallback). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{document.documentElement.classList.add('js-armed')}catch(e){}",
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -158,17 +175,6 @@ export default function RootLayout({
               `}
             </Script>
           </>
-        ) : null}
-        {CLARITY_ID ? (
-          <Script id="clarity-init" strategy="afterInteractive">
-            {`
-              (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "${CLARITY_ID}");
-            `}
-          </Script>
         ) : null}
       </body>
     </html>

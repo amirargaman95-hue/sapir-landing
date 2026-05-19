@@ -71,7 +71,7 @@ export default function PrivacyPage() {
           </li>
           <li>
             מידע טכני אנונימי הנאסף אוטומטית (כתובת IP, סוג דפדפן, מערכת הפעלה,
-            דפי ביקור) באמצעות Google Analytics ו-Microsoft Clarity.
+            דפי ביקור) באמצעות Google Analytics.
           </li>
         </ul>
 

@@ -21,7 +21,7 @@ export default function MidPageCTA({ text, buttonText = "WhatsApp" }: Props) {
           >
             <WhatsappLogo size={18} weight="fill" />
             <span>{buttonText}</span>
-            <span aria-hidden>←</span>
+            <span aria-hidden className="arrow">←</span>
           </a>
         </div>
       </div>

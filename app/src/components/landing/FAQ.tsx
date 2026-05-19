@@ -30,7 +30,7 @@ export default function FAQ() {
       />
       <div className="container-prose max-w-[920px]">
         <p className="eyebrow-amber inline-flex items-center gap-2">
-          <Question size={18} weight="fill" color="#3B82F6" />
+          <Question size={18} weight="fill" />
           שאלות נפוצות
         </p>
         <h2 id="faq-heading">

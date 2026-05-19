@@ -110,7 +110,8 @@ export default function WhatsAppSwiper() {
     });
   };
 
-  if (proofs.length === 0) return null;
+  const proofCount: number = proofs.length;
+  if (proofCount === 0) return null;
 
   return (
     <div className="wa-wall">

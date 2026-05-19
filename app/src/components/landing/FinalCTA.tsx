@@ -14,7 +14,7 @@ export default function FinalCTA() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 50% 60%, rgba(59, 130, 246,0.18) 0%, rgba(59, 130, 246,0.06) 30%, transparent 70%)",
+            "radial-gradient(circle at 50% 60%, rgba(198, 161, 91,0.18) 0%, rgba(198, 161, 91,0.06) 30%, transparent 70%)",
         }}
       />
 
@@ -25,9 +25,9 @@ export default function FinalCTA() {
             id="final-cta-heading"
             className="font-black"
             style={{
-              fontSize: "clamp(2.25rem, 5.5vw, 4rem)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.03em",
+              fontSize: "clamp(2rem, 5.5vw, 4rem)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.025em",
             }}
           >
             מעוניין? <span className="gold-gradient">בוא נדבר 5 דקות.</span>
@@ -46,7 +46,7 @@ export default function FinalCTA() {
                 padding: "1.25rem 3rem",
                 fontSize: "1.25rem",
                 fontWeight: 800,
-                boxShadow: "0 0 90px rgba(59, 130, 246,0.55)",
+                boxShadow: "0 0 90px rgba(198, 161, 91,0.55)",
               }}
               aria-label="פתח שיחה בוואטסאפ עם ספיר"
             >

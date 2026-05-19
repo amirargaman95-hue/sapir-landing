@@ -7,14 +7,22 @@ type Props = {
   className?: string;
   delay?: number;
   once?: boolean;
+  /**
+   * Motion variant. "fade-up" = legacy 700ms rise.
+   * "reveal" = nm-ambition section entrance (580ms, ease-out).
+   * "reveal-stagger" = same, with staggered direct children (~95-190ms cadence).
+   * "curtain" = nm-ambition 3-layer curtain wipe (RTL right→left).
+   */
+  variant?: "fade-up" | "reveal" | "reveal-stagger" | "curtain";
 };
 
-/** Scroll-triggered fade + translate-up. CSS class .fade-up handles the transition. */
+/** Scroll-triggered entrance. The base CSS class handles the transition. */
 export default function FadeUp({
   children,
   className = "",
   delay = 0,
   once = true,
+  variant = "fade-up",
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [isIn, setIsIn] = useState(false);
@@ -45,7 +53,7 @@ export default function FadeUp({
   return (
     <div
       ref={ref}
-      className={`fade-up ${isIn ? "is-in" : ""} ${className}`}
+      className={`${variant} ${isIn ? "is-in" : ""} ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}

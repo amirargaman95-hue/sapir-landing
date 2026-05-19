@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "ספיר עזולאי · גיוס למפעלים בישראל";
+export const alt = "ספיר אזולאי · גיוס למפעלים בישראל";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -25,7 +25,7 @@ export default function OpengraphImage() {
         <div
           style={{
             fontSize: 28,
-            color: "#60A5FA",
+            color: "#C6A15B",
             letterSpacing: 4,
             marginBottom: 24,
           }}
@@ -39,15 +39,16 @@ export default function OpengraphImage() {
             lineHeight: 1.05,
             textAlign: "right",
             maxWidth: 1000,
+            color: "#FAFAFA",
           }}
         >
-          ספיר עזולאי
+          ספיר אזולאי
         </div>
         <div
           style={{
             fontSize: 44,
             fontWeight: 700,
-            color: "#60A5FA",
+            color: "#C6A15B",
             marginTop: 16,
             textAlign: "right",
           }}

@@ -22,7 +22,7 @@ export default function BusinessModel() {
         <p className="eyebrow-amber" style={{ display: "inline-block" }}>
           {businessModel.eyebrow}
         </p>
-        <h2 id="model-heading" className="mt-3">
+        <h2 id="model-heading" className="mt-4">
           {businessModel.title}
         </h2>
         <p className="sub">{businessModel.sub}</p>
@@ -35,8 +35,8 @@ export default function BusinessModel() {
                 key={h.label}
                 className="chip-pro inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-bold"
                 style={{
-                  background: "rgba(59, 130, 246, 0.10)",
-                  border: "1px solid rgba(59, 130, 246, 0.30)",
+                  background: "rgba(198, 161, 91, 0.10)",
+                  border: "1px solid rgba(198, 161, 91, 0.30)",
                   color: "var(--color-accent-deep)",
                 }}
               >

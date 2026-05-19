@@ -1,6 +1,7 @@
 "use client";
 
 import StatCounter from "@/components/ui/StatCounter";
+import { Stagger, StaggerItem } from "@/components/ui/Stagger";
 
 type StatItem = {
   value: number;
@@ -42,9 +43,9 @@ export default function StatsBanner() {
           המספרים שמדברים. <span className="accent">בכתב.</span>
         </h2>
 
-        <div className="stats">
+        <Stagger as="div" className="stats">
           {STATS.map((stat) => (
-            <div key={stat.label} className="stat">
+            <StaggerItem as="div" key={stat.label} className="stat">
               <StatCounter
                 value={stat.value}
                 suffix={stat.suffix}
@@ -52,9 +53,9 @@ export default function StatsBanner() {
                 label={stat.label}
               />
               <p className="sub">{stat.sub}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

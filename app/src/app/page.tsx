@@ -13,6 +13,7 @@ import FAQ from "@/components/landing/FAQ";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
 import MobileDock from "@/components/landing/MobileDock";
+import FadeUp from "@/components/ui/FadeUp";
 
 export default function Home() {
   return (
@@ -25,33 +26,45 @@ export default function Home() {
 
         {/* Active Jobs — dark */}
         <div className="alt-dark">
-          <ActiveJobs />
+          <FadeUp variant="reveal">
+            <ActiveJobs />
+          </FadeUp>
         </div>
 
         {/* Stats — cream */}
         <div className="alt-cream">
-          <StatsBanner />
+          <FadeUp variant="reveal">
+            <StatsBanner />
+          </FadeUp>
         </div>
 
         {/* Three reasons — dark */}
         <div className="alt-dark">
-          <ThreeReasons />
+          <FadeUp variant="reveal">
+            <ThreeReasons />
+          </FadeUp>
         </div>
 
         <div className="alt-cream">
-          <MidPageCTA text="מתאים לך? בוא נדבר 5 דקות." buttonText="WhatsApp" />
+          <FadeUp variant="reveal">
+            <MidPageCTA text="צריך לאייש משרה במפעל? בוא נדבר 5 דקות." buttonText="WhatsApp" />
+          </FadeUp>
         </div>
 
         {/* Full service — dark */}
         <div className="alt-dark">
-          <FullService />
+          <FadeUp variant="reveal">
+            <FullService />
+          </FadeUp>
         </div>
 
         {/* Social proof — cream (bento) */}
         <SocialProof />
 
         <div className="alt-dark">
-          <MidPageCTA text="רוצה לראות את התוצאות אצלך? בוא נדבר." buttonText="WhatsApp" />
+          <FadeUp variant="reveal">
+            <MidPageCTA text="רוצה לראות את התוצאות אצלך? בוא נדבר." buttonText="WhatsApp" />
+          </FadeUp>
         </div>
 
         {/* About manifesto — split dark/cream */}
@@ -59,17 +72,23 @@ export default function Home() {
 
         {/* Business model — dark */}
         <div className="alt-dark">
-          <BusinessModel />
+          <FadeUp variant="reveal">
+            <BusinessModel />
+          </FadeUp>
         </div>
 
         {/* FAQ — cream */}
         <div className="alt-cream">
-          <FAQ />
+          <FadeUp variant="reveal">
+            <FAQ />
+          </FadeUp>
         </div>
 
         {/* Final CTA — dark */}
         <div className="alt-dark">
-          <FinalCTA />
+          <FadeUp variant="reveal">
+            <FinalCTA />
+          </FadeUp>
         </div>
       </main>
       <Footer />
