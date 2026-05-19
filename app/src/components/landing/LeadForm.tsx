@@ -11,7 +11,12 @@ import { track } from "@/lib/track";
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" disabled={pending} aria-disabled={pending}>
+    <button
+      type="submit"
+      className="lead-form-v2-submit"
+      disabled={pending}
+      aria-disabled={pending}
+    >
       <span>{pending ? leadForm.submitPending : leadForm.submitIdle}</span>
       {!pending && <ArrowRight size={18} weight="bold" aria-hidden />}
     </button>
@@ -41,53 +46,77 @@ export default function LeadForm() {
         ) : (
           <form
             action={formAction}
-            className="hero-quick-form"
+            className="lead-form-v2"
             noValidate
             onSubmit={() => track("lead_form_submit", { location: "lead-form" })}
           >
-            <input
-              type="text"
-              name="name"
-              required
-              minLength={2}
-              autoComplete="name"
-              aria-label={leadForm.nameLabel}
-              placeholder={leadForm.nameLabel}
-              defaultValue={state.values?.name ?? ""}
-            />
-            <input
-              type="text"
-              name="factory_name"
-              autoComplete="organization"
-              aria-label={leadForm.factoryLabel}
-              placeholder={leadForm.factoryLabel}
-              defaultValue={state.values?.factory_name ?? ""}
-            />
-            <input
-              type="tel"
-              name="phone"
-              required
-              inputMode="tel"
-              autoComplete="tel"
-              aria-label={leadForm.phoneLabel}
-              placeholder={leadForm.phoneLabel}
-              defaultValue={state.values?.phone ?? ""}
-            />
-            <select
-              name="industry"
-              required
-              aria-label={leadForm.industryLabel}
-              defaultValue={state.values?.industry ?? ""}
-            >
-              <option value="" disabled>
+            <div className="lead-field">
+              <label htmlFor="lead-name" className="lead-field-label">
+                {leadForm.nameLabel}
+              </label>
+              <input
+                id="lead-name"
+                type="text"
+                name="name"
+                required
+                minLength={2}
+                autoComplete="name"
+                aria-label={leadForm.nameLabel}
+                placeholder={leadForm.nameLabel}
+                defaultValue={state.values?.name ?? ""}
+              />
+            </div>
+            <div className="lead-field">
+              <label htmlFor="lead-factory" className="lead-field-label">
+                {leadForm.factoryLabel}
+              </label>
+              <input
+                id="lead-factory"
+                type="text"
+                name="factory_name"
+                autoComplete="organization"
+                aria-label={leadForm.factoryLabel}
+                placeholder={leadForm.factoryLabel}
+                defaultValue={state.values?.factory_name ?? ""}
+              />
+            </div>
+            <div className="lead-field">
+              <label htmlFor="lead-phone" className="lead-field-label">
+                {leadForm.phoneLabel}
+              </label>
+              <input
+                id="lead-phone"
+                type="tel"
+                name="phone"
+                required
+                inputMode="tel"
+                autoComplete="tel"
+                aria-label={leadForm.phoneLabel}
+                placeholder={leadForm.phoneLabel}
+                defaultValue={state.values?.phone ?? ""}
+              />
+            </div>
+            <div className="lead-field">
+              <label htmlFor="lead-industry" className="lead-field-label">
                 {leadForm.industryLabel}
-              </option>
-              {leadForm.industryOptions.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
+              </label>
+              <select
+                id="lead-industry"
+                name="industry"
+                required
+                aria-label={leadForm.industryLabel}
+                defaultValue={state.values?.industry ?? ""}
+              >
+                <option value="" disabled>
+                  {leadForm.industryLabel}
                 </option>
-              ))}
-            </select>
+                {leadForm.industryOptions.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
             {/* Honeypot — renamed to _hp so it can't collide with "שם המפעל". */}
             <input
               type="text"

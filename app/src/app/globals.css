@@ -3555,7 +3555,7 @@ footer { background: #18181B; }
   scroll-margin-top: 120px;
 }
 .lead-form-inner {
-  max-width: 640px;
+  max-width: 440px;
   margin: 0 auto;
   text-align: right;
 }
@@ -3574,7 +3574,85 @@ footer { background: #18181B; }
   margin-top: 0.7rem;
   max-width: 540px;
 }
-.lead-form-section .hero-quick-form { margin-top: 1.6rem; }
+/* Lead form v2 — simple single-column vertical layout */
+.lead-form-v2 {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+.lead-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+.lead-field-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-heebo), system-ui, sans-serif;
+}
+.lead-field input,
+.lead-field select {
+  width: 100%;
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0 0.95rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #FAFAFA;
+  font-family: var(--font-heebo), system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: right;
+  outline: none;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+.lead-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.lead-field input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+  font-weight: 400;
+}
+.lead-field input:focus,
+.lead-field select:focus {
+  border-color: var(--color-accent, #C6A15B);
+  background: rgba(255, 255, 255, 0.06);
+}
+.lead-form-v2-submit {
+  width: 100%;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 0.4rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--color-accent, #C6A15B);
+  color: #1A1206;
+  font-family: var(--font-heebo), system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 200ms cubic-bezier(.2,.8,.2,1), box-shadow 200ms ease;
+}
+.lead-form-v2-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px -8px rgba(198, 161, 91, 0.55);
+}
+.lead-form-v2-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
 .lead-form-success {
   margin-top: 1.6rem;
   font-size: 1.05rem;
