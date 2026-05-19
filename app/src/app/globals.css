@@ -3743,6 +3743,78 @@ footer { background: #18181B; }
   color: rgba(255, 255, 255, 0.78);
 }
 
+/* CV file field — matches .lead-field box (height/bg/border) */
+.lead-file {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  box-sizing: border-box;
+  height: 44px;
+  padding: 0 0.95rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+.lead-file:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+}
+.lead-file input[type="file"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.lead-file-btn {
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a1206;
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 7px;
+  padding: 0.25rem 0.7rem;
+}
+.lead-file-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lead-file-name[data-has-file="true"] {
+  color: #fafafa;
+}
+/* Privacy consent row */
+.lead-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: right;
+}
+.lead-consent input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 0.15rem;
+  accent-color: var(--color-accent, #C6A15B);
+  cursor: pointer;
+}
+.lead-consent a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+}
+.lead-consent a:hover { color: #fafafa; }
+
 /* ============================================================
    CTA TIER — tertiary inline link below primary button
    ============================================================ */

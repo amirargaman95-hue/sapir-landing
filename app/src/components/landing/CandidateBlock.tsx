@@ -1,9 +1,13 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { submitLead } from "@/app/actions/lead";
-import { leadInitialState } from "@/app/actions/lead-types";
+import {
+  CV_ALLOWED_EXT,
+  CV_MAX_BYTES,
+  leadInitialState,
+} from "@/app/actions/lead-types";
 import { leadForm } from "@/data/content";
 import { track } from "@/lib/track";
 
@@ -23,6 +27,55 @@ function SubmitButton() {
 
 export default function CandidateBlock() {
   const [state, formAction] = useActionState(submitLead, leadInitialState);
+  const [cvName, setCvName] = useState("");
+  const [cvError, setCvError] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  function validateCv(file: File): string {
+    const ext = (file.name.split(".").pop() ?? "").toLowerCase();
+    if (!(CV_ALLOWED_EXT as readonly string[]).includes(ext)) {
+      return "ניתן להעלות קובץ מסוג PDF או Word בלבד.";
+    }
+    if (file.size > CV_MAX_BYTES) {
+      return "הקובץ גדול מדי. עד 5MB.";
+    }
+    return "";
+  }
+
+  function handleCvChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) {
+      setCvName("");
+      setCvError("");
+      return;
+    }
+    const err = validateCv(file);
+    if (err) {
+      setCvError(err);
+      setCvName("");
+      e.target.value = "";
+      return;
+    }
+    setCvError("");
+    setCvName(file.name);
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    // Block submit if a chosen file is invalid (CV stays optional).
+    const input = formRef.current?.elements.namedItem(
+      "cv"
+    ) as HTMLInputElement | null;
+    const file = input?.files?.[0];
+    if (file) {
+      const err = validateCv(file);
+      if (err) {
+        e.preventDefault();
+        setCvError(err);
+        return;
+      }
+    }
+    track("lead_form_submit", { location: "candidate-block" });
+  }
 
   return (
     <section
@@ -49,12 +102,11 @@ export default function CandidateBlock() {
           </p>
         ) : (
           <form
+            ref={formRef}
             action={formAction}
             className="lead-form-v2"
             noValidate
-            onSubmit={() =>
-              track("lead_form_submit", { location: "candidate-block" })
-            }
+            onSubmit={handleSubmit}
           >
             {/* Source tag — candidate channel (job seekers). */}
             <input type="hidden" name="kind" value="candidate" />
@@ -115,6 +167,39 @@ export default function CandidateBlock() {
               </select>
             </div>
 
+            <div className="lead-field">
+              <label htmlFor="candidate-cv" className="lead-field-label">
+                קורות חיים (PDF)
+              </label>
+              <div className="lead-file">
+                <span className="lead-file-btn">בחרו קובץ</span>
+                <span
+                  className="lead-file-name"
+                  data-has-file={cvName ? "true" : "false"}
+                >
+                  {cvName || "לא נבחר קובץ (אופציונלי)"}
+                </span>
+                <input
+                  id="candidate-cv"
+                  type="file"
+                  name="cv"
+                  accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                  aria-label="קורות חיים (PDF)"
+                  onChange={handleCvChange}
+                />
+              </div>
+            </div>
+
+            <label className="lead-consent">
+              <input type="checkbox" name="consent" required />
+              <span>
+                קראתי ואני מאשר/ת שספיר תשמור את הפרטים והקובץ ליצירת קשר.{" "}
+                <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                  מדיניות פרטיות
+                </a>
+              </span>
+            </label>
+
             {/* Honeypot — same field name as the owner form. */}
             <input
               type="text"
@@ -136,9 +221,15 @@ export default function CandidateBlock() {
           </form>
         )}
 
-        {!state.ok && state.message && (
+        {!state.ok && cvError && (
           <p className="lead-form-error" role="alert" aria-live="assertive">
-            משהו השתבש. נסו שוב מאוחר יותר.
+            {cvError}
+          </p>
+        )}
+
+        {!state.ok && !cvError && state.message && (
+          <p className="lead-form-error" role="alert" aria-live="assertive">
+            {state.message}
           </p>
         )}
       </div>

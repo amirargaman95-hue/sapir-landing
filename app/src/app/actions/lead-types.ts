@@ -18,6 +18,15 @@ export type LeadState = {
 
 export const leadInitialState: LeadState = { ok: false, message: "" };
 
+// Candidate CV upload constraints.
+export const CV_MAX_BYTES = 5 * 1024 * 1024; // 5MB
+export const CV_ALLOWED_EXT = ["pdf", "doc", "docx"] as const;
+export const CV_ALLOWED_MIME = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+] as const;
+
 // Allowed industry options — must match the <select> in LeadForm and content.industries.
 export const LEAD_INDUSTRIES = [
   "ברזל ומתכת",

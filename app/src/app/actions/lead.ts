@@ -14,11 +14,17 @@
 
 import { createClient } from "@supabase/supabase-js";
 import {
+  CV_ALLOWED_EXT,
+  CV_ALLOWED_MIME,
+  CV_MAX_BYTES,
   LEAD_INDUSTRIES,
   type LeadIndustry,
   type LeadState,
   type LeadValues,
 } from "./lead-types";
+
+// Private Supabase Storage bucket for candidate CVs.
+const CV_BUCKET = "cv-uploads";
 
 // Israeli phone: optional +972, 9-10 digits, allow spaces/dashes.
 function normalizePhone(raw: string): string | null {
@@ -36,6 +42,7 @@ type LeadRecord = {
   region: null;
   message: null;
   source: "landing_lead_form" | "landing_candidate";
+  cv_url: string | null;
 };
 
 // Insert into Supabase `leads`. Missing env => throw (lead not saved).
@@ -59,6 +66,41 @@ async function insertLead(record: LeadRecord): Promise<void> {
   if (error) {
     throw new Error(`Supabase insert failed: ${error.message}`);
   }
+}
+
+// Upload candidate CV to a private Storage bucket. Missing env / upload
+// failure => throw (submit fails, no fake success). Returns the storage key.
+async function uploadCv(file: File): Promise<string> {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!url || !serviceKey) {
+    console.error("[lead] cv upload failed (supabase env missing).");
+    throw new Error("Supabase env missing");
+  }
+
+  const supabase = createClient(url, serviceKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+
+  const ext = (file.name.split(".").pop() ?? "").toLowerCase();
+  const safeExt = (CV_ALLOWED_EXT as readonly string[]).includes(ext)
+    ? ext
+    : "bin";
+  const randomShort = Math.random().toString(36).slice(2, 10);
+  const key = `${Date.now()}-${randomShort}.${safeExt}`;
+
+  const { data, error } = await supabase.storage
+    .from(CV_BUCKET)
+    .upload(key, file, {
+      contentType: file.type || "application/octet-stream",
+      upsert: false,
+    });
+
+  if (error || !data?.path) {
+    throw new Error(`Supabase storage upload failed: ${error?.message ?? "no path"}`);
+  }
+  return data.path;
 }
 
 // Notification email. Blocking: failure here fails the submit.
@@ -89,7 +131,11 @@ async function notifyByEmail(record: LeadRecord): Promise<void> {
           : `ליד חדש מהאתר — ${record.name}`,
       text: `שם: ${record.name}\nטלפון: ${record.phone}\nשם המפעל: ${
         record.factory_name ?? "-"
-      }\nתחום: ${record.industry}\nמקור: ${record.source}`,
+      }\nתחום: ${record.industry}\nמקור: ${record.source}${
+        record.cv_url
+          ? `\nצורף קובץ קו״ח (Storage): ${CV_BUCKET}/${record.cv_url}`
+          : ""
+      }`,
     }),
   });
 
@@ -111,6 +157,11 @@ export async function submitLead(
   const isCandidate = String(formData.get("kind") ?? "").trim() === "candidate";
   // Honeypot — renamed from `company` so it never collides with "שם המפעל".
   const honeypot = String(formData.get("_hp") ?? "").trim();
+  // Candidate-only fields.
+  const consent = String(formData.get("consent") ?? "").trim() !== "";
+  const cvRaw = formData.get("cv");
+  const cvFile =
+    cvRaw instanceof File && cvRaw.size > 0 ? cvRaw : null;
 
   const values: LeadValues = {
     name,
@@ -137,6 +188,49 @@ export async function submitLead(
     return { ok: false, message: "נא לבחור תחום מהרשימה.", values };
   }
 
+  // Candidate-only gates: privacy consent + optional CV validation.
+  if (isCandidate) {
+    if (!consent) {
+      return { ok: false, message: "יש לאשר את מדיניות הפרטיות.", values };
+    }
+    if (cvFile) {
+      const ext = (cvFile.name.split(".").pop() ?? "").toLowerCase();
+      const typeOk =
+        (CV_ALLOWED_MIME as readonly string[]).includes(cvFile.type) ||
+        (CV_ALLOWED_EXT as readonly string[]).includes(ext);
+      if (!typeOk) {
+        return {
+          ok: false,
+          message: "ניתן להעלות קובץ מסוג PDF או Word בלבד.",
+          values,
+        };
+      }
+      if (cvFile.size > CV_MAX_BYTES) {
+        return {
+          ok: false,
+          message: "הקובץ גדול מדי. עד 5MB.",
+          values,
+        };
+      }
+    }
+  }
+
+  // Upload CV first (candidate only). Failure => fail the submit, no fake
+  // success. Done before insert so cv_url is part of the saved record.
+  let cvUrl: string | null = null;
+  if (isCandidate && cvFile) {
+    try {
+      cvUrl = await uploadCv(cvFile);
+    } catch (err) {
+      console.error("[lead] cv upload error", err);
+      return {
+        ok: false,
+        message: "משהו השתבש. נסו שוב מאוחר יותר.",
+        values,
+      };
+    }
+  }
+
   const record: LeadRecord = {
     name,
     phone,
@@ -146,6 +240,8 @@ export async function submitLead(
     region: null,
     message: null,
     source: isCandidate ? "landing_candidate" : "landing_lead_form",
+    // Owners never upload a CV.
+    cv_url: isCandidate ? cvUrl : null,
   };
 
   // Order: Supabase first (source of truth). A DB failure fails the submit.
