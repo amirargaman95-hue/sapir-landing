@@ -68,7 +68,7 @@ export default function ThreeReasons() {
           </p>
           <h2 id="reasons-heading" className="h-display-md max-w-[22ch]" style={{ color: "var(--color-text)" }}>
             3 דברים{" "}
-            <span style={{ color: "var(--color-accent)", textShadow: "0 4px 32px rgba(198, 161, 91, 0.30)" }}>
+            <span style={{ color: "var(--color-accent)", textShadow: "0 4px 32px rgba(37, 99, 235, 0.30)" }}>
               שאצל אחרים לא תקבל.
             </span>
           </h2>

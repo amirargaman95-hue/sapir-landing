@@ -14,7 +14,7 @@ export default function FinalCTA() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 50% 60%, rgba(198, 161, 91,0.18) 0%, rgba(198, 161, 91,0.06) 30%, transparent 70%)",
+            "radial-gradient(circle at 50% 60%, rgba(37, 99, 235,0.18) 0%, rgba(37, 99, 235,0.06) 30%, transparent 70%)",
         }}
       />
 
@@ -46,7 +46,7 @@ export default function FinalCTA() {
                 padding: "1.25rem 3rem",
                 fontSize: "1.25rem",
                 fontWeight: 800,
-                boxShadow: "0 0 90px rgba(198, 161, 91,0.55)",
+                boxShadow: "0 0 90px rgba(37, 99, 235,0.55)",
               }}
               aria-label="פתח שיחה בוואטסאפ עם ספיר"
             >

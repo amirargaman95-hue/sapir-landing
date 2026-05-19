@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import {
   Play,
   FilmReel,
-  ShieldCheck,
+  WhatsappLogo,
   CaretLeft,
   CaretRight,
 } from "@phosphor-icons/react";
@@ -128,44 +128,49 @@ export default function SocialProof() {
           </motion.button>
         )}
 
-        {/* One unified premium proof grid */}
+        {/* WhatsApp gallery — mobile carousel / desktop grid */}
         {showProofs && (
-          <ul className="proof-grid mt-14">
-            {proofs.map((p, i) => (
-              <motion.li
-                key={p.src}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-60px" }}
-                variants={fadeUp}
-                className="proof-grid-card"
-              >
-                <button
-                  type="button"
-                  onClick={() => setActiveProof(i)}
-                  aria-label={`הגדל ${p.alt}`}
-                  className="proof-shot group"
+          <>
+            <ul className="proof-grid mt-12">
+              {proofs.map((p, i) => (
+                <motion.li
+                  key={p.src}
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-60px" }}
+                  variants={fadeUp}
+                  className="proof-grid-card"
                 >
-                  <span className="proof-shot-meta">
-                    <ShieldCheck size={14} weight="duotone" />
-                    בעל מפעל מאומת
-                  </span>
-                  <Image
-                    src={p.src}
-                    alt={p.alt}
-                    fill
-                    sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 30vw"
-                    className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
-                  />
-                  <span className="proof-shot-mask" aria-hidden />
-                  <span className="proof-shot-zoom" aria-hidden>
-                    הגדלה
-                  </span>
-                </button>
-              </motion.li>
-            ))}
-          </ul>
+                  <button
+                    type="button"
+                    onClick={() => setActiveProof(i)}
+                    aria-label={`הגדל ${p.alt}`}
+                    className="proof-shot group"
+                  >
+                    <span className="proof-shot-img">
+                      <Image
+                        src={p.src}
+                        alt={p.alt}
+                        fill
+                        sizes="(max-width: 640px) 88vw, (max-width: 1024px) 45vw, 30vw"
+                        className="transition-transform duration-300 group-hover:scale-[1.02]"
+                      />
+                    </span>
+                    <span className="proof-shot-foot">
+                      <WhatsappLogo size={18} weight="fill" />
+                      הודעת וואטסאפ מלקוח
+                    </span>
+                  </button>
+                </motion.li>
+              ))}
+            </ul>
+            {proofs.length > 1 && (
+              <p className="proof-swipe-hint" aria-hidden>
+                החלק לעוד <CaretLeft size={15} weight="bold" />
+              </p>
+            )}
+          </>
         )}
       </div>
 

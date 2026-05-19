@@ -17,15 +17,15 @@ export default function OpengraphImage() {
           justifyContent: "center",
           padding: "80px",
           background:
-            "linear-gradient(135deg, #09090B 0%, #18181B 60%, #27272A 100%)",
-          color: "#FAFAFA",
+            "linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 60%, #F1F5F9 100%)",
+          color: "#0F172A",
           fontFamily: "system-ui, sans-serif",
         }}
       >
         <div
           style={{
             fontSize: 28,
-            color: "#C6A15B",
+            color: "#2563EB",
             letterSpacing: 4,
             marginBottom: 24,
           }}
@@ -39,7 +39,7 @@ export default function OpengraphImage() {
             lineHeight: 1.05,
             textAlign: "right",
             maxWidth: 1000,
-            color: "#FAFAFA",
+            color: "#0F172A",
           }}
         >
           ספיר אזולאי
@@ -48,7 +48,7 @@ export default function OpengraphImage() {
           style={{
             fontSize: 44,
             fontWeight: 700,
-            color: "#C6A15B",
+            color: "#2563EB",
             marginTop: 16,
             textAlign: "right",
           }}
@@ -58,7 +58,7 @@ export default function OpengraphImage() {
         <div
           style={{
             fontSize: 26,
-            color: "rgba(255,255,255,0.72)",
+            color: "#475569",
             marginTop: 32,
             textAlign: "right",
           }}

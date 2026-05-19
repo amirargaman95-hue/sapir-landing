@@ -51,12 +51,12 @@ export default function CookieBanner() {
         gap: "0.75rem",
         flexWrap: "wrap",
         justifyContent: "center",
-        background: "rgba(24, 24, 27, 0.97)",
-        borderTop: "1px solid rgba(255,255,255,0.12)",
-        color: "#FAFAFA",
+        background: "rgba(255, 255, 255, 0.97)",
+        borderTop: "1px solid #E2E8F0",
+        color: "#475569",
         padding: "0.6rem 1rem",
-        boxShadow: "0 -8px 24px rgba(0,0,0,0.35)",
-        fontFamily: "var(--font-heebo), system-ui, sans-serif",
+        boxShadow: "0 -8px 24px -12px rgba(15,23,42,0.12)",
+        fontFamily: "var(--font-assistant), system-ui, sans-serif",
         fontSize: "0.82rem",
         lineHeight: 1.35,
       }}
@@ -65,7 +65,7 @@ export default function CookieBanner() {
         אנחנו משתמשים בעוגיות לשיפור החוויה ולמדידת תנועה.{" "}
         <a
           href="/privacy"
-          style={{ textDecoration: "underline", color: "#60A5FA" }}
+          style={{ textDecoration: "underline", color: "#2563EB" }}
         >
           מדיניות פרטיות
         </a>
@@ -75,7 +75,7 @@ export default function CookieBanner() {
           type="button"
           onClick={() => decide(true)}
           style={{
-            background: "#3B82F6",
+            background: "#2563EB",
             color: "#FFFFFF",
             border: "none",
             borderRadius: 999,
@@ -93,8 +93,8 @@ export default function CookieBanner() {
           onClick={() => decide(false)}
           style={{
             background: "transparent",
-            color: "#FAFAFA",
-            border: "1px solid rgba(255,255,255,0.25)",
+            color: "#475569",
+            border: "1px solid #CBD5E1",
             borderRadius: 999,
             padding: "0 1rem",
             minHeight: 44,

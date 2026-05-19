@@ -35,8 +35,8 @@ export default function BusinessModel() {
                 key={h.label}
                 className="chip-pro inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-bold"
                 style={{
-                  background: "rgba(198, 161, 91, 0.10)",
-                  border: "1px solid rgba(198, 161, 91, 0.30)",
+                  background: "rgba(37, 99, 235, 0.10)",
+                  border: "1px solid rgba(37, 99, 235, 0.30)",
                   color: "var(--color-accent-deep)",
                 }}
               >

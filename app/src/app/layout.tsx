@@ -1,14 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Heebo, Frank_Ruhl_Libre } from "next/font/google";
+import { Assistant, Frank_Ruhl_Libre } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 
-const heebo = Heebo({
+const assistant = Assistant({
   subsets: ["latin", "hebrew"],
-  weight: ["400", "500", "700", "900"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
-  variable: "--font-heebo",
+  variable: "--font-assistant",
 });
 
 const frankRuhl = Frank_Ruhl_Libre({
@@ -72,7 +72,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: "cover",
-  themeColor: "#09090B",
+  themeColor: "#F8FAFC",
 };
 
 const jsonLdProfessional = {
@@ -123,7 +123,7 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
-      className={`${heebo.variable} ${frankRuhl.variable}`}
+      className={`${assistant.variable} ${frankRuhl.variable}`}
       suppressHydrationWarning
     >
       <head>
