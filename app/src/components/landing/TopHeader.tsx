@@ -31,7 +31,7 @@ export default function TopHeader() {
     <header
       className={`fixed inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[rgba(15,23,41,0.92)] backdrop-blur-md border-b border-[var(--color-border)]"
+          ? "bg-[rgba(255,255,255,0.92)] backdrop-blur-md border-b border-[var(--color-border)]"
           : "bg-transparent border-b border-transparent"
       }`}
       style={{ top: topOffset }}
