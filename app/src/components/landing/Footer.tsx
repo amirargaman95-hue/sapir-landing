@@ -148,9 +148,17 @@ export default function Footer() {
 
         <div className="mt-12 pt-6 border-t border-[var(--color-border)] flex flex-col md:flex-row justify-between gap-2 text-xs text-[var(--color-muted)]">
           <p>© 2026 ספיר אזולאי. כל הזכויות שמורות.</p>
-          <p>
-            בנייה ועיצוב:{" "}
-            <span className="text-[var(--color-text)]">אמיר ארגמן</span>
+          <p className="flex items-center gap-3">
+            <span>
+              בנייה ועיצוב:{" "}
+              <span className="text-[var(--color-text)]">אמיר ארגמן</span>
+            </span>
+            <a
+              href="/admin"
+              className="inline-flex items-center min-h-[44px] text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors"
+            >
+              כניסת מנהלת
+            </a>
           </p>
         </div>
       </div>
