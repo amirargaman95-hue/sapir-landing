@@ -43,22 +43,25 @@ export default function CookieBanner() {
       aria-label="הודעת עוגיות"
       style={{
         position: "fixed",
-        right: "1rem",
-        bottom: "1rem",
-        zIndex: 80,
-        maxWidth: "22rem",
+        insetInline: 0,
+        bottom: 0,
+        zIndex: 55,
+        display: "flex",
+        alignItems: "center",
+        gap: "0.75rem",
+        flexWrap: "wrap",
+        justifyContent: "center",
         background: "rgba(24, 24, 27, 0.97)",
-        border: "1px solid rgba(255,255,255,0.12)",
+        borderTop: "1px solid rgba(255,255,255,0.12)",
         color: "#FAFAFA",
-        padding: "0.9rem 1rem",
-        borderRadius: 14,
-        boxShadow: "0 12px 40px rgba(0,0,0,0.4)",
+        padding: "0.6rem 1rem",
+        boxShadow: "0 -8px 24px rgba(0,0,0,0.35)",
         fontFamily: "var(--font-heebo), system-ui, sans-serif",
-        fontSize: "0.85rem",
-        lineHeight: 1.5,
+        fontSize: "0.82rem",
+        lineHeight: 1.35,
       }}
     >
-      <p style={{ margin: 0, marginBottom: "0.7rem" }}>
+      <p style={{ margin: 0, flex: "1 1 auto", minWidth: 0 }}>
         אנחנו משתמשים בעוגיות לשיפור החוויה ולמדידת תנועה.{" "}
         <a
           href="/privacy"
@@ -66,20 +69,20 @@ export default function CookieBanner() {
         >
           מדיניות פרטיות
         </a>
-        .
       </p>
-      <div style={{ display: "flex", gap: "0.5rem" }}>
+      <div style={{ display: "flex", gap: "0.5rem", flexShrink: 0 }}>
         <button
           type="button"
           onClick={() => decide(true)}
           style={{
-            flex: 1,
             background: "#3B82F6",
             color: "#FFFFFF",
             border: "none",
             borderRadius: 999,
-            padding: "0.5rem 0.9rem",
+            padding: "0 1rem",
+            minHeight: 44,
             fontWeight: 700,
+            fontSize: "0.85rem",
             cursor: "pointer",
           }}
         >
@@ -89,13 +92,14 @@ export default function CookieBanner() {
           type="button"
           onClick={() => decide(false)}
           style={{
-            flex: 1,
             background: "transparent",
             color: "#FAFAFA",
             border: "1px solid rgba(255,255,255,0.25)",
             borderRadius: 999,
-            padding: "0.5rem 0.9rem",
+            padding: "0 1rem",
+            minHeight: 44,
             fontWeight: 600,
+            fontSize: "0.85rem",
             cursor: "pointer",
           }}
         >

@@ -142,7 +142,7 @@ export default function Hero() {
       <div className="container-prose">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           <motion.div
-            className="lg:col-span-5 order-1 lg:order-1"
+            className="lg:col-span-5 order-2 lg:order-1"
             {...portraitIntro}
             style={{ y: portraitY, scale: portraitScale }}
           >
@@ -164,7 +164,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <div className="lg:col-span-7 order-2 lg:order-2">
+          <div className="lg:col-span-7 order-1 lg:order-2">
             <motion.span {...fadeUpAt(0)} className="hero-v3-eyebrow">
               <span className="dot" aria-hidden />
               {hero.eyebrow}
