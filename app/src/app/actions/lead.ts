@@ -6,11 +6,13 @@
 // NOTE: a "use server" module may export async functions ONLY.
 // LeadState / leadInitialState live in ./lead-types (no "use server").
 //
-// Source of truth = Supabase (insert first), Resend = notification only.
-// Success (ok:true + "תודה") is returned ONLY if BOTH the Supabase insert
-// AND the Resend email succeed. Any failure — including missing Supabase
-// OR Resend env — is a failure: ok:false + WhatsApp fallback, never "תודה".
-// Failures are logged so we can see the reason in e2e.
+// Source of truth = Supabase. Success (ok:true + "תודה") is returned if the
+// Supabase insert succeeds (and, for a candidate with a file, the Storage
+// upload succeeds). Resend email is best-effort only: if it fails or its env
+// is missing we log and continue — still ok:true. A real failure is ONLY a
+// failed Supabase insert (or candidate CV upload) / missing Supabase env =>
+// ok:false. Sapir views every lead in the protected /admin, so a missing
+// email no longer blocks a working submit. Failures are logged for e2e.
 
 import { createClient } from "@supabase/supabase-js";
 import {
@@ -103,17 +105,17 @@ async function uploadCv(file: File): Promise<string> {
   return data.path;
 }
 
-// Notification email. Blocking: failure here fails the submit.
+// Notification email. Best-effort: failure here does NOT fail the submit.
 async function notifyByEmail(record: LeadRecord): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_NOTIFY_EMAIL;
   const from = process.env.LEAD_FROM_EMAIL ?? "leads@sapirazulay.co.il";
 
   if (!apiKey || !to) {
-    console.error(
-      `[lead] email delivery failed (env missing). name=${record.name} phone=${record.phone}`
+    console.info(
+      `[lead] email skipped (Resend env missing) — lead saved in Supabase, visible in /admin. name=${record.name} phone=${record.phone}`
     );
-    throw new Error("Resend env missing");
+    return;
   }
 
   const res = await fetch("https://api.resend.com/emails", {
@@ -257,13 +259,12 @@ export async function submitLead(
     return { ok: false, message: failMessage, values };
   }
 
-  // Resend is blocking — a failure fails the submit (no admin in phase 1,
-  // so without the email Sapir never sees the lead).
+  // Resend is best-effort: the lead is already saved (source of truth) and
+  // visible in /admin, so an email failure must NOT fail the submit.
   try {
     await notifyByEmail(record);
   } catch (err) {
-    console.error("[lead] email error", err);
-    return { ok: false, message: failMessage, values };
+    console.error("[lead] email error (non-blocking, lead saved)", err);
   }
 
   return {
