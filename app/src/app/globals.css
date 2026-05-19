@@ -3548,6 +3548,57 @@ footer { background: #18181B; }
 }
 
 /* ============================================================
+   LEAD FORM section — reuses .hero-quick-form for the inputs
+   ============================================================ */
+.lead-form-section {
+  padding: clamp(3rem, 7vw, 5.5rem) 1.25rem;
+  scroll-margin-top: 120px;
+}
+.lead-form-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: right;
+}
+.lead-form-heading {
+  font-family: var(--font-heebo), system-ui, sans-serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  font-weight: 800;
+  color: #FAFAFA;
+  line-height: 1.2;
+  margin-top: 0.4rem;
+}
+.lead-form-sub {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 0.7rem;
+  max-width: 540px;
+}
+.lead-form-section .hero-quick-form { margin-top: 1.6rem; }
+.lead-form-success {
+  margin-top: 1.6rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #C6A15B;
+}
+.lead-form-error {
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  color: #ff9b9b;
+}
+.lead-form-wa-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.62);
+  transition: color 200ms ease;
+}
+.lead-form-wa-link:hover { color: #FAFAFA; }
+
+/* ============================================================
    CTA TIER — tertiary inline link below primary button
    ============================================================ */
 .cta-tertiary {

@@ -13,7 +13,12 @@ type Props = {
   className?: string;
 };
 
-/** Counts up from 0 to `value` once the element is in view. SSR-safe: renders final value on server. */
+/**
+ * Counts up to `value` when scrolled into view.
+ * Guaranteed-correct: the final value is always rendered. The count-up is a
+ * progressive enhancement that can only ever lower `shown` transiently while
+ * animating — it never leaves the number stuck at 0.
+ */
 export default function StatCounter({
   value,
   suffix = "",
@@ -24,70 +29,75 @@ export default function StatCounter({
   className = "",
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  // SSR renders the final value so server output is not 0.
+  // Always render the final value (SSR + client default). Never 0.
   const [shown, setShown] = useState(value);
-  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    if (!ref.current) return;
+    const el = ref.current;
+    if (!el) return;
 
-    // Respect reduced motion — keep final value, skip animation.
     const prefersReduced =
       typeof window !== "undefined" &&
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      return;
-    }
+    if (prefersReduced) return; // keep final value, no animation
+
+    let raf = 0;
+    let done = false;
+
+    const animate = () => {
+      if (done) return;
+      done = true;
+      const start = performance.now();
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+        setShown(Math.round(value * eased));
+        if (t < 1) {
+          raf = requestAnimationFrame(tick);
+        } else {
+          setShown(value); // hard-snap to exact final value
+        }
+      };
+      raf = requestAnimationFrame(tick);
+    };
+
+    const r = el.getBoundingClientRect();
+    const inViewport =
+      r.top < window.innerHeight && r.bottom > 0 && r.height >= 0;
 
     if (typeof IntersectionObserver === "undefined") {
-      // No IO support — just leave the final value rendered (already set).
-      return;
+      // No IO — animate immediately, final value already safe.
+      animate();
+      return () => cancelAnimationFrame(raf);
     }
-
-    const r = ref.current.getBoundingClientRect();
-    const inViewport = r.top < window.innerHeight && r.bottom > 0;
 
     if (inViewport) {
-      // Already visible on mount (e.g. Hero stats): skip the count-up,
-      // keep the final value that SSR already rendered.
-      setStarted(true);
-      return;
+      animate();
+      return () => cancelAnimationFrame(raf);
     }
 
-    // Not yet visible — reset to 0 and animate when it scrolls in.
-    setShown(0);
     const obs = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
-            setStarted(true);
+            animate();
             obs.unobserve(e.target);
           }
         }
       },
       { threshold: 0.3 }
     );
-    obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+    obs.observe(el);
 
-  useEffect(() => {
-    if (!started) return;
-    // If we never reset to 0 (in-viewport-on-mount case), don't re-animate.
-    if (shown === value) return;
-    const start = performance.now();
-    let raf = 0;
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
-      setShown(Math.round(value * eased));
-      if (t < 1) raf = requestAnimationFrame(tick);
+    // Safety net: if the observer never fires for any reason, the final
+    // value is still on screen (shown === value), so nothing is stuck.
+    return () => {
+      cancelAnimationFrame(raf);
+      obs.disconnect();
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [started, value, duration]);
+  }, [value, duration]);
 
   return (
     <div ref={ref} className={`stat-counter ${className}`}>

@@ -10,6 +10,7 @@ import BusinessModel from "@/components/landing/BusinessModel";
 import MidPageCTA from "@/components/landing/MidPageCTA";
 import SocialProof from "@/components/landing/SocialProof";
 import FAQ from "@/components/landing/FAQ";
+import LeadForm from "@/components/landing/LeadForm";
 import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
 import MobileDock from "@/components/landing/MobileDock";
@@ -81,6 +82,13 @@ export default function Home() {
         <div className="alt-cream">
           <FadeUp variant="reveal">
             <FAQ />
+          </FadeUp>
+        </div>
+
+        {/* Lead form — dark */}
+        <div className="alt-dark">
+          <FadeUp variant="reveal">
+            <LeadForm />
           </FadeUp>
         </div>
 

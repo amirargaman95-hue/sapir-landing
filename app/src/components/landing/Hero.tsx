@@ -185,15 +185,23 @@ export default function Hero() {
 
             <motion.div {...fadeUpAt(0.45)} className="hero-v3-cta-row">
               <a
+                href="#lead-form"
+                className="btn-lime"
+                aria-label={hero.ctaPrimary}
+                onClick={() => track("cta_lead_form_click", { location: "hero" })}
+              >
+                <span>{hero.ctaPrimary}</span>
+              </a>
+              <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-lime"
-                aria-label={hero.ctaPrimary}
+                className="btn-ghost-dark"
+                aria-label="דברי איתי בוואטסאפ"
                 onClick={() => track("cta_whatsapp_click", { location: "hero" })}
               >
                 <WhatsappLogo size={20} weight="fill" />
-                <span>{hero.ctaPrimary}</span>
+                <span>וואטסאפ</span>
               </a>
               <a
                 href={`tel:${PHONE}`}
@@ -217,7 +225,7 @@ export default function Hero() {
               <span className="divider" aria-hidden />
               <StatCounter value={9} suffixWord="שלבים" label="תהליך מקצה לקצה" />
               <span className="divider" aria-hidden />
-              <StatCounter value={100} suffix="%" label="אחריות בכתב" />
+              <StatCounter value={30} suffixWord="יום" label="אחריות בכתב" />
             </motion.div>
           </div>
         </div>

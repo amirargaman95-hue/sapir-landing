@@ -24,7 +24,7 @@ export default function RiskReversalBanner() {
           rel="noopener noreferrer"
           className="ask-link"
         >
-          שאל/י אותי איך
+          שאל אותי איך
           <span aria-hidden>←</span>
         </a>
       </div>

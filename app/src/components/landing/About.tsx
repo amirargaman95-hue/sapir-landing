@@ -33,7 +33,7 @@ export default function About() {
             {/* Floating quote — desktop */}
             <aside
               className="hidden lg:block absolute -bottom-6 -left-10 max-w-[320px] surface-card p-5"
-              aria-label="ציטוט לקוחה"
+              aria-label="ציטוט לקוח"
             >
               <Quotes size={22} weight="fill" color="var(--color-accent)" />
               <p className="text-base leading-snug text-[var(--color-text)] mt-2">
@@ -78,7 +78,7 @@ export default function About() {
             {/* Mobile-only quote */}
             <aside
               className="mt-8 lg:hidden surface-card p-5"
-              aria-label="ציטוט לקוחה"
+              aria-label="ציטוט לקוח"
             >
               <Quotes size={22} weight="fill" color="var(--color-accent)" />
               <p className="text-base leading-snug mt-2">{aboutCopy.quote.text}</p>
