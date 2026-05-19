@@ -12,6 +12,7 @@ import SocialProof from "@/components/landing/SocialProof";
 import FAQ from "@/components/landing/FAQ";
 import LeadForm from "@/components/landing/LeadForm";
 import FinalCTA from "@/components/landing/FinalCTA";
+import CandidateBlock from "@/components/landing/CandidateBlock";
 import Footer from "@/components/landing/Footer";
 import MobileDock from "@/components/landing/MobileDock";
 import FadeUp from "@/components/ui/FadeUp";
@@ -97,6 +98,11 @@ export default function Home() {
           <FadeUp variant="reveal">
             <FinalCTA />
           </FadeUp>
+        </div>
+
+        {/* Candidate block — discreet, secondary (job seekers) — dark */}
+        <div className="alt-dark">
+          <CandidateBlock />
         </div>
       </main>
       <Footer />

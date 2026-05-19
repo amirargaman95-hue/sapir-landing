@@ -35,7 +35,7 @@ type LeadRecord = {
   industry: LeadIndustry;
   region: null;
   message: null;
-  source: "landing_lead_form";
+  source: "landing_lead_form" | "landing_candidate";
 };
 
 // Insert into Supabase `leads`. Missing env => throw (lead not saved).
@@ -83,7 +83,10 @@ async function notifyByEmail(record: LeadRecord): Promise<void> {
     body: JSON.stringify({
       from,
       to,
-      subject: `ליד חדש מהאתר — ${record.name}`,
+      subject:
+        record.source === "landing_candidate"
+          ? `מועמד חדש מהאתר — ${record.name}`
+          : `ליד חדש מהאתר — ${record.name}`,
       text: `שם: ${record.name}\nטלפון: ${record.phone}\nשם המפעל: ${
         record.factory_name ?? "-"
       }\nתחום: ${record.industry}\nמקור: ${record.source}`,
@@ -104,6 +107,8 @@ export async function submitLead(
   const phoneRaw = String(formData.get("phone") ?? "").trim();
   const factoryName = String(formData.get("factory_name") ?? "").trim();
   const industryRaw = String(formData.get("industry") ?? "").trim();
+  // Source tag. Owner is the default when the field is missing/anything else.
+  const isCandidate = String(formData.get("kind") ?? "").trim() === "candidate";
   // Honeypot — renamed from `company` so it never collides with "שם המפעל".
   const honeypot = String(formData.get("_hp") ?? "").trim();
 
@@ -135,24 +140,25 @@ export async function submitLead(
   const record: LeadRecord = {
     name,
     phone,
-    factory_name: factoryName || null,
+    // Candidates have no factory; owners keep their (optional) factory name.
+    factory_name: isCandidate ? null : factoryName || null,
     industry: industryRaw as LeadIndustry,
     region: null,
     message: null,
-    source: "landing_lead_form",
+    source: isCandidate ? "landing_candidate" : "landing_lead_form",
   };
 
   // Order: Supabase first (source of truth). A DB failure fails the submit.
+  // Candidate channel has no WhatsApp fallback — it's not the sales channel.
+  const failMessage = isCandidate
+    ? "משהו השתבש. נסו שוב מאוחר יותר."
+    : "משהו השתבש בשליחה. אפשר גם ישירות בוואטסאפ:";
+
   try {
     await insertLead(record);
   } catch (err) {
     console.error("[lead] supabase error", err);
-    return {
-      ok: false,
-      message:
-        "משהו השתבש בשליחה. אפשר גם ישירות בוואטסאפ:",
-      values,
-    };
+    return { ok: false, message: failMessage, values };
   }
 
   // Resend is blocking — a failure fails the submit (no admin in phase 1,
@@ -161,17 +167,13 @@ export async function submitLead(
     await notifyByEmail(record);
   } catch (err) {
     console.error("[lead] email error", err);
-    return {
-      ok: false,
-      message:
-        "משהו השתבש בשליחה. אפשר גם ישירות בוואטסאפ:",
-      values,
-    };
+    return { ok: false, message: failMessage, values };
   }
 
   return {
     ok: true,
-    message:
-      "תודה. קיבלתי את הפרטים — אני חוזרת אליך אישית, בשעות הפעילות לרוב תוך שעה.",
+    message: isCandidate
+      ? "תודה. הפרטים אצלי — אם יש התאמה אני חוזרת אליכם."
+      : "תודה. קיבלתי את הפרטים — אני חוזרת אליך אישית, בשעות הפעילות לרוב תוך שעה.",
   };
 }

@@ -3615,6 +3615,19 @@ footer { background: #18181B; }
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
+  /* Custom arrow on the LEFT (RTL) so it never overlaps the text */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23C6A15B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 0.95rem center;
+  padding-left: 2.4rem;
+}
+.lead-field select option {
+  background: #1a1206;
+  color: #fafafa;
+}
+/* First/placeholder option dimmed; selected empty value also dimmed */
+.lead-field select:has(option[value=""]:checked) {
+  color: rgba(255, 255, 255, 0.42);
 }
 .lead-field input::placeholder {
   color: rgba(255, 255, 255, 0.42);
@@ -3675,6 +3688,60 @@ footer { background: #18181B; }
   transition: color 200ms ease;
 }
 .lead-form-wa-link:hover { color: #FAFAFA; }
+
+/* ============================================================
+   CANDIDATE BLOCK — discreet secondary block (job seekers).
+   Reuses .lead-form-v2 / .lead-field but visually quieter & narrower.
+   ============================================================ */
+.candidate-block {
+  padding: clamp(2.25rem, 5vw, 3.25rem) 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.candidate-inner {
+  max-width: 360px;
+  margin: 0 auto;
+  text-align: right;
+}
+.candidate-heading {
+  font-family: var(--font-heebo), system-ui, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.3;
+}
+.candidate-sub {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin-top: 0.5rem;
+}
+.candidate-inner .lead-form-v2 { margin-top: 1.2rem; gap: 12px; }
+.candidate-inner .lead-field input,
+.candidate-inner .lead-field select {
+  height: 44px;
+  font-size: 0.92rem;
+}
+/* Quieter submit — outline, not the loud gold of the main CTA */
+.candidate-inner .lead-form-v2-submit {
+  height: 44px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+.candidate-inner .lead-form-v2-submit:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fafafa;
+}
+.candidate-inner .lead-form-success {
+  margin-top: 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.78);
+}
 
 /* ============================================================
    CTA TIER — tertiary inline link below primary button

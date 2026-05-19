@@ -117,6 +117,8 @@ export default function LeadForm() {
                 ))}
               </select>
             </div>
+            {/* Source tag — owner channel (B2B main CTA). */}
+            <input type="hidden" name="kind" value="owner" />
             {/* Honeypot — renamed to _hp so it can't collide with "שם המפעל". */}
             <input
               type="text"
